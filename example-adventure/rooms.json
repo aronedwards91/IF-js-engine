@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Tavern",
+    "UID": "Tavern",
+    "description": "An empty tavern, you can go outside via a door to your south, or up, there is a table and a mug",
+    "exits": "ArrayDirections",
+    "img": "strings",
+    "onLook": "It's an empty tavern, you can go outside via a door to your south, or up, there is a table [[imug01:taken:false==and a mug]]",
+    "onSmell": "The place smells dingy",
+    "onListen": "It's very quiet"
+  },
+  {
+    "name": "Bedroom",
+    "UID": "Bedroom",
+    "description": "An empty bedroom, there is a bed, a stairwell leads down, a box shows the number [[ibox:val:val]]",
+    "exits": "ArrayDirections",
+    "img": "strings",
+    "onLook": "An empty bedroom, there is a bed, a stairwell leads down"
+  },
+  {
+    "name": "Outside",
+    "UID": "Tavern",
+    "description": "It is dark, there is a tavern to your east[[routside:moon:true==, the moon is out]]",
+    "exits": "ArrayDirections",
+    "img": "strings",
+    "onLook": "**moonShow",
+    "onListen": "You can hear crickets"
+  }
+]

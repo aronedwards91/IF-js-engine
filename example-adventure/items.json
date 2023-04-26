@@ -1,0 +1,24 @@
+[
+  {
+    "name": "mug",
+    "UID": "imug01",
+    "description": "mug",
+    "takeable": true,
+    "hasStatus": true,
+    "onUse": "Theres nothing in the mug",
+    "interactions": {
+      "examine": "it's a plain earthenware mug",
+      "smell": "smells of old beer",
+      "eat": "Really?, maybe don't?"
+    }
+  },
+  {
+    "name": "box",
+    "UID": "ibox",
+    "description": "small box with a number on it",
+    "takeable": false,
+    "hasStatus": true,
+    "onUse": "*boxTouch",
+    "onLook": "It's a box, the number is [[ibox:val:val]]"
+  }
+]

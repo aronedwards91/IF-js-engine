@@ -1,0 +1,12 @@
+{
+  "boxTouch": {
+    "stateID": "ibox:val",
+    "newValue": "*++",
+    "returnString": "The value on the box increases"
+  },
+  "moonShow": {
+    "stateID": "routside:moon",
+    "newValue": "true",
+    "returnString": "You can see the moon"
+  }
+}

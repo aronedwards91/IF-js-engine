@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    .show-text {
+      margin: 2rem;
+      padding: 1rem;
+      border: 2px solid black;
+      border-radius: 10px;
+      max-height: 10rem;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body>
+  <div class="show-text">
+    <p id="text-print">Test</p>
+  </div>
+  <textarea id="textinput"></textarea>
+  <p>hit Enter</p>
+</body>
+
+<script>
+  var wage = document.getElementById("textinput");
+  wage.addEventListener("keydown", function (e) {
+    if (e.code === "Enter") {
+      //checks whether the pressed key is "Enter"
+      validate(e);
+    }
+  });
+
+  function validate(e) {
+    var text = e.target.value;
+    const textPrint = document.getElementById("text-print");
+    textPrint.innerHTML = textPrint.innerHTML + "</br>" + text;
+
+    const scroller = document.getElementsByClassName("show-text")[0];
+    scroller.scrollIntoView(false)
+    document.getElementById("textinput").value = "";
+  }
+</script>
