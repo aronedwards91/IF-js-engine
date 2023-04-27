@@ -80,8 +80,38 @@ export const soloWord = {
     "ingest",
     "swallow",
   ],
+  [BaseInteractions.Open]: [
+    "open",
+    "unlock",
+    "unbolt",
+    "uncover",
+    "unfold",
+    "unravel",
+    "release",
+  ],
+  [BaseInteractions.Attack]: [
+    "attack",
+    "punch",
+    "kick",
+    "assail",
+    "beat",
+    "charge",
+    "harm",
+    "hit",
+    "strike",
+    "bash",
+    "batter",
+    "bot",
+    "wallop",
+  ],
+  [BaseInteractions.Equip]: [
+    "equip",
+    "wear",
+    "don"
+  ]
 };
 
 export const DoubleTerm = {
   [BaseInteractions.Examine]: ["look at"],
+  [BaseInteractions.Equip]: ["put on"],
 };

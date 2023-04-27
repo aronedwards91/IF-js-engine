@@ -19,4 +19,11 @@ either a string returned to the reader, or trigger (starts with *)
 
 
 #### Problems
- optional / status driven exits
+- optional / status driven exits
+- containers
+- obvious required item in inventory; key->lock, 
+- 2 stage interaction; open box, examine
+- NPC
+- travel to specific room
+- always show description?
+- 

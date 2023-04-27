@@ -19,6 +19,19 @@ export enum BaseInteractions {
   Go = "go",
   Smell = "smell",
   Eat = "eat",
+  Open = "open",
+  Attack = "attack",
+  Equip = "equip",
+}
+
+interface GameInfo {
+  name: string;
+  description: string;
+  author: string;
+  version: float;
+  category: string;
+  releaseDate: string;
+  icon: string;
 }
 
 type RoomID = string;
