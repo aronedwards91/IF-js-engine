@@ -3,10 +3,15 @@ function parseSection(input: string): string {
 }
 
 function parseInstructions(input: string): string {
+  const cleanInput = input.toLowerCase().trim();
   let returnString = "new string";
 
-  if (input.includes(" and ")) {
-    input.split(input).forEach((section) => {
+  if (cleanInput.includes(" and ")) {
+    cleanInput.split(" and ").forEach((section) => {
+      returnString += parseSection(section);
+    });
+  } else if (cleanInput.includes(" then ")) {
+    cleanInput.split(" then ").forEach((section) => {
       returnString += parseSection(section);
     });
   }

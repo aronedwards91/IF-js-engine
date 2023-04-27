@@ -16,6 +16,7 @@ export const soloWord = {
   ],
   [BaseInteractions.Examine]: [
     "examine",
+    "look",
     "grab",
     "hold",
     "clutch",

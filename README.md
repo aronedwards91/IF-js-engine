@@ -15,3 +15,8 @@ either a string returned to the reader, or trigger (starts with *)
 *+2 : increase by 2
 *-2 : decrease by 2
 *-- : decrease by 1
+
+
+
+#### Problems
+ optional / status driven exits

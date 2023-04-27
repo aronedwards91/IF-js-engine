@@ -1,14 +1,14 @@
 export enum Directions {
-  UP,
-  DOWN,
-  N = "N",
-  S = "S",
-  E = "E",
-  W = "W",
-  NE = "NE",
-  NW = "NW",
-  SE = "SE",
-  SW = "SW",
+  UP = "up",
+  DOWN = "down",
+  N = "n",
+  S = "s",
+  E = "e",
+  W = "w",
+  NE = "ne",
+  NW = "nw",
+  SE = "se",
+  SW = "sw",
 }
 
 export enum BaseInteractions {
@@ -37,15 +37,16 @@ interface Trigger {
 
 type Interaction = string | TriggerID;
 
+type DirectionsOptions = Record<Directions | string, RoomID>;
+
 interface Room {
   name: string;
   UID: RoomID;
   description: StateCheckDescription;
-  exits: Array<Directions>;
+  exits: DirectionsOptions;
   img: string;
-  onLook?: Interaction;
-  onSmell?: Interaction;
-  onListen?: Interaction;
+  onExamine?: Interaction;
+  interactions: Record<InteractionVaried, Interaction>;
 }
 
 interface Item {
