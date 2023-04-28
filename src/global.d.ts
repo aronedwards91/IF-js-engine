@@ -24,16 +24,6 @@ export enum BaseInteractions {
   Equip = "equip",
 }
 
-interface GameInfo {
-  name: string;
-  description: string;
-  author: string;
-  version: number;
-  category: string;
-  releaseDate: string;
-  icon: string;
-}
-
 type RoomID = string;
 type TriggerID = string;
 type StateID = string;
@@ -84,6 +74,17 @@ interface Combination {
   id1: ItemID;
   id2: ItemID;
   effects: Array<TriggerID>;
+}
+
+
+interface GameInfo {
+  name: string;
+  description: string;
+  author: string;
+  version: number;
+  category: string;
+  releaseDate: string;
+  icon: string;
 }
 
 //  Data Arrays

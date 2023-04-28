@@ -1,0 +1,22 @@
+{
+  "name": "if-js-engine",
+  "version": "0.1.0",
+  "description": "engine for interactive fiction",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aronedwards91/IF-js-engine.git"
+  },
+  "author": "aron.edwards",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aronedwards91/IF-js-engine/issues"
+  },
+  "homepage": "https://github.com/aronedwards91/IF-js-engine#readme",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
