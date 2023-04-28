@@ -1,0 +1,8 @@
+{
+  "name": "An Example Adventure",
+  "description": "A basic interactive fiction adventure",
+  "author": "me",
+  "version": 0.2,
+  "category": "test",
+  "releaseDate": "22/-4/2023"
+}

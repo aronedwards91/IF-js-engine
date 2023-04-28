@@ -28,7 +28,7 @@ interface GameInfo {
   name: string;
   description: string;
   author: string;
-  version: float;
+  version: number;
   category: string;
   releaseDate: string;
   icon: string;

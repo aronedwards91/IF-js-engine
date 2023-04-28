@@ -26,4 +26,4 @@ either a string returned to the reader, or trigger (starts with *)
 - NPC
 - travel to specific room
 - always show description?
-- 
+- directional look
