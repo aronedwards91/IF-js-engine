@@ -4,7 +4,8 @@
   "description": "engine for interactive fiction",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-test": "esbuild src/index.ts --bundle --outfile=example-adventure/index.js",
+    "test-instance": "build-test & serve /example-adventure"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/aronedwards91/IF-js-engine#readme",
   "devDependencies": {
+    "esbuild": "^0.17.18",
+    "serve": "^14.2.0",
     "typescript": "^5.0.4"
   }
 }

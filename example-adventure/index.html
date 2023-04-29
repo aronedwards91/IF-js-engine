@@ -18,8 +18,24 @@
   <textarea id="textinput"></textarea>
   <p>hit Enter</p>
 </body>
+<script src="/index.js"></script>
+<script defer>
+  Promise.all(
+    ["/info.json", "/items.json", "/rooms.json", "/states.json", "/triggers.json"].map((request) => {
+      return fetch(request)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          return data;
+        });
+    })
+  )
+    .then(([info, items, rooms, states, triggers]) => {
+      console.log("info", info);
+    })
+    .catch(console.error.bind(console));
 
-<script>
   var wage = document.getElementById("textinput");
   wage.addEventListener("keydown", function (e) {
     if (e.code === "Enter") {
@@ -34,7 +50,7 @@
     textPrint.innerHTML = textPrint.innerHTML + "</br>" + text;
 
     const scroller = document.getElementsByClassName("show-text")[0];
-    scroller.scrollIntoView(false)
+    scroller.scrollIntoView(false);
     document.getElementById("textinput").value = "";
   }
 </script>
