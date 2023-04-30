@@ -1,13 +1,9 @@
-import { BaseInteractions } from "../global";
+import { BaseInteractions } from "../enums";
 
 export const soloWord: Record<string, string[]> = {
   [BaseInteractions.Examine]: [
     "examine",
     "look",
-    "grab",
-    "hold",
-    "clutch",
-    "grip",
     "check",
     "inspect",
     "investigate",
@@ -35,11 +31,14 @@ export const soloWord: Record<string, string[]> = {
     "receive",
     "appropriate",
     "fetch",
+    "hold",
+    "clutch",
   ],
   [BaseInteractions.Use]: [
     "use",
     "apply",
     "control",
+    "grab",
     "employ",
     "manipulate",
     "operate",

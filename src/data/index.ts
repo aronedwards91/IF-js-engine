@@ -1,9 +1,8 @@
-import { GameInfo, Items, Rooms, States, Triggers } from "../global";
 import startString from "./start-string";
-import { SetupRoomsData, getCurrentRoom } from "./room";
+import { setupRoomsData, getCurrentRoom } from "./room";
+import { setItemsList, getItemByID } from "./item";
 
 let Info: GameInfo;
-let ItemsData: Items;
 let TriggersData: Triggers;
 let StateData: States;
 
@@ -23,11 +22,11 @@ export function intialiseGameData({
   stateData,
 }: IntialiseGame) {
   Info = info;
-  ItemsData = itemsData;
   TriggersData = triggersData;
   StateData = stateData;
 
-  SetupRoomsData(roomsData, info);
+  setItemsList(itemsData);
+  setupRoomsData(roomsData, info, itemsData);
 
   return {
     startTitle: info.name,
@@ -37,4 +36,4 @@ export function intialiseGameData({
   };
 }
 
-export { getCurrentRoom };
+export { getCurrentRoom, getItemByID };

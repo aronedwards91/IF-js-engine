@@ -1,20 +1,38 @@
 {
+  "table01": {
+    "name": "table",
+    "description": "table",
+    "onUse": "It's a wooden table, it's a bit dirty",
+    "interactions": {
+      "examine": "it's a dirty tavern table",
+      "smell": "smells of spilled alcohols",
+      "eat": "it's too big!?"
+    }
+  },
   "imug01": {
-    "name": "mug",
-    "UID": "imug01",
+    "name": "green mug",
     "description": "mug",
     "takeable": true,
-    "hasStatus": true,
     "onUse": "Theres nothing in the mug",
     "interactions": {
-      "examine": "it's a plain earthenware mug",
+      "examine": "it's a plain green earthenware mug",
       "smell": "smells of old beer",
+      "eat": "Really?, maybe don't?"
+    }
+  },
+  "imug02": {
+    "name": "red mug",
+    "description": "mug",
+    "takeable": true,
+    "onUse": "Theres nothing in the mug",
+    "interactions": {
+      "examine": "it's a plain red earthenware mug",
+      "smell": "smells of old mead",
       "eat": "Really?, maybe don't?"
     }
   },
   "ibox": {
     "name": "box",
-    "UID": "ibox",
     "description": "small box with a number on it",
     "takeable": false,
     "hasStatus": true,

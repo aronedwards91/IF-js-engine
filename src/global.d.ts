@@ -1,33 +1,8 @@
-export enum Directions {
-  UP = "up",
-  DOWN = "down",
-  N = "n",
-  S = "s",
-  E = "e",
-  W = "w",
-  NE = "ne",
-  NW = "nw",
-  SE = "se",
-  SW = "sw",
-}
-
-export enum BaseInteractions {
-  Examine = "examine",
-  Take = "take",
-  Use = "use",
-  Go = "go",
-  Items = "items",
-  Eat = "eat",
-  Open = "open",
-  Attack = "attack",
-  Equip = "equip",
-  Smell = "smell",
-}
-
 type RoomID = string;
 type TriggerID = string;
 type StateID = string;
 type ItemID = string;
+type returnString = string;
 type State = string | number | boolean;
 type StateCheckDescription = string;
 type InteractionVaried = BaseInteractions | string;
@@ -35,10 +10,10 @@ type InteractionVaried = BaseInteractions | string;
 interface Trigger {
   stateID: StateID;
   newValue: State;
-  returnString: string;
+  returnString: returnString;
 }
 
-type Interaction = string | TriggerID;
+type Interaction = returnString | TriggerID;
 
 type DirectionsOptions = Record<Directions | string, RoomID>;
 
@@ -49,6 +24,9 @@ interface Room {
   img: string;
   onExamine?: Interaction;
   interactions: Record<InteractionVaried, Interaction>;
+  itemsList?: Array<ItemID>;
+  keyedItems: Record<string, ItemID>;
+  lookable?: Record<string, returnString>;
 }
 
 interface Item {
@@ -77,13 +55,13 @@ interface Combination {
 
 interface GameInfo {
   name: string;
-  description: string;
+  description: returnString;
   author: string;
   version: number;
-  category: string;
+  category: returnString;
   releaseDate: string;
   icon: string;
-  introduction: string;
+  introduction: returnString;
   initialRoomID: RoomID;
 }
 

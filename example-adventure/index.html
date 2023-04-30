@@ -64,8 +64,10 @@
         console.log("returnedString", returnedString);
         textPrint.innerHTML = textPrint.innerHTML + "</br>" + returnedString;
 
-        scroller.scrollIntoView(false);
-        document.getElementById("textinput").value = "";
+        scroller.scrollTo({
+          top: scroller.clientHeight,
+          behavior: "smooth",
+        });
       };
     })
     .catch(console.error.bind(console));
@@ -76,6 +78,10 @@
     if (e.code === "Enter") {
       //checks whether the pressed key is "Enter"
       validate(e);
+      e.stopPropagation();
+
+      setTimeout(() => {TextInput.value = null;}, 10);
+      
     }
   });
 </script>
