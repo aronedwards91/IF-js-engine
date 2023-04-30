@@ -4,8 +4,8 @@
   "description": "engine for interactive fiction",
   "main": "index.js",
   "scripts": {
-    "build-test": "esbuild src/index.ts --bundle --outfile=example-adventure/index.js",
-    "test-instance": "build-test & serve /example-adventure"
+    "build-test": "esbuild src/window.ts --bundle --outfile=example-adventure/index.js",
+    "test-instance": "npm run build-test & serve example-adventure/"
   },
   "repository": {
     "type": "git",

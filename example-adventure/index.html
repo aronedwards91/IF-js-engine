@@ -9,19 +9,31 @@
       max-height: 10rem;
       overflow-y: scroll;
     }
+    #text-print {
+      white-space: pre-line;
+    }
   </style>
 </head>
 <body>
   <div class="show-text">
-    <p id="text-print">Test</p>
+    <p id="text-print"></p>
   </div>
   <textarea id="textinput"></textarea>
   <p>hit Enter</p>
 </body>
 <script src="/index.js"></script>
 <script defer>
+  const textPrint = document.getElementById("text-print");
+  const scroller = document.getElementsByClassName("show-text")[0];
+
   Promise.all(
-    ["/info.json", "/items.json", "/rooms.json", "/states.json", "/triggers.json"].map((request) => {
+    [
+      "/info.json",
+      "/items.json",
+      "/rooms.json",
+      "/states.json",
+      "/triggers.json",
+    ].map((request) => {
       return fetch(request)
         .then((response) => {
           return response.json();
@@ -31,8 +43,18 @@
         });
     })
   )
-    .then(([info, items, rooms, states, triggers]) => {
+    .then(([info, itemsData, roomsData, stateData, triggersData]) => {
       console.log("info", info);
+      const Game = IFictionEngine.intialiseGameData({
+        info,
+        roomsData,
+        itemsData,
+        triggersData,
+        stateData,
+      });
+
+      textPrint.innerHTML = textPrint.innerHTML + `<b>${Game.startTitle}</b>`;
+      textPrint.innerHTML = textPrint.innerHTML + `<p>${Game.startString}</p>`;
     })
     .catch(console.error.bind(console));
 
@@ -46,10 +68,8 @@
 
   function validate(e) {
     var text = e.target.value;
-    const textPrint = document.getElementById("text-print");
     textPrint.innerHTML = textPrint.innerHTML + "</br>" + text;
 
-    const scroller = document.getElementsByClassName("show-text")[0];
     scroller.scrollIntoView(false);
     document.getElementById("textinput").value = "";
   }
