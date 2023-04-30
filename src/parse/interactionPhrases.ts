@@ -34,6 +34,18 @@ export const soloWord: Record<string, string[]> = {
     "hold",
     "clutch",
   ],
+  [BaseInteractions.Place]: [
+    "place",
+    "drop",
+    "discard",
+    "abandon",
+    "remove",
+    "dump",
+    "deposit",
+    "install",
+    "lay",
+    "give",
+  ],
   [BaseInteractions.Use]: [
     "use",
     "apply",
@@ -108,15 +120,15 @@ export const soloWord: Record<string, string[]> = {
 };
 
 export const DoubleTerm: Record<string, string[]> = {
-  [BaseInteractions.Examine]: ["look at"],
   [BaseInteractions.Equip]: ["put on"],
+  [BaseInteractions.Place]: ["put down", "lay down"],
 };
 
 export const BuildTermHashMap = (): Map<string, string> => {
   const HashMap = new Map();
 
   Object.keys(soloWord).forEach((key) => {
-    (soloWord[key as string]).forEach((term) => {
+    soloWord[key as string].forEach((term) => {
       HashMap.set(term, key);
     });
   });

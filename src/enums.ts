@@ -14,6 +14,7 @@ export enum Directions {
 export enum BaseInteractions {
   Examine = "examine",
   Take = "take",
+  Place = "place",
   Use = "use",
   Go = "go",
   Items = "items",

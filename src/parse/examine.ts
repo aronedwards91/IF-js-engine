@@ -10,9 +10,11 @@ export default function checkExamine(stringArray: Array<string>): string {
       const Item: Item = getItemByID(Room.keyedItems[viewedObject]);
       return Item.interactions.examine;
     }
-    if (Room.lookable && Room.lookable[viewedObject]) {
+
+    if (Room.lookable && Room.lookable[viewedObject])
       return Room.lookable[viewedObject];
-    }
+
+    // TODO check inventory
 
     if (stringArray.length >= 3) {
       const unneededDescriptionCheck = stringArray.slice(2).join(" ");
@@ -22,9 +24,9 @@ export default function checkExamine(stringArray: Array<string>): string {
         );
         return Item.interactions.examine;
       }
-      if (Room.lookable && Room.lookable[unneededDescriptionCheck]) {
+
+      if (Room.lookable && Room.lookable[unneededDescriptionCheck])
         return Room.lookable[unneededDescriptionCheck];
-      }
     }
 
     return "can't see such an item";

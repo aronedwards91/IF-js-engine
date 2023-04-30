@@ -2,6 +2,7 @@ type RoomID = string;
 type TriggerID = string;
 type StateID = string;
 type ItemID = string;
+type ItemName = string;
 type returnString = string;
 type State = string | number | boolean;
 type StateCheckDescription = string;
@@ -25,13 +26,12 @@ interface Room {
   onExamine?: Interaction;
   interactions: Record<InteractionVaried, Interaction>;
   itemsList?: Array<ItemID>;
-  keyedItems: Record<string, ItemID>;
+  keyedItems: Record<ItemName, ItemID>;
   lookable?: Record<string, returnString>;
 }
 
 interface Item {
-  name: string;
-  UID: ItemID;
+  name: ItemName;
   description: StateCheckDescription;
   isTakeable: boolean;
   hasStatus: boolean;
@@ -43,7 +43,7 @@ interface Item {
 interface PlayerStatus {
   room: RoomID;
   name: string;
-  inventory: Array<ItemID>;
+  inventory: Record<ItemName,ItemID>;
 }
 
 // TODO - map?

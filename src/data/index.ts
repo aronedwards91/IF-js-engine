@@ -1,6 +1,13 @@
 import startString from "./start-string";
 import { setupRoomsData, getCurrentRoom } from "./room";
 import { setItemsList, getItemByID } from "./item";
+import {
+  getInventoryItems,
+  getInventoryItem,
+  listInventory,
+  addToInventory,
+  removeFromInventory,
+} from "./inventory";
 
 let Info: GameInfo;
 let TriggersData: Triggers;
@@ -36,4 +43,12 @@ export function intialiseGameData({
   };
 }
 
-export { getCurrentRoom, getItemByID };
+export {
+  getCurrentRoom,
+  getItemByID,
+  getInventoryItems,
+  getInventoryItem,
+  listInventory,
+  addToInventory,
+  removeFromInventory,
+};

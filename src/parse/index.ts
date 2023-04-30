@@ -1,6 +1,6 @@
 import { BuildTermHashMap } from "./interactionPhrases";
 import { BaseInteractions } from "../enums";
-import { getCurrentRoom, getItemByID } from "../data";
+import { getCurrentRoom, getItemByID, listInventory } from "../data";
 import checkExamine from "./examine";
 import takeItem from "./take";
 
@@ -23,11 +23,12 @@ function parseSection(input: string): string {
     case BaseInteractions.Take:
       return takeItem(spaceSplit);
 
-    default:
-      return "";
-  }
+    case BaseInteractions.Items:
+      return listInventory();
 
-  return "Command not understood";
+    default:
+      return "Command not understood";
+  }
 }
 
 function parseInstructions(input: string): string {
