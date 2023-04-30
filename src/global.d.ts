@@ -33,7 +33,7 @@ interface Item {
   name: string;
   UID: ItemID;
   description: StateCheckDescription;
-  takeable: boolean;
+  isTakeable: boolean;
   hasStatus: boolean;
   icon?: string;
   onUse?: Interaction;

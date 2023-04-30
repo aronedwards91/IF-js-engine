@@ -12,7 +12,7 @@
   "imug01": {
     "name": "green mug",
     "description": "mug",
-    "takeable": true,
+    "isTakeable": true,
     "onUse": "Theres nothing in the mug",
     "interactions": {
       "examine": "it's a plain green earthenware mug",
@@ -23,7 +23,7 @@
   "imug02": {
     "name": "red mug",
     "description": "mug",
-    "takeable": true,
+    "isTakeable": true,
     "onUse": "Theres nothing in the mug",
     "interactions": {
       "examine": "it's a plain red earthenware mug",
@@ -34,7 +34,7 @@
   "ibox": {
     "name": "box",
     "description": "small box with a number on it",
-    "takeable": false,
+    "isTakeable": false,
     "hasStatus": true,
     "onUse": "*boxTouch",
     "onLook": "It's a box, the number is [[ibox:val:val]]"

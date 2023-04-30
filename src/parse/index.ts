@@ -1,6 +1,8 @@
 import { BuildTermHashMap } from "./interactionPhrases";
 import { BaseInteractions } from "../enums";
 import { getCurrentRoom, getItemByID } from "../data";
+import checkExamine from "./examine";
+import takeItem from "./take";
 
 const Space = " ";
 const TermHashMap = BuildTermHashMap();
@@ -16,24 +18,10 @@ function parseSection(input: string): string {
 
   switch (firstTerm) {
     case BaseInteractions.Examine:
-      const Room = getCurrentRoom();
-      if (spaceSplit.length > 1) {
-        // look at what?
-        const viewedObject = spaceSplit.slice(1).join(" ");
+      return checkExamine(spaceSplit);
 
-        if (Room.keyedItems[viewedObject]) {
-          const Item: Item = getItemByID(Room.keyedItems[viewedObject]);
-          return Item.interactions.examine;
-        }
-
-        // check lookable
-        // check ver description
-
-        return "can't see such an item";
-      } else {
-        return Room.description;
-      }
-      break;
+    case BaseInteractions.Take:
+      return takeItem(spaceSplit);
 
     default:
       return "";
