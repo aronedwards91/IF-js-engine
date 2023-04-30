@@ -1,8 +1,10 @@
 {
   "name": "An Example Adventure",
   "description": "A basic interactive fiction adventure",
+  "introduction": "You adventure begins here in a tavern, your past memories are gone, you have no recollection of how you arrived here.\n You are very tired.",
   "author": "A.Person",
   "version": 0.2,
   "category": "test",
-  "releaseDate": "22/-4/2023"
+  "releaseDate": "22/-4/2023",
+  "initialRoomID": "tavern"
 }

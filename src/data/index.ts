@@ -1,8 +1,8 @@
 import { GameInfo, Items, Rooms, States, Triggers } from "../global";
 import startString from "./start-string";
+import { SetupRoomsData, getCurrentRoom } from "./room";
 
 let Info: GameInfo;
-let RoomsData: Rooms;
 let ItemsData: Items;
 let TriggersData: Triggers;
 let StateData: States;
@@ -14,6 +14,7 @@ interface IntialiseGame {
   triggersData: Triggers;
   stateData: States;
 }
+
 export function intialiseGameData({
   info,
   roomsData,
@@ -22,14 +23,18 @@ export function intialiseGameData({
   stateData,
 }: IntialiseGame) {
   Info = info;
-  RoomsData = roomsData;
   ItemsData = itemsData;
   TriggersData = triggersData;
   StateData = stateData;
 
+  SetupRoomsData(roomsData, info);
+
   return {
     startTitle: info.name,
     startString: startString(info),
+    startIntro: info.introduction,
     // fireableInteractions
   };
 }
+
+export { getCurrentRoom };

@@ -26,6 +26,8 @@
   const textPrint = document.getElementById("text-print");
   const scroller = document.getElementsByClassName("show-text")[0];
 
+  let validate = () => {};
+
   Promise.all(
     [
       "/info.json",
@@ -44,7 +46,7 @@
     })
   )
     .then(([info, itemsData, roomsData, stateData, triggersData]) => {
-      console.log("info", info);
+      console.log("roomsData", roomsData);
       const Game = IFictionEngine.intialiseGameData({
         info,
         roomsData,
@@ -55,22 +57,25 @@
 
       textPrint.innerHTML = textPrint.innerHTML + `<b>${Game.startTitle}</b>`;
       textPrint.innerHTML = textPrint.innerHTML + `<p>${Game.startString}</p>`;
+
+      validate = (e) => {
+        var text = e.target.value;
+        const returnedString = IFictionEngine.fireInput(text);
+        console.log("returnedString", returnedString);
+        textPrint.innerHTML = textPrint.innerHTML + "</br>" + returnedString;
+
+        scroller.scrollIntoView(false);
+        document.getElementById("textinput").value = "";
+      };
     })
     .catch(console.error.bind(console));
 
-  var wage = document.getElementById("textinput");
-  wage.addEventListener("keydown", function (e) {
+  var TextInput = document.getElementById("textinput");
+
+  TextInput.addEventListener("keydown", function (e) {
     if (e.code === "Enter") {
       //checks whether the pressed key is "Enter"
       validate(e);
     }
   });
-
-  function validate(e) {
-    var text = e.target.value;
-    textPrint.innerHTML = textPrint.innerHTML + "</br>" + text;
-
-    scroller.scrollIntoView(false);
-    document.getElementById("textinput").value = "";
-  }
 </script>

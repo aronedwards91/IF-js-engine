@@ -12,16 +12,16 @@ export enum Directions {
 }
 
 export enum BaseInteractions {
-  Items = "items",
-  Take = "take",
   Examine = "examine",
+  Take = "take",
   Use = "use",
   Go = "go",
-  Smell = "smell",
+  Items = "items",
   Eat = "eat",
   Open = "open",
   Attack = "attack",
   Equip = "equip",
+  Smell = "smell",
 }
 
 type RoomID = string;
@@ -44,7 +44,6 @@ type DirectionsOptions = Record<Directions | string, RoomID>;
 
 interface Room {
   name: string;
-  UID: RoomID;
   description: StateCheckDescription;
   exits: DirectionsOptions;
   img: string;
@@ -76,7 +75,6 @@ interface Combination {
   effects: Array<TriggerID>;
 }
 
-
 interface GameInfo {
   name: string;
   description: string;
@@ -85,6 +83,8 @@ interface GameInfo {
   category: string;
   releaseDate: string;
   icon: string;
+  introduction: string;
+  initialRoomID: RoomID;
 }
 
 //  Data Arrays

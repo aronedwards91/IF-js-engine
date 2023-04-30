@@ -1,19 +1,6 @@
 import { BaseInteractions } from "../global";
 
-export const soloWord = {
-  [BaseInteractions.Take]: [
-    "take",
-    "get",
-    "pick",
-    "collect",
-    "seize",
-    "acquire",
-    "obtain",
-    "snatch",
-    "receive",
-    "appropriate",
-    "fetch",
-  ],
+export const soloWord: Record<string, string[]> = {
   [BaseInteractions.Examine]: [
     "examine",
     "look",
@@ -35,6 +22,19 @@ export const soloWord = {
     "view",
     "peruse",
     "research",
+  ],
+  [BaseInteractions.Take]: [
+    "take",
+    "get",
+    "pick",
+    "collect",
+    "seize",
+    "acquire",
+    "obtain",
+    "snatch",
+    "receive",
+    "appropriate",
+    "fetch",
   ],
   [BaseInteractions.Use]: [
     "use",
@@ -104,14 +104,28 @@ export const soloWord = {
     "bot",
     "wallop",
   ],
-  [BaseInteractions.Equip]: [
-    "equip",
-    "wear",
-    "don"
-  ]
+  [BaseInteractions.Equip]: ["equip", "wear", "don"],
+  [BaseInteractions.Smell]: ["smell", "sniff", "whiff", "huff"],
 };
 
-export const DoubleTerm = {
+export const DoubleTerm: Record<string, string[]> = {
   [BaseInteractions.Examine]: ["look at"],
   [BaseInteractions.Equip]: ["put on"],
+};
+
+export const BuildTermHashMap = (): Map<string, string> => {
+  const HashMap = new Map();
+
+  Object.keys(soloWord).forEach((key) => {
+    (soloWord[key as string]).forEach((term) => {
+      HashMap.set(term, key);
+    });
+  });
+  Object.keys(DoubleTerm).forEach((key) => {
+    soloWord[key].forEach((term) => {
+      HashMap.set(term, key);
+    });
+  });
+
+  return HashMap;
 };

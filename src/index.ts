@@ -1,19 +1,10 @@
 import { intialiseGameData } from "./data";
-
-interface InputReturn {
-  string: string;
-  onFinish: (str: string) => {};
-}
+import ParseInstructions from "./parse";
 
 export default {
   intialiseGameData,
-  fireInput: (): InputReturn => {
-    return {
-      string: "",
-      onFinish: (x) => {
-        return x;
-      },
-    };
+  fireInput: (input: string): string => {
+    return ParseInstructions(input)
   },
   startGame: () => {},
 };

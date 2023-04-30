@@ -1,5 +1,5 @@
-[
-  {
+{
+  "imug01": {
     "name": "mug",
     "UID": "imug01",
     "description": "mug",
@@ -12,7 +12,7 @@
       "eat": "Really?, maybe don't?"
     }
   },
-  {
+  "ibox": {
     "name": "box",
     "UID": "ibox",
     "description": "small box with a number on it",
@@ -21,4 +21,4 @@
     "onUse": "*boxTouch",
     "onLook": "It's a box, the number is [[ibox:val:val]]"
   }
-]
+}
