@@ -1,19 +1,19 @@
 {
   "tavern": {
     "name": "Tavern",
-    "description": "An empty tavern, you can go outside via a door to your south, or up, there is a table and a mug",
+    "description": "An empty tavern, you can go outside via a door to your south, or up, there is a table and two mugs",
     "exits": {
       "S": "outside",
       "UP": "bedroom",
       "outside": "outside"
     },
     "img": "strings",
-    "onExamine": "It's an empty tavern, you can go outside via a door to your south, or up, there is a table [[imug01:taken:false==with a green mug]] [[imug02:taken:false==and a red mug]]",
     "interactions": {
+      "examine": "It's an empty tavern, you can go outside via a door to your south, or up, there is a table [[imug01:taken:false==with a green mug]] [[imug02:taken:false==and a red mug]]",
       "smell": "The place smells dingy",
       "listen": "It's very quiet"
     },
-    "itemsList": ["table01", "imug01", "imug02"],
+    "itemsList": ["table01", "green mug", "red mug"],
     "lookable": {
       "stairs": "they lead up",
       "door": "leads outside",
@@ -28,8 +28,10 @@
       "DOWN": "tavern"
     },
     "img": "strings",
-    "onExamine": "An empty bedroom, there is a bed, a stairwell leads down",
-    "itemsList": ["ibox"],
+    "interactions": {
+      "examine": "An empty bedroom, there is a bed, a stairwell leads down"
+    },
+    "itemsList": ["box"],
     "lookable": {
       "stairs": "they're in the hallway",
       "door": "leads to a hallway with a staircase to the tavern",
@@ -44,8 +46,8 @@
       "N": "tavern",
       "inside": "tavern"
     },
-    "onExamine": "**moonShow",
     "interactions": {
+      "examine": ">>moonShow",
       "listen": "You can hear crickets"
     }
   }

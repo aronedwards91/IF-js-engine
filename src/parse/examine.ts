@@ -4,10 +4,11 @@ export default function checkExamine(stringArray: Array<string>): string {
   const Room = getCurrentRoom();
 
   if (stringArray.length > 1) {
-    const viewedObject = stringArray.slice(1).join(" ");
+    const viewedObject: ItemID = stringArray.slice(1).join(" ");
+    const itemInRoomCheckIndex = Room.itemsList.indexOf(viewedObject);
 
-    if (Room.keyedItems[viewedObject]) {
-      const Item: Item = getItemByID(Room.keyedItems[viewedObject]);
+    if (itemInRoomCheckIndex >= 0) {
+      const Item: Item = getItemByID(Room.itemsList[itemInRoomCheckIndex]);
       return Item.interactions.examine;
     }
 
@@ -17,10 +18,12 @@ export default function checkExamine(stringArray: Array<string>): string {
     // TODO check inventory
 
     if (stringArray.length >= 3) {
-      const unneededDescriptionCheck = stringArray.slice(2).join(" ");
-      if (Room.keyedItems[unneededDescriptionCheck]) {
+      const unneededDescriptionCheck: ItemID = stringArray.slice(2).join(" ");
+      const itemInRoomCheckIndexB = Room.itemsList.indexOf(unneededDescriptionCheck);
+
+      if (itemInRoomCheckIndexB >= 0) {
         const Item: Item = getItemByID(
-          Room.keyedItems[unneededDescriptionCheck]
+          Room.itemsList[itemInRoomCheckIndexB]
         );
         return Item.interactions.examine;
       }
@@ -31,6 +34,6 @@ export default function checkExamine(stringArray: Array<string>): string {
 
     return "can't see such an item";
   } else {
-    return Room.description;
+    return Room.interactions.examine || Room.description;
   }
 }

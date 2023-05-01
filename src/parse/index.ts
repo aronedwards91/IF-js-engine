@@ -23,6 +23,9 @@ function parseSection(input: string): string {
     case BaseInteractions.Take:
       return takeItem(spaceSplit);
 
+    case BaseInteractions.Place:
+    // TODO !!!! remove in add to room
+
     case BaseInteractions.Items:
       return listInventory();
 

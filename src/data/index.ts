@@ -1,9 +1,8 @@
 import startString from "./start-string";
-import { setupRoomsData, getCurrentRoom } from "./room";
+import {setupRoomsData} from "./room";
 import { setItemsList, getItemByID } from "./item";
 import {
   getInventoryItems,
-  getInventoryItem,
   listInventory,
   addToInventory,
   removeFromInventory,
@@ -33,7 +32,7 @@ export function intialiseGameData({
   StateData = stateData;
 
   setItemsList(itemsData);
-  setupRoomsData(roomsData, info, itemsData);
+  setupRoomsData(roomsData, info);
 
   return {
     startTitle: info.name,
@@ -43,12 +42,6 @@ export function intialiseGameData({
   };
 }
 
-export {
-  getCurrentRoom,
-  getItemByID,
-  getInventoryItems,
-  getInventoryItem,
-  listInventory,
-  addToInventory,
-  removeFromInventory,
-};
+export * from "./item";
+export * from "./room";
+export * from "./inventory";

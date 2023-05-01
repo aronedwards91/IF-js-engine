@@ -1,6 +1,5 @@
 {
-  "table01": {
-    "name": "table",
+  "table": {
     "description": "table",
     "onUse": "It's a wooden table, it's a bit dirty",
     "interactions": {
@@ -9,9 +8,9 @@
       "eat": "it's too big!?"
     }
   },
-  "imug01": {
+  "green mug": {
     "name": "green mug",
-    "description": "mug",
+    "description": "green mug",
     "isTakeable": true,
     "onUse": "Theres nothing in the mug",
     "interactions": {
@@ -20,9 +19,9 @@
       "eat": "Really?, maybe don't?"
     }
   },
-  "imug02": {
+  "red mug": {
     "name": "red mug",
-    "description": "mug",
+    "description": "red mug",
     "isTakeable": true,
     "onUse": "Theres nothing in the mug",
     "interactions": {
@@ -31,7 +30,7 @@
       "eat": "Really?, maybe don't?"
     }
   },
-  "ibox": {
+  "box": {
     "name": "box",
     "description": "small box with a number on it",
     "isTakeable": false,

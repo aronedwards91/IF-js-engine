@@ -1,38 +1,30 @@
-const Inventory: Record<ItemName, ItemID> = {};
+const Inventory: Array<ItemID> = [];
 // const altName
 
-function getInventoryItems(): Record<ItemName, ItemID> {
+function getInventoryItems(): Array<ItemID> {
   return Inventory;
 }
 
-function getInventoryItem(itemName: ItemName): ItemID {
-  return Inventory[itemName];
-}
-
-// TODO capitalize 
+// TODO capitalize
 function listInventory(): string {
-  return Object.keys(Inventory).join(", ") || "nothing in inventory";
+  return Inventory.join(", ") || "nothing in inventory";
 }
 
-function addToInventory(itemName: ItemName, itemId: ItemID) {
-  Inventory[itemName] = itemId;
+function addToInventory(itemName: ItemID) {
+  Inventory.push(itemName);
 }
 
 // function addMultinameToInventory
 
-function getItemNameByItemID(itemID: ItemID) {
-  return Object.keys(Inventory).find((key) => Inventory[key] === itemID);
-}
 function removeFromInventory(itemId: ItemID) {
-  const paramKey = getItemNameByItemID(itemId);
-  const InventoryParam = paramKey ? Inventory[paramKey] : null;
-
-  if (paramKey && InventoryParam) delete Inventory[paramKey];
+  const indexOfInventoryItem = Inventory.indexOf(itemId);
+  if (indexOfInventoryItem > 0) {
+    Inventory.splice(indexOfInventoryItem, 1);
+  }
 }
 
 export {
   getInventoryItems,
-  getInventoryItem,
   listInventory,
   addToInventory,
   removeFromInventory,
