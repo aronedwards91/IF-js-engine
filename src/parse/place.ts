@@ -9,7 +9,6 @@ export default function checkPlace(stringArray: Array<string>): string {
     const chosenObject = stringArray.slice(1).join(" ");
 
     if (checkInventory(chosenObject)) {
-      // addItem to Room
       addItemToRoom(chosenObject);
       removeFromInventory(chosenObject);
       return `You place ${chosenObject} in the room`;
@@ -19,7 +18,6 @@ export default function checkPlace(stringArray: Array<string>): string {
       const unneededDescriptionObject = stringArray.slice(2).join(" ");
 
       if (checkInventory(unneededDescriptionObject)) {
-        // addItem to Room
         addItemToRoom(unneededDescriptionObject);
         removeFromInventory(unneededDescriptionObject);
         return `You place ${chosenObject} in the room`;

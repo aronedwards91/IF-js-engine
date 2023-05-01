@@ -1,3 +1,5 @@
+import { listArrayWithDeterminer } from "../../utils/lister";
+
 const Inventory: Array<ItemID> = [];
 // const altName
 
@@ -11,7 +13,7 @@ function checkInventory(itemName: ItemID): boolean {
 
 // TODO capitalize
 function listInventory(): string {
-  return Inventory.join(", ") || "nothing in inventory";
+  return listArrayWithDeterminer(Inventory) || "nothing in inventory";
 }
 
 function addToInventory(itemName: ItemID) {

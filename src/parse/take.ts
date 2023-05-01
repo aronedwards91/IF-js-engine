@@ -1,8 +1,8 @@
 import {
-  getCurrentRoom,
   getItemByID,
   addToInventory,
   checkRoomItems,
+  removeItemFromRoom
 } from "../data";
 
 export default function takeItem(stringArray: Array<string>): string {
@@ -14,7 +14,7 @@ export default function takeItem(stringArray: Array<string>): string {
 
       if (Item.isTakeable) {
         addToInventory(chosenObject);
-        // remove from room
+        removeItemFromRoom(chosenObject);
         return `you add ${chosenObject} to your inventory`;
       } else {
         return `you can't carry ${chosenObject}`;
@@ -30,7 +30,7 @@ export default function takeItem(stringArray: Array<string>): string {
 
         if (Item.isTakeable) {
           addToInventory(unneededDescriptionObject);
-          // remove from room
+          removeItemFromRoom(chosenObject);
           return `you add ${chosenObject} to your inventory`;
         } else {
           return `you can't carry ${chosenObject}`;

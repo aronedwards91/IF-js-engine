@@ -23,7 +23,7 @@
   "bedroom": {
     "name": "Bedroom",
     "UID": "bedroom",
-    "description": "An empty bedroom, there is a bed, a box shows the number [[ibox:val:val]], a stairwell behind a door leads down",
+    "description": "An empty bedroom, there is a bed, a stairwell behind a door leads down",
     "exits": {
       "DOWN": "tavern"
     },

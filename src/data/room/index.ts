@@ -1,3 +1,5 @@
+import { listArrayWithDeterminer } from "../../utils/lister";
+
 let RoomsData: Rooms;
 let currentRoom: Room;
 let currentRoomID: RoomID;
@@ -26,6 +28,8 @@ export function addItemToRoom(itemID: ItemID, roomID = currentRoomID) {
 }
 
 export function removeItemFromRoom(itemID: ItemID, roomID = currentRoomID) {
+  if (!RoomsData[roomID].placedItems) RoomsData[roomID].placedItems = [];
+
   RoomsData[roomID].placedItems = RoomsData[roomID].placedItems.filter(
     (val) => val !== itemID
   );
@@ -41,9 +45,11 @@ export function getRoomShortDescription(roomID = currentRoomID): string {
 
 export function getRoomFullDescription(roomID = currentRoomID): string {
   const Room = RoomsData[roomID];
-  const placedItems = Room.placedItems ? Room.placedItems.join(", ") : false;
+  const placedItems = Room.placedItems
+    ? " , there is also " + listArrayWithDeterminer(Room.placedItems)
+    : false;
 
   return `${Room.interactions?.examine || Room.description} ${
-    placedItems ? " , there is also " + placedItems : ""
+    placedItems || ""
   }`;
 }
