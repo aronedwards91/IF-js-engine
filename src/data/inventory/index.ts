@@ -5,6 +5,10 @@ function getInventoryItems(): Array<ItemID> {
   return Inventory;
 }
 
+function checkInventory(itemName: ItemID): boolean {
+  return Inventory.indexOf(itemName) >= 0;
+}
+
 // TODO capitalize
 function listInventory(): string {
   return Inventory.join(", ") || "nothing in inventory";
@@ -25,6 +29,7 @@ function removeFromInventory(itemId: ItemID) {
 
 export {
   getInventoryItems,
+  checkInventory,
   listInventory,
   addToInventory,
   removeFromInventory,

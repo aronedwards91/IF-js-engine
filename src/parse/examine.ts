@@ -1,4 +1,4 @@
-import { getCurrentRoom, getItemByID } from "../data";
+import { getCurrentRoom, getItemByID, getRoomFullDescription } from "../data";
 
 export default function checkExamine(stringArray: Array<string>): string {
   const Room = getCurrentRoom();
@@ -34,6 +34,6 @@ export default function checkExamine(stringArray: Array<string>): string {
 
     return "can't see such an item";
   } else {
-    return Room.interactions.examine || Room.description;
+    return getRoomFullDescription();
   }
 }

@@ -3,6 +3,7 @@ import { BaseInteractions } from "../enums";
 import { getCurrentRoom, getItemByID, listInventory } from "../data";
 import checkExamine from "./examine";
 import takeItem from "./take";
+import placeItem from "./place";
 
 const Space = " ";
 const TermHashMap = BuildTermHashMap();
@@ -24,7 +25,7 @@ function parseSection(input: string): string {
       return takeItem(spaceSplit);
 
     case BaseInteractions.Place:
-    // TODO !!!! remove in add to room
+      return placeItem(spaceSplit);
 
     case BaseInteractions.Items:
       return listInventory();

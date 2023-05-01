@@ -21,6 +21,7 @@ export function getCurrentRoom(): Room {
 }
 
 export function addItemToRoom(itemID: ItemID, roomID = currentRoomID) {
+  if (!RoomsData[roomID].placedItems) RoomsData[roomID].placedItems = [];
   RoomsData[roomID].placedItems.push(itemID);
 }
 
@@ -34,11 +35,15 @@ export function checkRoomItems(itemID: ItemID, roomID = currentRoomID) {
   return RoomsData[roomID].itemsList.indexOf(itemID);
 }
 
-export function getRoomDescription(roomID = currentRoomID): string {
-  const Room = RoomsData[roomID];
-  const placedItems = Room.placedItems.join(", ");
+export function getRoomShortDescription(roomID = currentRoomID): string {
+  return RoomsData[roomID].description;
+}
 
-  return `${RoomsData[roomID].description} ${
-    placedItems ? " ," + placedItems : ""
+export function getRoomFullDescription(roomID = currentRoomID): string {
+  const Room = RoomsData[roomID];
+  const placedItems = Room.placedItems ? Room.placedItems.join(", ") : false;
+
+  return `${Room.interactions?.examine || Room.description} ${
+    placedItems ? " , there is also " + placedItems : ""
   }`;
 }
