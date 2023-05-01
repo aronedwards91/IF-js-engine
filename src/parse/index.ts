@@ -47,7 +47,7 @@ function parseInstructions(input: string): string {
       returnString += parseSection(section);
     });
   } else {
-    returnString += parseSection(input);
+    returnString += parseSection(cleanInput);
   }
 
   return returnString.charAt(0).toUpperCase() + returnString.slice(1) + ".";

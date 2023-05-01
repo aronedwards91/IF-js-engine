@@ -1,20 +1,14 @@
 import {
-  getCurrentRoom,
-  getItemByID,
-  addToInventory,
   getInventoryItems,
   removeFromInventory,
 } from "../data";
 
 export default function checkPlace(stringArray: Array<string>): string {
-  const Room = getCurrentRoom();
 
   if (stringArray.length > 1) {
     const chosenObject = stringArray.slice(1).join(" ");
 
     const ItemKey = getInventoryItems()[chosenObject];
-    console.log("place itemkey", ItemKey);
-
     if (ItemKey) {
       // addItem to Room
       removeFromInventory(ItemKey);
