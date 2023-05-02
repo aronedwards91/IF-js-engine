@@ -34,7 +34,11 @@ function parseSection(input: string): string {
     case BaseInteractions.Use:
       return useItem(spaceSplit);
 
+    case BaseInteractions.Go:
+      // TODO Go
+
     default:
+      // generic test
       return "Command not understood";
   }
 }

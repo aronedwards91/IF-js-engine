@@ -5,7 +5,8 @@
       "use": "You have no use for a table",
       "examine": "it's a dirty tavern table",
       "smell": "smells of spilled alcohols",
-      "eat": "it's too big!?"
+      "eat": "it's too big!?",
+      "lick": "somehow tastes worse than it looks"
     }
   },
   "teaspoon": {
