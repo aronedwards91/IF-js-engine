@@ -1,6 +1,6 @@
 import { BuildTermHashMap } from "./interactionPhrases";
 import { BaseInteractions } from "../enums";
-import { getCurrentRoom, getItemByID, listInventory } from "../data";
+import { listInventory } from "../data";
 import checkExamine from "./examine";
 import takeItem from "./take";
 import placeItem from "./place";
@@ -31,7 +31,7 @@ function parseSection(input: string): string {
       return listInventory();
 
       case BaseInteractions.Use:
-        // ToDO
+        // ToDO  -check for triggers
 
     default:
       return "Command not understood";
