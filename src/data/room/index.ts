@@ -51,7 +51,7 @@ export function getRoomFullDescription(roomID = currentRoomID): string {
     ? " , there is also " + listArrayWithDeterminer(Room.placedItems)
     : false;
 
-  return `${Room.interactions?.examine || Room.description} ${
+  return `${Room.interactions?.examine || Room.description}${
     placedItems || ""
   }`;
 }
