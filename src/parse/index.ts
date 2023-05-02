@@ -30,6 +30,9 @@ function parseSection(input: string): string {
     case BaseInteractions.Items:
       return listInventory();
 
+      case BaseInteractions.Use:
+        // ToDO
+
     default:
       return "Command not understood";
   }

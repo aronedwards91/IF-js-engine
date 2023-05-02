@@ -1,16 +1,9 @@
 import startString from "./start-string";
-import {setupRoomsData} from "./room";
-import { setItemsList, getItemByID } from "./item";
-import {
-  getInventoryItems,
-  listInventory,
-  addToInventory,
-  removeFromInventory,
-} from "./inventory";
+import { setupRoomsData, getRoomsData } from "./room";
+import { setItemsList, getItemsData } from "./item";
+import { setupStateAndTriggers, getStateTriggerData } from "./state";
 
 let Info: GameInfo;
-let TriggersData: Triggers;
-let StateData: States;
 
 interface IntialiseGame {
   info: GameInfo;
@@ -28,17 +21,24 @@ export function intialiseGameData({
   stateData,
 }: IntialiseGame) {
   Info = info;
-  TriggersData = triggersData;
-  StateData = stateData;
 
   setItemsList(itemsData);
   setupRoomsData(roomsData, info);
+  setupStateAndTriggers(triggersData, stateData);
 
   return {
     startTitle: info.name,
     startString: startString(info),
     startIntro: info.introduction,
     // fireableInteractions
+  };
+}
+
+export function debugGameState() {
+  return {
+    RoomsData: getRoomsData(),
+    ItemsData: getItemsData(),
+    ...getStateTriggerData(),
   };
 }
 

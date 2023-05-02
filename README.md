@@ -27,3 +27,4 @@ either a string returned to the reader, or trigger (starts with *)
 - travel to specific room
 - always show description?
 - already taken item
+- trigger switch type

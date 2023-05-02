@@ -9,15 +9,21 @@ export default function takeItem(stringArray: Array<string>): string {
   if (stringArray.length > 1) {
     const chosenObject = stringArray.slice(1).join(" ");
     const existsInRoomIndex = checkRoomItems(chosenObject);
+
+    
     if (existsInRoomIndex >= 0) {
       const Item: Item = getItemByID(chosenObject);
-
+      let takeInteractionString: boolean | string = false;
+      
+      if(Item.interactions?.take) {
+        takeInteractionString = Item.interactions.take;
+      }
       if (Item.isTakeable) {
         addToInventory(chosenObject);
         removeItemFromRoom(chosenObject);
-        return `you add ${chosenObject} to your inventory`;
+        return takeInteractionString || `you add ${chosenObject} to your inventory`;
       } else {
-        return `you can't carry ${chosenObject}`;
+        return takeInteractionString || `you can't carry ${chosenObject}`;
       }
     }
 
@@ -27,13 +33,19 @@ export default function takeItem(stringArray: Array<string>): string {
 
       if (existsInRoomIndexB >= 0) {
         const Item: Item = getItemByID(unneededDescriptionObject);
+        let takeInteractionString: boolean | string = false;
+        
+        if(Item.interactions?.take) {
+          takeInteractionString = Item.interactions.take;
+        }
 
         if (Item.isTakeable) {
           addToInventory(unneededDescriptionObject);
           removeItemFromRoom(chosenObject);
-          return `you add ${chosenObject} to your inventory`;
+
+          return takeInteractionString || `you add ${chosenObject} to your inventory`;
         } else {
-          return `you can't carry ${chosenObject}`;
+          return takeInteractionString || `you can't carry ${chosenObject}`;
         }
       }
     }

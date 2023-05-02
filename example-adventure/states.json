@@ -4,5 +4,9 @@
   },
   "routside": {
     "moon": "false"
+  },
+  "rtavern": {
+    "tableGreenMug": "true",
+    "tableRedMug": "true"
   }
 }

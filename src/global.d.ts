@@ -5,18 +5,19 @@ declare global {
   type TriggerID = string;
   type StateID = string;
   type ItemID = string;
-  type returnString = string;
+  type ReturnString = string;
   type State = string | number | boolean;
+  type StateGroup = Record<string, State>;
   type StateCheckDescription = string;
   type InteractionVaried = BaseInteractions | string;
 
   interface Trigger {
     stateID: StateID;
     newValue: State;
-    returnString: returnString;
+    returnString: ReturnString;
   }
 
-  type Interaction = returnString | TriggerID;
+  type Interaction = ReturnString | TriggerID;
 
   type DirectionsOptions = Record<Directions | string, RoomID>;
 
@@ -29,7 +30,7 @@ declare global {
     interactions: Record<InteractionVaried, Interaction>;
     itemsList: Array<ItemID>;
     placedItems: Array<ItemID>;
-    lookable?: Record<string, returnString>;
+    lookable?: Record<string, ReturnString>;
   }
 
   interface Item {
@@ -37,7 +38,6 @@ declare global {
     isTakeable: boolean;
     hasStatus: boolean;
     icon?: string;
-    onUse?: Interaction;
     interactions: Record<InteractionVaried, Interaction>;
     // alt names?
   }
@@ -57,19 +57,19 @@ declare global {
 
   interface GameInfo {
     name: string;
-    description: returnString;
+    description: ReturnString;
     author: string;
     version: number;
-    category: returnString;
+    category: ReturnString;
     releaseDate: string;
     icon: string;
-    introduction: returnString;
+    introduction: ReturnString;
     initialRoomID: RoomID;
   }
 
   //  Data Arrays
   type Triggers = Record<TriggerID, Trigger>;
-  type States = Record<StateID, State>;
+  type States = Record<StateID, StateGroup>;
   type Rooms = Record<RoomID, Room>;
   type Items = Record<ItemID, Item>;
 }

@@ -6,7 +6,17 @@
   },
   "moonShow": {
     "stateID": "routside:moon",
-    "newValue": "true",
+    "newValue": true,
     "returnString": "You can see the moon"
+  },
+  "removeGreenMug": {
+    "stateID": "rtavern:tableGreenMug",
+    "newValue": false,
+    "returnString": "you take the green mug"
+  },
+  "removeRedMug": {
+    "stateID": "rtavern:tableRedMug",
+    "newValue": false,
+    "returnString": "you take the red mug"
   }
 }

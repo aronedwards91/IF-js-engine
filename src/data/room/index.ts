@@ -4,6 +4,8 @@ let RoomsData: Rooms;
 let currentRoom: Room;
 let currentRoomID: RoomID;
 
+export const getRoomsData = () => RoomsData;
+
 export function setupRoomsData(roomsData: Rooms, info: GameInfo) {
   RoomsData = roomsData;
   currentRoom = { ...RoomsData[info.initialRoomID] };

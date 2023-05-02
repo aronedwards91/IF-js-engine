@@ -1,4 +1,4 @@
-import { intialiseGameData } from "./data";
+import { intialiseGameData, debugGameState } from "./data";
 import ParseInstructions from "./parse";
 
 export default {
@@ -7,4 +7,5 @@ export default {
     return ParseInstructions(input)
   },
   startGame: () => {},
+  debugGameState,
 };

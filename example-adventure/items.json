@@ -1,8 +1,8 @@
 {
   "table": {
     "description": "table",
-    "onUse": "It's a wooden table, it's a bit dirty",
     "interactions": {
+      "use": "You have no use for a table",
       "examine": "it's a dirty tavern table",
       "smell": "smells of spilled alcohols",
       "eat": "it's too big!?"
@@ -12,22 +12,26 @@
     "name": "green mug",
     "description": "green mug",
     "isTakeable": true,
-    "onUse": "Theres nothing in the mug",
     "interactions": {
+      "use": "Theres nothing in the mug",
       "examine": "it's a plain green earthenware mug",
       "smell": "smells of old beer",
-      "eat": "Really?, maybe don't?"
+      "eat": "Really?, maybe don't?",
+      "take": ">>removeGreenMug"
     }
   },
   "red mug": {
     "name": "red mug",
     "description": "red mug",
     "isTakeable": true,
+    "hasStatus": false,
     "onUse": "Theres nothing in the mug",
     "interactions": {
+      "use": "Theres nothing in the mug",
       "examine": "it's a plain red earthenware mug",
       "smell": "smells of old mead",
-      "eat": "Really?, maybe don't?"
+      "eat": "Really?, maybe don't?",
+      "take": ">>removeRedMug"
     }
   },
   "box": {
@@ -35,7 +39,9 @@
     "description": "small box with a number on it",
     "isTakeable": false,
     "hasStatus": true,
-    "onUse": "*boxTouch",
-    "onLook": "It's a box, the number is [[ibox:val:val]]"
+    "interactions": {
+      "use": ">>boxTouch",
+      "examine": "It's a box, the number is [[ibox:val:val]]"
+    }
   }
 }

@@ -9,7 +9,7 @@
     },
     "img": "strings",
     "interactions": {
-      "examine": "It's an empty tavern, you can go outside via a door to your south, or up, there is a table [[imug01:taken:false==with a green mug]] [[imug02:taken:false==and a red mug]]",
+      "examine": "It's an empty tavern, you can go outside via a door to your south, or up, there is a table [[rtavern:tableGreenMug:taken:false==with a green mug]] [[rtavern:tableRedMug:taken:false==and a red mug]]",
       "smell": "The place smells dingy",
       "listen": "It's very quiet"
     },
