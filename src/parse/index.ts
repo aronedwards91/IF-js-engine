@@ -4,6 +4,7 @@ import { listInventory } from "../data";
 import checkExamine from "./examine";
 import takeItem from "./take";
 import placeItem from "./place";
+import useItem from "./use";
 
 const Space = " ";
 const TermHashMap = BuildTermHashMap();
@@ -30,8 +31,8 @@ function parseSection(input: string): string {
     case BaseInteractions.Items:
       return listInventory();
 
-      case BaseInteractions.Use:
-        // ToDO  -check for triggers
+    case BaseInteractions.Use:
+      return useItem(spaceSplit);
 
     default:
       return "Command not understood";

@@ -1,4 +1,5 @@
 import { getCurrentRoom, getItemByID, getRoomFullDescription } from "../data";
+import { fireIfTrigger } from "./parse-utils";
 
 export default function checkExamine(stringArray: Array<string>): string {
   const Room = getCurrentRoom();
@@ -7,9 +8,11 @@ export default function checkExamine(stringArray: Array<string>): string {
     const viewedObject: ItemID = stringArray.slice(1).join(" ");
     const itemInRoomCheckIndex = Room.itemsList.indexOf(viewedObject);
 
+
+
     if (itemInRoomCheckIndex >= 0) {
       const Item: Item = getItemByID(Room.itemsList[itemInRoomCheckIndex]);
-      return Item.interactions.examine;
+      return fireIfTrigger(Item.interactions?.examine) || Item.description;
     }
 
     if (Room.lookable && Room.lookable[viewedObject])
@@ -25,7 +28,7 @@ export default function checkExamine(stringArray: Array<string>): string {
         const Item: Item = getItemByID(
           Room.itemsList[itemInRoomCheckIndexB]
         );
-        return Item.interactions.examine;
+        return fireIfTrigger(Item.interactions?.examine) || Item.description;
       }
 
       if (Room.lookable && Room.lookable[unneededDescriptionCheck])

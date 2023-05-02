@@ -8,6 +8,17 @@
       "eat": "it's too big!?"
     }
   },
+  "teaspoon": {
+    "description": "a nice teaspoon",
+    "isTakeable": true,
+    "interactions": {
+      "take": "You decide to hold onto the teaspoon",
+      "use": "You have no use for a teaspoon",
+      "examine": "it's nice",
+      "smell": "smells of tea",
+      "eat": "maybe don't!?"
+    }
+  },
   "green mug": {
     "name": "green mug",
     "description": "green mug",
@@ -40,6 +51,7 @@
     "isTakeable": false,
     "hasStatus": true,
     "interactions": {
+      "take": "you don't need this",
       "use": ">>boxTouch",
       "examine": "It's a box, the number is [[ibox:val:val]]"
     }

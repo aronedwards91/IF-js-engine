@@ -14,6 +14,7 @@
       "listen": "It's very quiet"
     },
     "itemsList": ["table01", "green mug", "red mug"],
+    "placedItems": ["teaspoon"],
     "lookable": {
       "stairs": "they lead up",
       "door": "leads outside",
