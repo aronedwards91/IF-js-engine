@@ -26,11 +26,10 @@ declare global {
     description: StateCheckDescription;
     exits: DirectionsOptions;
     img: string;
-    onExamine?: Interaction;
     interactions: Record<InteractionVaried, Interaction>;
     itemsList: Array<ItemID>;
     placedItems: Array<ItemID>;
-    lookable?: Record<string, ReturnString>;
+    examinable?: Record<string, ReturnString>;
   }
 
   interface Item {

@@ -41,6 +41,10 @@ export function checkRoomItems(itemID: ItemID, roomID = currentRoomID): number {
   return RoomsData[roomID].itemsList.indexOf(itemID);
 }
 
+export function checkExaminableItems(itemID: ItemID, roomID = currentRoomID): string | undefined {
+  return RoomsData[roomID].examinable?.[itemID];
+}
+
 export function getRoomShortDescription(roomID = currentRoomID): string {
   return RoomsData[roomID].description;
 }

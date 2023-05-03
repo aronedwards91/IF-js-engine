@@ -13,9 +13,9 @@
       "smell": "The place smells dingy",
       "listen": "It's very quiet"
     },
-    "itemsList": ["table01", "green mug", "red mug"],
+    "itemsList": ["table", "green mug", "red mug"],
     "placedItems": ["teaspoon"],
-    "lookable": {
+    "examinable": {
       "stairs": "they lead up",
       "door": "leads outside",
       "floor": "it's wooden"
@@ -33,7 +33,7 @@
       "examine": "An empty bedroom, there is a bed, a stairwell leads down"
     },
     "itemsList": ["box"],
-    "lookable": {
+    "examinable": {
       "stairs": "they're in the hallway",
       "door": "leads to a hallway with a staircase to the tavern",
       "floor": "it's wooden"

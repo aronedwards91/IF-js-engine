@@ -1,3 +1,5 @@
+var assert = require("assert");
+
 global.window = {};
 require("../example-adventure/index");
 const infoJSON = require("../example-adventure/info.json");
@@ -34,13 +36,18 @@ const BaseInteractions = Object.freeze({
 const FormatOut = (str) => `${str.charAt(0).toUpperCase()}${str.slice(1)}.`;
 const FS = "."; // fullstop on end
 
-var assert = require("assert");
-
 function genTestTitle(input, output) {
   const OutputText =
     output.length > 30 ? output.substring(0, 28) + "..." : output;
   return `> should return '${OutputText}' when type '${input}'`;
 }
+function genTest(input, expect) {
+  it(genTestTitle(input, expect), function () {
+    // TODO compare parsed text
+    assert.equal(IFEngine.fireInput(input), FormatOut(expect));
+  });
+}
+
 const IFEngine = global.window.IFictionEngine;
 
 describe("Game Engine Test:", function () {
@@ -56,7 +63,7 @@ describe("Game Engine Test:", function () {
     });
   });
 
-  describe(BaseInteractions.Examine, function () {
+  describe(BaseInteractions.Examine + " objects/rooms", function () {
     it("Listing generator correctly formats array", function () {
       const listString = IFEngine.testingTools.listArrayWithDeterminer([
         "potatoe",
@@ -83,15 +90,17 @@ describe("Game Engine Test:", function () {
       () => lookTest(BaseInteractions.Examine)
     );
 
-    it(genTestTitle("look", roomsJSON.tavern.description), () =>
-      lookTest("look")
-    );
-    it(genTestTitle("check", roomsJSON.tavern.description), () =>
-      lookTest("check")
-    );
-    it(genTestTitle("inspect", roomsJSON.tavern.description), () =>
-      lookTest("inspect")
-    );
+    describe("Examine works with alternate words", () => {
+      it(genTestTitle("look", roomsJSON.tavern.description), () =>
+        lookTest("look")
+      );
+      it(genTestTitle("check", roomsJSON.tavern.description), () =>
+        lookTest("check")
+      );
+      it(genTestTitle("inspect", roomsJSON.tavern.description), () =>
+        lookTest("inspect")
+      );
+    });
 
     it(
       genTestTitle(
@@ -99,12 +108,20 @@ describe("Game Engine Test:", function () {
         itemsJSON["red mug"].interactions.examine
       ),
       function () {
-        // TODO compare parsed text
         assert.equal(
           IFEngine.fireInput("look at red mug").trim(),
           FormatOut(itemsJSON["red mug"].interactions.examine)
         );
       }
     );
+
+    describe("Examine overdescribed objects", () => {
+      genTest(
+        "look at old dirty table",
+        itemsJSON["table"].interactions.examine
+      );
+      genTest("look at dirty table", itemsJSON["table"].interactions.examine);
+      genTest("look at old red mug", itemsJSON["red mug"].interactions.examine);
+    });
   });
 });
