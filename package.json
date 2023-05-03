@@ -7,6 +7,7 @@
     "build-test": "esbuild src/window.ts --bundle --outfile=example-adventure/index.js",
     "test-instance": "npm run build-test && serve example-adventure/",
     "test": "npm run build-test && mocha",
+    "test-watch": "npm run build-test && mocha --watch",
     "test-rerun": "mocha"
   },
   "repository": {

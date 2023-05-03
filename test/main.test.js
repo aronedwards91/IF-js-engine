@@ -31,6 +31,7 @@ const BaseInteractions = Object.freeze({
   Equip: "equip",
   Smell: "smell",
 });
+const FormatOut = (str) => `${str.charAt(0).toUpperCase()}${str.slice(1)}.`;
 const FS = "."; // fullstop on end
 
 var assert = require("assert");
@@ -46,7 +47,6 @@ describe("Game Engine Test:", function () {
   let GameEngine;
 
   this.beforeAll(() => {
-    console.log(">>", global.window.IFictionEngine);
     GameEngine = IFEngine.intialiseGameData({
       info: infoJSON,
       roomsData: roomsJSON,
@@ -57,8 +57,6 @@ describe("Game Engine Test:", function () {
   });
 
   describe(BaseInteractions.Examine, function () {
-    console.log(GameEngine);
-
     it("Listing generator correctly formats array", function () {
       const listString = IFEngine.testingTools.listArrayWithDeterminer([
         "potatoe",
@@ -67,17 +65,46 @@ describe("Game Engine Test:", function () {
       assert.equal(listString, "a potatoe, and a smurf");
     });
 
-    it(genTestTitle("look", roomsJSON.tavern.description), function () {
+    const lookTest = function (input) {
       // TODO compare parsed text
       assert.equal(
-        IFEngine.fireInput("look"),
-        roomsJSON.tavern.interactions.examine +
-          " , there is also " +
-          IFEngine.testingTools.listArrayWithDeterminer(
-            roomsJSON.tavern.placedItems
-          ) +
-          FS
+        IFEngine.fireInput(input),
+        FormatOut(
+          roomsJSON.tavern.interactions.examine +
+            " , there is also " +
+            IFEngine.testingTools.listArrayWithDeterminer(
+              roomsJSON.tavern.placedItems
+            )
+        )
       );
-    });
+    };
+    it(
+      genTestTitle(BaseInteractions.Examine, roomsJSON.tavern.description),
+      () => lookTest(BaseInteractions.Examine)
+    );
+
+    it(genTestTitle("look", roomsJSON.tavern.description), () =>
+      lookTest("look")
+    );
+    it(genTestTitle("check", roomsJSON.tavern.description), () =>
+      lookTest("check")
+    );
+    it(genTestTitle("inspect", roomsJSON.tavern.description), () =>
+      lookTest("inspect")
+    );
+
+    it(
+      genTestTitle(
+        "look at red mug",
+        itemsJSON["red mug"].interactions.examine
+      ),
+      function () {
+        // TODO compare parsed text
+        assert.equal(
+          IFEngine.fireInput("look at red mug").trim(),
+          FormatOut(itemsJSON["red mug"].interactions.examine)
+        );
+      }
+    );
   });
 });
