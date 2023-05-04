@@ -45,3 +45,4 @@ export function debugGameState() {
 export * from "./item";
 export * from "./room";
 export * from "./inventory";
+export * from "./state";

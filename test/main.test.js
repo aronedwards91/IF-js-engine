@@ -148,10 +148,8 @@ describe("Game Engine Test:", function () {
   });
 });
 
-describe(`check inventory system`, function () {
-  this.beforeAll(() => {
-    reInitialise();
-  });
+describe(`Testinventory system`, function () {
+  this.beforeAll(reInitialise);
 
   it(genTestTitle("items", "teaspoon and a red mug"), function () {
     // TODO compare parsed text
@@ -169,10 +167,33 @@ describe(`check inventory system`, function () {
   });
 
   it(genTestTitle("place teaspoon", "teaspoon and a red mug"), function () {
-    const x = IFEngine.fireInput("place teaspoon");
+    IFEngine.fireInput("place teaspoon");
     assert.equal(
       IFEngine.fireInput("items"),
       FormatOut("nothing in inventory")
     );
   });
+});
+
+describe("Test state management", function () {
+  this.beforeAll(reInitialise);
+
+  it("Firing trigger updates state", function () {
+    assert.ok(IFEngine.testingTools.getStateByID("rtavern:tableGreenMug"));
+
+    IFEngine.fireInput("take green mug");
+
+    assert.ok(
+      IFEngine.testingTools.getStateByID("rtavern:tableGreenMug") === false
+    );
+  });
+
+  // TODO test numerical
+});
+
+describe("Test movement", function () {
+  this.beforeAll(reInitialise);
+
+  // genTest("up", roomsJSON.bedroom.description);
+  // genTest("down", roomsJSON.bedroom.description);
 });

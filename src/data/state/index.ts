@@ -8,6 +8,16 @@ export const getStateTriggerData = () => ({
   StateData,
 });
 
+const strSplit = ":";
+
+export const getStateByID = (id: StateID): any => {
+  if (id.includes(strSplit)) {
+    const split = id.split(strSplit);
+    return StateData[split[0]][split[1]];
+  }
+  return StateData[id];
+};
+
 export function setupStateAndTriggers(
   triggersData: Triggers,
   stateData: States
