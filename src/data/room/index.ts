@@ -37,8 +37,12 @@ export function removeItemFromRoom(itemID: ItemID, roomID = currentRoomID) {
   );
 }
 
-export function checkRoomItems(itemID: ItemID, roomID = currentRoomID): number {
+export function checkRoomItemsList(itemID: ItemID, roomID = currentRoomID): number {
   return RoomsData[roomID].itemsList.indexOf(itemID);
+}
+
+export function checkRoomPlacedItems(itemID: ItemID, roomID = currentRoomID): number {
+  return RoomsData[roomID].placedItems.indexOf(itemID);
 }
 
 export function checkExaminableItems(itemID: ItemID, roomID = currentRoomID): string | undefined {

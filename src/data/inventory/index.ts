@@ -1,4 +1,5 @@
 import { listArrayWithDeterminer } from "../../utils/lister";
+import {getItemByID} from "../item";
 
 const Inventory: Array<ItemID> = [];
 // const altName
@@ -9,6 +10,10 @@ function getInventoryItems(): Array<ItemID> {
 
 function checkInventory(itemName: ItemID): boolean {
   return Inventory.indexOf(itemName) >= 0;
+}
+
+function getFromInventory(itemName: ItemID): Item | false {
+  return Inventory.indexOf(itemName) >= 0 && getItemByID(itemName);
 }
 
 // TODO capitalize
@@ -31,6 +36,7 @@ function removeFromInventory(itemId: ItemID) {
 
 export {
   getInventoryItems,
+  getFromInventory,
   checkInventory,
   listInventory,
   addToInventory,

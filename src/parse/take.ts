@@ -1,7 +1,7 @@
 import {
   getItemByID,
   addToInventory,
-  checkRoomItems,
+  checkRoomItemsList,
   removeItemFromRoom,
 } from "../data";
 import { fireIfTrigger } from "./parse-utils";
@@ -9,10 +9,12 @@ import { fireIfTrigger } from "./parse-utils";
 export default function takeItem(stringArray: Array<string>): string {
   if (stringArray.length > 1) {
     const chosenObject = stringArray.slice(1).join(" ");
-    const existsInRoomIndex = checkRoomItems(chosenObject);
+    const existsInRoomIndex = checkRoomItemsList(chosenObject);
+    console.log("existsInRoomIndex", existsInRoomIndex);
 
     if (existsInRoomIndex >= 0) {
       const Item: Item = getItemByID(chosenObject);
+      console.log("Item", Item);
       let takeInteractionString: boolean | string = false;
 
       if (Item.interactions?.take) {
@@ -31,7 +33,7 @@ export default function takeItem(stringArray: Array<string>): string {
 
     if (stringArray.length >= 3) {
       const unneededDescriptionObject = stringArray.slice(2).join(" ");
-      const existsInRoomIndexB = checkRoomItems(unneededDescriptionObject);
+      const existsInRoomIndexB = checkRoomItemsList(unneededDescriptionObject);
 
       if (existsInRoomIndexB >= 0) {
         const Item: Item = getItemByID(unneededDescriptionObject);

@@ -102,18 +102,11 @@ describe("Game Engine Test:", function () {
       );
     });
 
-    it(
-      genTestTitle(
-        "look at red mug",
-        itemsJSON["red mug"].interactions.examine
-      ),
-      function () {
-        assert.equal(
-          IFEngine.fireInput("look at red mug").trim(),
-          FormatOut(itemsJSON["red mug"].interactions.examine)
-        );
-      }
-    );
+    describe("Examine simple objects", () => {
+      genTest("look at red mug", itemsJSON["red mug"].interactions.examine);
+      genTest("look at teaspoon", itemsJSON["teaspoon"].interactions.examine);
+      genTest("look at teafork", itemsJSON["teafork"].description);
+    });
 
     describe("Examine overdescribed objects", () => {
       genTest(
@@ -122,6 +115,15 @@ describe("Game Engine Test:", function () {
       );
       genTest("look at dirty table", itemsJSON["table"].interactions.examine);
       genTest("look at old red mug", itemsJSON["red mug"].interactions.examine);
+    });
+  });
+
+  describe(`${BaseInteractions.Take}/${BaseInteractions.Place} objects/rooms`, function () {
+    describe("take & place items in room", function () {
+      // genTest("take teaspoon", itemsJSON["teaspoon"].interactions.take);
+      // genTest("place teaspoon", "x");
+      // genTest("take teafork", "x");
+      // genTest("place teafork", "x");
     });
   });
 });

@@ -9,6 +9,15 @@
       "lick": "somehow tastes worse than it looks"
     }
   },
+  "teafork": {
+    "description": "a teafork?, it's whats written on the handle",
+    "isTakeable": true,
+    "interactions": {
+      "use": "You have no use for a teafork, nor with all likelyhood does anyone",
+      "smell": "smells of tea",
+      "eat": "it's definitely not for that!"
+    }
+  },
   "teaspoon": {
     "description": "a nice teaspoon",
     "isTakeable": true,
