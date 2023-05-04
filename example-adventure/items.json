@@ -15,7 +15,16 @@
     "interactions": {
       "use": "You have no use for a teafork, nor with all likelyhood does anyone",
       "smell": "smells of tea",
-      "eat": "it's definitely not for that!"
+      "eat": "it's definitely not for that!",
+      "place": "you return the item, realising how useless it is"
+    }
+  },
+  "rag": {
+    "description": "old cleaning rag",
+    "isTakeable": false,
+    "interactions": {
+      "smell": "smells of everything",
+      "take": "you don't need this"
     }
   },
   "teaspoon": {

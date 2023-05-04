@@ -5,9 +5,9 @@ import {
   checkRoomItemsList,
   checkRoomPlacedItems,
   checkExaminableItems,
-  getFromInventory
+  getFromInventory,
 } from "../data";
-import { fireIfTrigger } from "./parse-utils";
+import { fireIfTrigger, checkStringForSignificantTerms } from "./parse-utils";
 
 function checkExists(term: ItemID): string | undefined {
   const itemInRoomCheckIndex = checkRoomItemsList(term);
@@ -27,44 +27,16 @@ function checkExists(term: ItemID): string | undefined {
   if (examinable) return examinable;
 
   const invItem = getFromInventory(term);
-  if(invItem) invItem?.interactions.examine || invItem.description;
+  if (invItem) invItem?.interactions.examine || invItem.description;
 
   return undefined;
 }
 
 export default function checkExamine(stringArray: Array<string>): string {
-  const Room = getCurrentRoom();
-
   if (stringArray.length > 1) {
-    const viewedObject: ItemID = stringArray.slice(1).join(" ");
-    const checkA = checkExists(viewedObject);
-    if (checkA) return checkA;
+    const testResult = checkStringForSignificantTerms(stringArray, checkExists);
 
-    if (stringArray.length >= 3) {
-      // overdescribed single words
-      const unneededDescriptionCheck: ItemID =
-        stringArray[stringArray.length - 1];
-
-      const checkB = checkExists(unneededDescriptionCheck);
-      if (checkB) return checkB;
-
-      // overdescribed double words
-      const unneededDescriptionCheckDouble: ItemID = stringArray
-        .splice(-2)
-        .join(" ");
-
-      const checkC = checkExists(unneededDescriptionCheckDouble);
-      if (checkC) return checkC;
-
-      // overdescribed triple words
-      const unneededDescriptionCheckTriple: ItemID = stringArray
-        .splice(-3)
-        .join(" ");
-
-      const checkD = checkExists(unneededDescriptionCheckTriple);
-      if (checkD) return checkD;
-    }
-
+    if (testResult) return testResult;
     return "can't see such an item";
   } else {
     return getRoomFullDescription();

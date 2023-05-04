@@ -60,7 +60,6 @@
       validate = (e) => {
         var text = e.target.value;
         const returnedString = IFictionEngine.fireInput(text);
-        console.log("returnedString", returnedString);
         textPrint.innerHTML = textPrint.innerHTML + "</br>" + returnedString + "</br>";
 
         scroller.scrollTo({

@@ -120,10 +120,12 @@ describe("Game Engine Test:", function () {
 
   describe(`${BaseInteractions.Take}/${BaseInteractions.Place} objects/rooms`, function () {
     describe("take & place items in room", function () {
-      // genTest("take teaspoon", itemsJSON["teaspoon"].interactions.take);
-      // genTest("place teaspoon", "x");
-      // genTest("take teafork", "x");
-      // genTest("place teafork", "x");
+      genTest("take teaspoon", itemsJSON["teaspoon"].interactions.take);
+      genTest("place teaspoon", `you place the teaspoon in the room`);
+      genTest("take teafork", `you add the teafork to your inventory`);
+      genTest("place teafork", itemsJSON["teafork"].interactions.place);
+      genTest("take table", "you can't carry the table");
+      genTest("take rag", itemsJSON["rag"].interactions.take);
     });
   });
 });

@@ -4,39 +4,33 @@ import {
   checkInventory,
   getItemByID,
 } from "../data";
-import { fireIfTrigger } from "./parse-utils";
+import { fireIfTrigger, checkStringForSignificantTerms } from "./parse-utils";
+
+export function genPlaceString(term: ItemID): string {
+  return `You place the ${term} in the room`;
+}
+
+function placeIfExists(term: ItemID): string | undefined {
+  if (checkInventory(term)) {
+    let placeInteractionString: boolean | string = false;
+
+    const Item = getItemByID(term);
+    if (Item.interactions?.place) {
+      placeInteractionString = fireIfTrigger(Item.interactions.place);
+    }
+    addItemToRoom(term);
+    removeFromInventory(term);
+    return placeInteractionString || genPlaceString(term);
+  }
+}
 
 export default function checkPlace(stringArray: Array<string>): string {
   if (stringArray.length > 1) {
-    const chosenObject = stringArray.slice(1).join(" ");
-
-    if (checkInventory(chosenObject)) {
-      let placeInteractionString: boolean | string = false;
-
-      const Item = getItemByID(chosenObject);
-      if (Item.interactions?.place) {
-        placeInteractionString = fireIfTrigger(Item.interactions.place);
-      }
-      addItemToRoom(chosenObject);
-      removeFromInventory(chosenObject);
-      return placeInteractionString || `You place ${chosenObject} in the room`;
-    }
-
-    if (stringArray.length >= 3) {
-      const unneededDescriptionObject = stringArray.slice(2).join(" ");
-
-      if (checkInventory(unneededDescriptionObject)) {
-        let placeInteractionString: boolean | string = false;
-  
-        const Item = getItemByID(unneededDescriptionObject);
-        if (Item.interactions?.place) {
-          placeInteractionString = fireIfTrigger(Item.interactions.place);
-        }
-        addItemToRoom(unneededDescriptionObject);
-        removeFromInventory(unneededDescriptionObject);
-        return placeInteractionString || `You place ${chosenObject} in the room`;
-      }
-    }
+    const testResult = checkStringForSignificantTerms(
+      stringArray,
+      placeIfExists
+    );
+    if (testResult) return testResult;
 
     return "you have no such item currently";
   } else {
