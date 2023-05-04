@@ -29,7 +29,7 @@ function addToInventory(itemName: ItemID) {
 
 function removeFromInventory(itemId: ItemID) {
   const indexOfInventoryItem = Inventory.indexOf(itemId);
-  if (indexOfInventoryItem > 0) {
+  if (indexOfInventoryItem >= 0) {
     Inventory.splice(indexOfInventoryItem, 1);
   }
 }

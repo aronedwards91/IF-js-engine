@@ -42,6 +42,7 @@ function genTestTitle(input, output) {
   return `> should return '${OutputText}' when type '${input}'`;
 }
 function genTest(input, expect) {
+  console.log(input);
   it(genTestTitle(input, expect), function () {
     // TODO compare parsed text
     assert.equal(IFEngine.fireInput(input), FormatOut(expect));
@@ -49,19 +50,26 @@ function genTest(input, expect) {
 }
 
 const IFEngine = global.window.IFictionEngine;
+const GameEngine = IFEngine.intialiseGameData({
+  info: infoJSON,
+  roomsData: roomsJSON,
+  itemsData: itemsJSON,
+  triggersData: triggersJSON,
+  stateData: statesJSON,
+});
+
+function reInitialise() {
+  IFEngine.intialiseGameData({
+    info: infoJSON,
+    roomsData: roomsJSON,
+    itemsData: itemsJSON,
+    triggersData: triggersJSON,
+    stateData: statesJSON,
+  });
+}
 
 describe("Game Engine Test:", function () {
-  let GameEngine;
-
-  this.beforeAll(() => {
-    GameEngine = IFEngine.intialiseGameData({
-      info: infoJSON,
-      roomsData: roomsJSON,
-      itemsData: itemsJSON,
-      triggersData: triggersJSON,
-      stateData: statesJSON,
-    });
-  });
+  this.beforeAll(reInitialise);
 
   describe(BaseInteractions.Examine + " objects/rooms", function () {
     it("Listing generator correctly formats array", function () {
@@ -120,12 +128,51 @@ describe("Game Engine Test:", function () {
 
   describe(`${BaseInteractions.Take}/${BaseInteractions.Place} objects/rooms`, function () {
     describe("take & place items in room", function () {
+      it("teaspoon visible in room", function () {
+        assert.ok(IFEngine.fireInput("examine").includes("teaspoon"));
+      });
       genTest("take teaspoon", itemsJSON["teaspoon"].interactions.take);
+      genTest("take teaspoon", "item not found");
+      it("teaspoon not visible in room", function () {
+        assert.ok(IFEngine.fireInput("examine").includes("teaspoon") === false);
+      });
       genTest("place teaspoon", `you place the teaspoon in the room`);
+      it("teaspoon visible in room", function () {
+        assert.ok(IFEngine.fireInput("take teaspoon").includes("teaspoon"));
+      });
       genTest("take teafork", `you add the teafork to your inventory`);
       genTest("place teafork", itemsJSON["teafork"].interactions.place);
       genTest("take table", "you can't carry the table");
       genTest("take rag", itemsJSON["rag"].interactions.take);
     });
+  });
+});
+
+describe(`check inventory system`, function () {
+  this.beforeAll(() => {
+    reInitialise();
+  });
+
+  it(genTestTitle("items", "teaspoon and a red mug"), function () {
+    // TODO compare parsed text
+    IFEngine.fireInput("take teaspoon");
+    IFEngine.fireInput("take red mug");
+    assert.equal(
+      IFEngine.fireInput("items"),
+      FormatOut("a teaspoon, and a red mug")
+    );
+  });
+
+  it(genTestTitle("place red mug", "no items"), function () {
+    IFEngine.fireInput("place red mug");
+    assert.equal(IFEngine.fireInput("items"), FormatOut("a teaspoon"));
+  });
+
+  it(genTestTitle("place teaspoon", "teaspoon and a red mug"), function () {
+    const x = IFEngine.fireInput("place teaspoon");
+    assert.equal(
+      IFEngine.fireInput("items"),
+      FormatOut("nothing in inventory")
+    );
   });
 });
