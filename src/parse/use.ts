@@ -1,39 +1,30 @@
-import {
-  getItemByID,
-  checkRoomItemsList,
-} from "../data";
+import { getItemByID, checkInRoomForID, checkInventory } from "../data";
 import { fireIfTrigger, checkStringForSignificantTerms } from "./parse-utils";
-// TODO checkStringForSignificantTerms
+
+function useCheck(term: ItemID): string | undefined {
+  const existsInRoomIndex = checkInRoomForID(term);
+  const isItemInInventory = checkInventory(term);
+
+  if (
+    existsInRoomIndex === 0 ||
+    (typeof existsInRoomIndex !== "boolean" && existsInRoomIndex >= 0) ||
+    isItemInInventory
+  ) {
+    const Item: Item = getItemByID(term);
+
+    if (Item.interactions?.use) {
+      return fireIfTrigger(Item.interactions.use);
+    } else {
+      return "There is no obvious way to use " + term;
+    }
+  }
+}
 
 export default function useItem(stringArray: Array<string>): string {
   if (stringArray.length > 1) {
-    const chosenObject = stringArray.slice(1).join(" ");
-    const existsInRoomIndex = checkRoomItemsList(chosenObject);
+    const testResult = checkStringForSignificantTerms(stringArray, useCheck);
 
-    if (existsInRoomIndex >= 0) {
-      const Item: Item = getItemByID(chosenObject);
-
-      if (Item.interactions?.use) {
-        return fireIfTrigger(Item.interactions.use);
-      } else {
-        return "There is no obvious way to use " + chosenObject;
-      }
-    }
-
-    if (stringArray.length >= 3) {
-      const unneededDescriptionObject = stringArray.slice(2).join(" ");
-      const existsInRoomIndexB = checkRoomItemsList(unneededDescriptionObject);
-
-      if (existsInRoomIndexB >= 0) {
-        const Item: Item = getItemByID(unneededDescriptionObject);
-
-        if (Item.interactions?.use) {
-          return fireIfTrigger(Item.interactions.use);
-        } else {
-          return "There is no obvious way to use " + chosenObject;
-        }
-      }
-    }
+    if (testResult) return testResult;
 
     return "item not found";
   } else {

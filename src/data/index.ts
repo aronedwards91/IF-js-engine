@@ -1,4 +1,5 @@
 import startString from "./start-string";
+import { resetInventory, getInventoryItems } from "./inventory";
 import { setupRoomsData, getRoomsData } from "./room";
 import { setItemsList, getItemsData } from "./item";
 import { setupStateAndTriggers, getStateTriggerData } from "./state";
@@ -20,16 +21,21 @@ export function intialiseGameData({
   triggersData,
   stateData,
 }: IntialiseGame) {
-  Info = info;
+  const Info = JSON.parse(JSON.stringify(info));
+  const RoomsData = JSON.parse(JSON.stringify(roomsData));
+  const ItemsData = JSON.parse(JSON.stringify(itemsData));
+  const TriggersData = JSON.parse(JSON.stringify(triggersData));
+  const StateData = JSON.parse(JSON.stringify(stateData));
 
-  setItemsList(itemsData);
-  setupRoomsData(roomsData, info);
-  setupStateAndTriggers(triggersData, stateData);
+  setItemsList(ItemsData);
+  setupRoomsData(RoomsData, Info);
+  setupStateAndTriggers(TriggersData, StateData);
+  resetInventory();
 
   return {
-    startTitle: info.name,
-    startString: startString(info),
-    startIntro: info.introduction,
+    startTitle: Info.name,
+    startString: startString(Info),
+    startIntro: Info.introduction,
     // fireableInteractions
   };
 }
@@ -38,6 +44,7 @@ export function debugGameState() {
   return {
     RoomsData: getRoomsData(),
     ItemsData: getItemsData(),
+    inv: getInventoryItems(),
     ...getStateTriggerData(),
   };
 }

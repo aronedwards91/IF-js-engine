@@ -1,8 +1,13 @@
 import { listArrayWithDeterminer } from "../../utils/lister";
-import {getItemByID} from "../item";
+import { getItemByID } from "../item";
 
 const Inventory: Array<ItemID> = [];
 // const altName
+
+export function resetInventory() {
+  Inventory.splice(0, Inventory.length);
+
+}
 
 function getInventoryItems(): Array<ItemID> {
   return Inventory;

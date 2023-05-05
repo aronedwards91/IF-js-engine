@@ -102,6 +102,7 @@ export const soloWord: Record<string, string[]> = {
     "devour",
     "ingest",
     "swallow",
+    "drink",
   ],
   [BaseInteractions.Open]: [
     "open",

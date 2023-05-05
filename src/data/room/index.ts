@@ -37,6 +37,7 @@ export function removeItemFromRoom(itemID: ItemID, roomID = currentRoomID) {
   );
 }
 
+// TODO remove?
 export function checkRoomItemsList(
   itemID: ItemID,
   roomID = currentRoomID
@@ -44,11 +45,22 @@ export function checkRoomItemsList(
   return RoomsData[roomID].itemsList.indexOf(itemID);
 }
 
+// TODO remove?
 export function checkRoomPlacedItems(
   itemID: ItemID,
   roomID = currentRoomID
-): number {
-  return RoomsData[roomID].placedItems.indexOf(itemID);
+): number | false {
+  return RoomsData[roomID]?.placedItems.indexOf(itemID);
+}
+
+export function checkInRoomForID(
+  itemID: ItemID,
+  roomID = currentRoomID
+): number | false {
+  const itemsList = RoomsData[roomID]?.itemsList.indexOf(itemID);
+  const placedItems = RoomsData[roomID]?.placedItems.indexOf(itemID);
+
+  return itemsList >= 0 ? itemsList : placedItems;
 }
 
 export function checkExaminableItems(
@@ -92,9 +104,9 @@ export function getRoomShortDescription(roomID = currentRoomID): string {
 export function getRoomFullDescription(roomID = currentRoomID): string {
   const Room = RoomsData[roomID];
   // TODO text wrong owner?
-  const placedItems = Room.placedItems
-    ? " , there is also " + listArrayWithDeterminer(Room.placedItems)
-    : false;
+  const placedItems =
+    Room.placedItems &&
+    " , there is also " + listArrayWithDeterminer(Room.placedItems);
 
   return `${Room.interactions?.examine || Room.description}${
     placedItems || ""

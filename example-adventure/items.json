@@ -32,7 +32,7 @@
     "isTakeable": true,
     "interactions": {
       "take": "You decide to hold onto the teaspoon",
-      "use": "You have no use for a teaspoon",
+      "use": "You have no way to use this teaspoon",
       "examine": "it's nice",
       "smell": "smells of tea",
       "eat": "maybe don't!?"

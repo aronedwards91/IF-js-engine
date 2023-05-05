@@ -42,7 +42,6 @@ function genTestTitle(input, output) {
   return `> should return '${OutputText}' when type '${input}'`;
 }
 function genTest(input, expect) {
-  console.log(input);
   it(genTestTitle(input, expect), function () {
     // TODO compare parsed text
     assert.equal(IFEngine.fireInput(input), FormatOut(expect));
@@ -67,6 +66,30 @@ function reInitialise() {
     stateData: statesJSON,
   });
 }
+
+describe("Test test utils part A:", function () {
+  it("teaspoon visible in room", function () {
+    assert.ok(IFEngine.fireInput("examine").includes("teaspoon"));
+  });
+  genTest("take teaspoon", itemsJSON["teaspoon"].interactions.take);
+  genTest("take teaspoon", "item not found");
+  it("teaspoon no longer visible in room", function () {
+    assert.ok(IFEngine.fireInput("examine").includes("teaspoon") === false);
+    assert.ok(IFEngine.debugGameState().inv.toString() === "teaspoon");
+  });
+});
+
+describe("Test test utils part B:", function () {
+  this.beforeAll(reInitialise); // This is focus of test
+
+  it("teaspoon again visible in room", function () {
+    assert.ok(IFEngine.fireInput("examine").includes("teaspoon"));
+  });
+
+  it("teaspoon not visible in inventory", function () {
+    assert.ok(IFEngine.debugGameState().inv.toString() === "");
+  });
+});
 
 describe("Game Engine Test:", function () {
   this.beforeAll(reInitialise);
@@ -148,7 +171,22 @@ describe("Game Engine Test:", function () {
   });
 });
 
-describe(`Testinventory system`, function () {
+describe(`Test use call`, function () {
+  this.beforeAll(reInitialise);
+
+  describe("use simple objects", () => {
+    genTest("use table", itemsJSON["table"].interactions.use);
+    genTest("use teaspoon", itemsJSON["teaspoon"].interactions.use);
+    genTest("use rag", "there is no obvious way to use rag");
+  });
+
+  describe("use item in inventory", () => {
+    genTest("take teaspoon", itemsJSON["teaspoon"].interactions.take);
+    genTest("use teaspoon", itemsJSON["teaspoon"].interactions.use);
+  });
+});
+
+describe(`Test inventory system`, function () {
   this.beforeAll(reInitialise);
 
   it(genTestTitle("items", "teaspoon and a red mug"), function () {

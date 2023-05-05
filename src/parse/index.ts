@@ -43,8 +43,11 @@ function parseSection(input: string): string {
     case BaseInteractions.Go:
       return checkGo(spaceSplit);
 
-    // TODO Go Single Dir
+    // case BaseInteractions.Eat:
+    //   return checkEat(spaceSplit);
 
+      // case BaseInteractions.Open: closable door
+      //   return checkEat(spaceSplit);
     default:
       // generic test
       return "Command not understood";
