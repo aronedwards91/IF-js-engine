@@ -137,6 +137,7 @@ describe("Game Engine Test:", function () {
       genTest("look at red mug", itemsJSON["red mug"].interactions.examine);
       genTest("look at teaspoon", itemsJSON["teaspoon"].interactions.examine);
       genTest("look at teafork", itemsJSON["teafork"].description);
+      genTest("look at notanitem", "can't see such an item");
     });
 
     describe("Examine overdescribed objects", () => {

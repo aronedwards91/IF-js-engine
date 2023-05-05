@@ -1,33 +1,30 @@
 import {
-  getCurrentRoom,
   getItemByID,
   getRoomFullDescription,
-  checkRoomItemsList,
-  checkRoomPlacedItems,
+  checkInRoomForID,
   checkExaminableItems,
   getFromInventory,
 } from "../data";
 import { fireIfTrigger, checkStringForSignificantTerms } from "./parse-utils";
 
 function checkExists(term: ItemID): string | undefined {
-  const itemInRoomCheckIndex = checkRoomItemsList(term);
+  const existsInRoomIndex = checkInRoomForID(term);
 
-  if (itemInRoomCheckIndex >= 0) {
+  if (
+    existsInRoomIndex === 0 ||
+    (typeof existsInRoomIndex !== "boolean" && existsInRoomIndex >= 0)
+  ) {
     const Item: Item = getItemByID(term);
-    return fireIfTrigger(Item.interactions?.examine) || Item.description;
-  }
-  const itemPlacedInRoomCheckIndex = checkRoomPlacedItems(term);
 
-  if (itemPlacedInRoomCheckIndex >= 0) {
-    const Item: Item = getItemByID(term);
     return fireIfTrigger(Item.interactions?.examine || Item.description);
   }
 
   const examinable = checkExaminableItems(term);
-  if (examinable) return examinable;
+  if (examinable) return fireIfTrigger(examinable);
 
   const invItem = getFromInventory(term);
-  if (invItem) invItem?.interactions.examine || invItem.description;
+  if (invItem)
+    fireIfTrigger(invItem?.interactions.examine) || invItem.description;
 
   return undefined;
 }
