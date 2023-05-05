@@ -1,10 +1,10 @@
 {
   "tavern": {
     "name": "Tavern",
-    "description": "An empty tavern, you can go outside via a door to your south, or up, there is a table and two mugs",
+    "description": "An empty tavern, you can go outside via a door to your south, or up, there is a table",
     "exits": {
-      "S": "outside",
-      "UP": "bedroom",
+      "s": "outside",
+      "up": "bedroom",
       "outside": "outside"
     },
     "img": "strings",
@@ -26,7 +26,7 @@
     "UID": "bedroom",
     "description": "An empty bedroom, there is a bed, a stairwell behind a door leads down",
     "exits": {
-      "DOWN": "tavern"
+      "down": "tavern"
     },
     "img": "strings",
     "interactions": {
@@ -44,7 +44,7 @@
     "UID": "outside",
     "description": "It is dark, there is a tavern to your north[[routside:moon:true==, the moon is out]]",
     "exits": {
-      "N": "tavern",
+      "n": "tavern",
       "inside": "tavern"
     },
     "interactions": {

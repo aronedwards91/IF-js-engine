@@ -1,10 +1,9 @@
 import {
   getItemByID,
-  addToInventory,
   checkRoomItemsList,
-  removeItemFromRoom,
 } from "../data";
-import { fireIfTrigger } from "./parse-utils";
+import { fireIfTrigger, checkStringForSignificantTerms } from "./parse-utils";
+// TODO checkStringForSignificantTerms
 
 export default function useItem(stringArray: Array<string>): string {
   if (stringArray.length > 1) {
@@ -12,26 +11,26 @@ export default function useItem(stringArray: Array<string>): string {
     const existsInRoomIndex = checkRoomItemsList(chosenObject);
 
     if (existsInRoomIndex >= 0) {
-        const Item: Item = getItemByID(chosenObject);
+      const Item: Item = getItemByID(chosenObject);
 
-        if(Item.interactions?.use) {
-            return fireIfTrigger(Item.interactions.use);
-        } else {
-            return "There is no obvious way to use " + chosenObject;
-        }
+      if (Item.interactions?.use) {
+        return fireIfTrigger(Item.interactions.use);
+      } else {
+        return "There is no obvious way to use " + chosenObject;
+      }
     }
-    
+
     if (stringArray.length >= 3) {
-        const unneededDescriptionObject = stringArray.slice(2).join(" ");
-        const existsInRoomIndexB = checkRoomItemsList(unneededDescriptionObject);
+      const unneededDescriptionObject = stringArray.slice(2).join(" ");
+      const existsInRoomIndexB = checkRoomItemsList(unneededDescriptionObject);
 
       if (existsInRoomIndexB >= 0) {
         const Item: Item = getItemByID(unneededDescriptionObject);
 
-        if(Item.interactions?.use) {
-            return fireIfTrigger(Item.interactions.use);
+        if (Item.interactions?.use) {
+          return fireIfTrigger(Item.interactions.use);
         } else {
-            return "There is no obvious way to use " + chosenObject;
+          return "There is no obvious way to use " + chosenObject;
         }
       }
     }

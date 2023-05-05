@@ -1,5 +1,17 @@
-import { BaseInteractions } from "../enums";
+import { BaseInteractions, Directions } from "../enums";
 
+export const soloWordDirection: Record<string, string[]> = {
+  [Directions.UP]: ["up", "upward", "upstairs", "above"],
+  [Directions.DOWN]: ["down", "downward", "under", "downstairs"],
+  [Directions.N]: ["n", "north"],
+  [Directions.E]: ["e", "east"],
+  [Directions.W]: ["s", "south"],
+  [Directions.S]: ["w", "west"],
+  [Directions.NE]: ["ne", "northeast"],
+  [Directions.NW]: ["nw", "northwest"],
+  [Directions.SE]: ["se", "southeast"],
+  [Directions.SW]: ["sw", "southwest"],
+};
 export const soloWord: Record<string, string[]> = {
   [BaseInteractions.Examine]: [
     "examine",
@@ -117,11 +129,24 @@ export const soloWord: Record<string, string[]> = {
   ],
   [BaseInteractions.Equip]: ["equip", "wear", "don"],
   [BaseInteractions.Smell]: ["smell", "sniff", "whiff", "huff"],
+  ...soloWordDirection,
 };
 
 export const DoubleTerm: Record<string, string[]> = {
   [BaseInteractions.Equip]: ["put on"],
   [BaseInteractions.Place]: ["put down", "lay down"],
+};
+
+export const BuildDirectionTermHashMap = (): Map<string, string> => {
+  const HashMap = new Map();
+
+  Object.keys(soloWordDirection).forEach((key) => {
+    soloWordDirection[key as string].forEach((term) => {
+      HashMap.set(term, key);
+    });
+  });
+
+  return HashMap;
 };
 
 export const BuildTermHashMap = (): Map<string, string> => {

@@ -5,6 +5,7 @@ import checkExamine from "./examine";
 import takeItem from "./take";
 import placeItem from "./place";
 import useItem from "./use";
+import GoDirection from "./go";
 
 const Space = " ";
 const TermHashMap = BuildTermHashMap();
@@ -35,7 +36,9 @@ function parseSection(input: string): string {
       return useItem(spaceSplit);
 
     case BaseInteractions.Go:
-      // TODO Go
+      return GoDirection(spaceSplit);
+
+    // TODO Go Single Dir
 
     default:
       // generic test

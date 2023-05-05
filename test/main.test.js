@@ -194,6 +194,12 @@ describe("Test state management", function () {
 describe("Test movement", function () {
   this.beforeAll(reInitialise);
 
-  // genTest("up", roomsJSON.bedroom.description);
-  // genTest("down", roomsJSON.bedroom.description);
+  genTest("go up", roomsJSON.bedroom.description);
+  genTest("go down", roomsJSON.tavern.description);
+
+  describe("Go works with alternate terms", () => {
+    genTest("move upstairs", roomsJSON.bedroom.description);
+    genTest("travel downward", roomsJSON.tavern.description);
+
+  })
 });
