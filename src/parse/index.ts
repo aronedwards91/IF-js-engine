@@ -5,7 +5,7 @@ import checkExamine from "./examine";
 import takeItem from "./take";
 import placeItem from "./place";
 import useItem from "./use";
-import GoDirection from "./go";
+import { moveIfDirectionKnown, checkGo } from "./go";
 
 const Space = " ";
 const TermHashMap = BuildTermHashMap();
@@ -16,6 +16,11 @@ function parseSection(input: string): string {
     .replace(" at ", " ")
     .replace(" the ", " ");
   const spaceSplit = removedVowels.split(Space);
+
+  if (spaceSplit.length === 1) {
+    const singleTermDirCheck = moveIfDirectionKnown(spaceSplit[0]);
+    if (singleTermDirCheck) return singleTermDirCheck;
+  }
 
   const firstTerm = TermHashMap.get(spaceSplit[0]);
 
@@ -36,7 +41,7 @@ function parseSection(input: string): string {
       return useItem(spaceSplit);
 
     case BaseInteractions.Go:
-      return GoDirection(spaceSplit);
+      return checkGo(spaceSplit);
 
     // TODO Go Single Dir
 

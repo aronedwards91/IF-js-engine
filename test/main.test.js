@@ -188,7 +188,7 @@ describe("Test state management", function () {
     );
   });
 
-  // TODO test numerical
+  // TODO test numerical state
 });
 
 describe("Test movement", function () {
@@ -197,9 +197,17 @@ describe("Test movement", function () {
   genTest("go up", roomsJSON.bedroom.description);
   genTest("go down", roomsJSON.tavern.description);
 
+  genTest("up", roomsJSON.bedroom.description);
+  genTest("down", roomsJSON.tavern.description);
+  genTest("outside", roomsJSON.outside.description);
+  genTest("n", roomsJSON.tavern.description);
+
+  // TODO test all directions
+
   describe("Go works with alternate terms", () => {
     genTest("move upstairs", roomsJSON.bedroom.description);
     genTest("travel downward", roomsJSON.tavern.description);
-
-  })
+    genTest("outside", roomsJSON.outside.description);
+    genTest("north", roomsJSON.tavern.description);
+  });
 });

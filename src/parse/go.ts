@@ -4,7 +4,7 @@ import { BuildDirectionTermHashMap } from "./interactionPhrases";
 
 const DirectionTermHashMap = BuildDirectionTermHashMap();
 
-function moveIfDirectionKnown(term: string): string | undefined {
+export function moveIfDirectionKnown(term: string): string | undefined {
   const dirTerm = DirectionTermHashMap.get(term) || term;
   const newRoomDescription: string | undefined = moveRoomByExit(dirTerm);
   if (newRoomDescription) return newRoomDescription;
@@ -12,7 +12,7 @@ function moveIfDirectionKnown(term: string): string | undefined {
   return undefined;
 }
 
-export default function checkGo(stringArray: Array<string>): string {
+export function checkGo(stringArray: Array<string>): string {
   if (stringArray.length > 1) {
     const testResult = checkStringForSignificantTerms(
       stringArray,
