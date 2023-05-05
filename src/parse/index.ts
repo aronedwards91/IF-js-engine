@@ -6,6 +6,7 @@ import takeItem from "./take";
 import placeItem from "./place";
 import useItem from "./use";
 import { moveIfDirectionKnown, checkGo } from "./go";
+import checkEat from "./eat";
 
 const Space = " ";
 const TermHashMap = BuildTermHashMap();
@@ -43,8 +44,8 @@ function parseSection(input: string): string {
     case BaseInteractions.Go:
       return checkGo(spaceSplit);
 
-    // case BaseInteractions.Eat:
-    //   return checkEat(spaceSplit);
+    case BaseInteractions.Eat:
+      return checkEat(spaceSplit);
 
       // case BaseInteractions.Open: closable door
       //   return checkEat(spaceSplit);

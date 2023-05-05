@@ -250,3 +250,21 @@ describe("Test movement", function () {
     genTest("north", roomsJSON.tavern.description);
   });
 });
+
+describe("Test movement", function () {
+  this.beforeAll(reInitialise);
+
+  describe("eat simple objects", () => {
+    genTest("eat", "eat what?");
+    genTest("eat table", itemsJSON["table"].interactions.eat);
+    genTest("eat teaspoon", itemsJSON["teaspoon"].interactions.eat);
+    genTest("eat rag", "It's not eatable");
+    genTest("eat thingsthatsnotthere", "can't see such an item");
+  });
+
+  describe("eat overdescribed objects", () => {
+    genTest("eat at old dirty table", itemsJSON["table"].interactions.eat);
+    genTest("eat at dirty table", itemsJSON["table"].interactions.eat);
+    genTest("eat at old rag", "It's not eatable");
+  });
+});
