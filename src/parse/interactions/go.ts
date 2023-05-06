@@ -1,6 +1,6 @@
-import { moveRoomByExit } from "../data";
-import { checkStringForSignificantTerms } from "./parse-utils";
-import { BuildDirectionTermHashMap } from "./interactionPhrases";
+import { moveRoomByExit } from "../../data";
+import { checkStringForSignificantTerms } from "../parse-utils";
+import { BuildDirectionTermHashMap } from "../interactionPhrases";
 
 const DirectionTermHashMap = BuildDirectionTermHashMap();
 

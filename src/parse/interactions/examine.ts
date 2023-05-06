@@ -4,8 +4,8 @@ import {
   checkInRoomForID,
   checkExaminableItems,
   getFromInventory,
-} from "../data";
-import { fireIfTrigger, checkStringForSignificantTerms } from "./parse-utils";
+} from "../../data";
+import { fireIfTrigger, checkStringForSignificantTerms } from "../parse-utils";
 
 function checkExists(term: ItemID): string | undefined {
   const existsInRoomIndex = checkInRoomForID(term);

@@ -113,6 +113,15 @@ export const soloWord: Record<string, string[]> = {
     "unravel",
     "release",
   ],
+  [BaseInteractions.Close]: [
+    "close",
+    "shut",
+    "block",
+    "bar",
+    "bolt",
+    "lock",
+    "secure",
+  ],
   [BaseInteractions.Attack]: [
     "attack",
     "punch",

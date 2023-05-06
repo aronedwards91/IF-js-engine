@@ -4,8 +4,8 @@ import {
   checkRoomItemsList,
   checkRoomPlacedItems,
   removeItemFromRoom,
-} from "../data";
-import { fireIfTrigger, checkStringForSignificantTerms } from "./parse-utils";
+} from "../../data";
+import { fireIfTrigger, checkStringForSignificantTerms } from "../parse-utils";
 
 function takeIfExists(term: ItemID): string | undefined {
   const existsInRoomIndex = checkRoomItemsList(term);
@@ -13,7 +13,7 @@ function takeIfExists(term: ItemID): string | undefined {
   const index =
     existsInRoomIndex >= 0 ? existsInRoomIndex : existsPlacedInRoomIndex;
 
-  if (index >= 0) {
+  if (typeof index !== 'boolean' && index >= 0) {
     const Item: Item = getItemByID(term);
     let takeInteractionString: boolean | string = false;
 

@@ -1,5 +1,5 @@
-import { getItemByID, checkInRoomForID, checkInventory } from "../data";
-import { fireIfTrigger, checkStringForSignificantTerms } from "./parse-utils";
+import { getItemByID, checkInRoomForID, checkInventory } from "../../data";
+import { fireIfTrigger, checkStringForSignificantTerms } from "../parse-utils";
 
 function useCheck(term: ItemID): string | undefined {
   const existsInRoomIndex = checkInRoomForID(term);

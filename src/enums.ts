@@ -20,6 +20,7 @@ export enum BaseInteractions {
   Go = "go",
   Eat = "eat",
   Open = "open",
+  Close = "close",
   Attack = "attack",
   Equip = "equip",
   Smell = "smell",

@@ -3,8 +3,8 @@ import {
   addItemToRoom,
   checkInventory,
   getItemByID,
-} from "../data";
-import { fireIfTrigger, checkStringForSignificantTerms } from "./parse-utils";
+} from "../../data";
+import { fireIfTrigger, checkStringForSignificantTerms } from "../parse-utils";
 
 export function genPlaceString(term: ItemID): string {
   return `You place the ${term} in the room`;

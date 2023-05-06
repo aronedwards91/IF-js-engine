@@ -1,12 +1,12 @@
 import { BuildTermHashMap } from "./interactionPhrases";
 import { BaseInteractions } from "../enums";
 import { listInventory } from "../data";
-import checkExamine from "./examine";
-import takeItem from "./take";
-import placeItem from "./place";
-import useItem from "./use";
-import { moveIfDirectionKnown, checkGo } from "./go";
-import checkEat from "./eat";
+import checkExamine from "./interactions/examine";
+import takeItem from "./interactions/take";
+import placeItem from "./interactions/place";
+import useItem from "./interactions/use";
+import { moveIfDirectionKnown, checkGo } from "./interactions/go";
+import checkEat from "./interactions/eat";
 
 const Space = " ";
 const TermHashMap = BuildTermHashMap();
@@ -47,8 +47,12 @@ function parseSection(input: string): string {
     case BaseInteractions.Eat:
       return checkEat(spaceSplit);
 
-      // case BaseInteractions.Open: closable door
-      //   return checkEat(spaceSplit);
+    // case BaseInteractions.Open: // closable door
+      // return checkOpen(spaceSplit);
+
+    // case BaseInteractions.Close: // closable door
+      // return checkClose(spaceSplit);
+
     default:
       // generic test
       return "Command not understood";
