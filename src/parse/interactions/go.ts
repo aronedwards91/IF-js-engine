@@ -1,13 +1,24 @@
-import { moveRoomByExit } from "../../data";
+import { moveToRoom, getRoomExit } from "../../data";
 import { checkStringForSignificantTerms } from "../parse-utils";
-import { BuildDirectionTermHashMap } from "../interactionPhrases";
+import { BuildDirectionTermHashMap } from "../interaction-phrases";
+import { handleStateCheck } from "./state-check";
 
 const DirectionTermHashMap = BuildDirectionTermHashMap();
 
 export function moveIfDirectionKnown(term: string): string | undefined {
   const dirTerm = DirectionTermHashMap.get(term) || term;
-  const newRoomDescription: string | undefined = moveRoomByExit(dirTerm);
-  if (newRoomDescription) return newRoomDescription;
+  const roomExit = getRoomExit(dirTerm);
+  console.log(">>>>roomExit", roomExit);
+
+  if(typeof roomExit === 'string') {
+    // checkstring()
+    // if checkstring false
+    
+    const newRoomDescription = moveToRoom(roomExit);
+    if (newRoomDescription) return newRoomDescription;
+  } else if(roomExit) {
+     return handleStateCheck(roomExit);
+  }
 
   return undefined;
 }

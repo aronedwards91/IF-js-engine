@@ -74,5 +74,26 @@
       "use": ">>boxTouch",
       "examine": "It's a box, the number is [[ibox:val:val]]"
     }
+  },
+  "ladder": {
+    "description": "an old wooden ladder",
+    "isTakeable": false,
+    "interactions": {
+      "use": {
+        "onpass": ">>m>roof",
+        "onfail": "you can't use a ladder on the floor",
+        "req": {
+          "routside:ladderOnWall": true
+        }
+      },
+      "climb": {
+        "onpass": ">>m>roof",
+        "onfail": "you can't use a ladder on the floor",
+        "req": {
+          "routside:ladderOnWall": true
+        }
+      },
+      "move": ">>moveLadder"
+    }
   }
 }

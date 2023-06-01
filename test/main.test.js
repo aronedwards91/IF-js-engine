@@ -268,3 +268,37 @@ describe("Test movement", function () {
     genTest("eat at old rag", "It's not eatable");
   });
 });
+
+describe("Test state check move", function () {
+  it("go outside", function () {
+    assert.ok(
+      IFEngine.testingTools.getStateByID("routside:ladderOnWall") === false
+    );
+
+    IFEngine.fireInput("go outside");
+
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["outside"].name
+    );
+  });
+
+  it("go up fails as no ladder", function () {
+    assert.equal(
+      IFEngine.fireInput("go up"),
+      roomsJSON["outside"].exits.up.onfail
+    );
+  });
+
+  it("'use ladder' fail as command unspecific (should move it first)", function () {
+    assert.equal(
+      IFEngine.fireInput("use ladder"),
+      itemsJSON["ladder"].interactions.use.onfail
+    );
+  });
+
+  genTest("go up", roomsJSON["outside"].exits.up.onfail);
+
+  genTest("move ladder", triggersJSON["moveLadder"].returnString);
+  genTest("climb ladder", roomsJSON["roof"].description);
+});

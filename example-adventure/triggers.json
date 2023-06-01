@@ -18,5 +18,10 @@
     "stateID": "rtavern:tableRedMug",
     "newValue": false,
     "returnString": "you take the red mug"
+  },
+  "moveLadder": {
+    "stateID": "routside:ladderOnWall",
+    "newValue": true,
+    "returnString": "you place the ladder against the wall"
   }
 }

@@ -3,6 +3,7 @@ import { BaseInteractions, Directions } from "./enums";
 declare global {
   type RoomID = string;
   type TriggerID = string;
+  type TriggerString = string;
   type StateID = string;
   type ItemID = string;
   type ReturnString = string;
@@ -17,9 +18,15 @@ declare global {
     returnString: ReturnString;
   }
 
-  type Interaction = ReturnString | TriggerID;
+  interface StateCheck {
+    onpass: ReturnString | TriggerString;
+    onfail: ReturnString | TriggerString;
+    req: Record<StateID, State>;
+  }
 
-  type DirectionsOptions = Record<Directions | string, RoomID>;
+  type Interaction = ReturnString | TriggerString | StateCheck;
+
+  type DirectionsOptions = Record<Directions | string, RoomID | StateCheck>;
 
   interface Room {
     name: string;

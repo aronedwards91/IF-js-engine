@@ -11,6 +11,11 @@ export enum Directions {
   SW = "sw",
 }
 
+export enum TriggerPrefix {
+  FIRE_TRIGGER = ">>T>",
+  MOVE_LOCATION = ">>M>"
+}
+
 export enum BaseInteractions {
   Examine = "examine",
   Take = "take",

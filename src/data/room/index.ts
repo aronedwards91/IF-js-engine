@@ -70,31 +70,24 @@ export function checkExaminableItems(
   return RoomsData[roomID].examinable?.[itemID];
 }
 
-export function checkRoomExit(
+export function getRoomExit(
   exit: string,
   roomID = currentRoomID
-): RoomID | undefined {
+): RoomID | undefined | StateCheck {
   const exitCheck = RoomsData[roomID].exits[exit];
 
   if (exitCheck) return exitCheck;
   return undefined;
 }
 
-export function moveRoomByExit(
-  exit: string,
-  roomID = currentRoomID
-): string | undefined {
-  const checkExit = checkRoomExit(exit, roomID);
+export function moveToRoom(roomID: RoomID): string | false {
+  if (RoomsData[roomID]) {
+    currentRoom = RoomsData[roomID];
+    currentRoomID = roomID;
 
-  if (checkExit) {
-    if (RoomsData[checkExit]) {
-      currentRoom = RoomsData[checkExit];
-      currentRoomID = checkExit;
-      return currentRoom.description;
-    }
-    console.error("exit to unknown room " + checkExit);
+    return currentRoom.description;
   }
-  return undefined;
+  return false;
 }
 
 export function getRoomShortDescription(roomID = currentRoomID): string {

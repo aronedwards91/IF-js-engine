@@ -1,4 +1,4 @@
-import { intialiseGameData, debugGameState, getStateByID } from "./data";
+import { intialiseGameData, debugGameState, getStateByID, getCurrentRoom } from "./data";
 import ParseInstructions from "./parse";
 import { listWithDeterminer, listArrayWithDeterminer } from "./utils/lister";
 
@@ -13,5 +13,6 @@ export default {
     listWithDeterminer,
     listArrayWithDeterminer,
     getStateByID,
+    getCurrentRoom,
   },
 };

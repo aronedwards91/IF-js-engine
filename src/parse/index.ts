@@ -1,4 +1,4 @@
-import { BuildTermHashMap } from "./interactionPhrases";
+import { BuildTermHashMap } from "./interaction-phrases";
 import { BaseInteractions } from "../enums";
 import { listInventory } from "../data";
 import checkExamine from "./interactions/examine";
@@ -47,7 +47,7 @@ function parseSection(input: string): string {
     case BaseInteractions.Eat:
       return checkEat(spaceSplit);
 
-    // case BaseInteractions.Open: // closable door
+    // case BaseInteractions.Open: // closable door - generic??
       // return checkOpen(spaceSplit);
 
     // case BaseInteractions.Close: // closable door
