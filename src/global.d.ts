@@ -19,8 +19,8 @@ declare global {
   }
 
   interface StateCheck {
-    onpass: ReturnString | TriggerString;
-    onfail: ReturnString | TriggerString;
+    onPass: ReturnString | TriggerString;
+    onFail: ReturnString | TriggerString;
     req: Record<StateID, State>;
   }
 

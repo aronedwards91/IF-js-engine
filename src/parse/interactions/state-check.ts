@@ -1,14 +1,18 @@
-function checkReq(req: Record<StateID, State>) {
-  const isPass = true;
-  Object.keys(req).forEach((key) => {});
+import { handleStringCheck } from "./string-check";
+import { getStateByID } from "../../data/state";
 
-  return isPass;
-}
+export function handleStateCheck(stateCheck: StateCheck): string {
+  let isPass = false;
 
-export function handleStateCheck(statecheck: StateCheck): string {
+  Object.keys(stateCheck.req).forEach((key) => {
+    if (stateCheck.req[key] === getStateByID(key)) isPass = true;
+  });
 
-  const isPass = true;
-  Object.keys(statecheck.req).forEach((key) => {});
+  const onPostCheck = isPass ? stateCheck.onPass : stateCheck.onFail;
 
-  return ">>statecheck";
+  const stringCheck = handleStringCheck(onPostCheck);
+
+  if (stringCheck) return stringCheck;
+
+  return onPostCheck;
 }

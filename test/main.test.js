@@ -282,22 +282,22 @@ describe("Test state check move", function () {
       roomsJSON["outside"].name
     );
   });
-
+  
   it("go up fails as no ladder", function () {
     assert.equal(
       IFEngine.fireInput("go up"),
-      roomsJSON["outside"].exits.up.onfail
+      FormatOut(roomsJSON["outside"].exits.up.onFail)
     );
   });
 
   it("'use ladder' fail as command unspecific (should move it first)", function () {
     assert.equal(
       IFEngine.fireInput("use ladder"),
-      itemsJSON["ladder"].interactions.use.onfail
+      FormatOut(itemsJSON["ladder"].interactions.use.onFail)
     );
   });
 
-  genTest("go up", roomsJSON["outside"].exits.up.onfail);
+  genTest("go up", roomsJSON["outside"].exits.up.onFail);
 
   genTest("move ladder", triggersJSON["moveLadder"].returnString);
   genTest("climb ladder", roomsJSON["roof"].description);

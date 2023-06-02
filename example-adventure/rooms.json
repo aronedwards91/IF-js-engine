@@ -46,15 +46,15 @@
       "n": "tavern",
       "inside": "tavern",
       "up": {
-        "onpass": ">>m>roof",
-        "onfail": "you can't get on the roof",
+        "onPass": ">>m>roof",
+        "onFail": "you can't get on the roof",
         "req": {
           "routside:ladderOnWall": true
         }
       },
       "roof": {
-        "onpass": ">>m>roof",
-        "onfail": "you can't get on the roof",
+        "onPass": ">>m>roof",
+        "onFail": "you can't get on the roof",
         "req": {
           "routside:ladderOnWall": true
         }

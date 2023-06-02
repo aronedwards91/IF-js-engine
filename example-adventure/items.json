@@ -80,15 +80,15 @@
     "isTakeable": false,
     "interactions": {
       "use": {
-        "onpass": ">>m>roof",
-        "onfail": "you can't use a ladder on the floor",
+        "onPass": ">>m>roof",
+        "onFail": "you can't use a ladder on the floor",
         "req": {
           "routside:ladderOnWall": true
         }
       },
       "climb": {
-        "onpass": ">>m>roof",
-        "onfail": "you can't use a ladder on the floor",
+        "onPass": ">>m>roof",
+        "onFail": "you can't use a ladder on the floor",
         "req": {
           "routside:ladderOnWall": true
         }

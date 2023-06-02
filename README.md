@@ -33,8 +33,8 @@ then it's an object
 
 for 'exits' must have direction
 {
-    'onpass': 'outside',
-    'onfail': 'Door is closed',
+    'onPass': 'outside',
+    'onFail': 'Door is closed',
     'req': {
         'rtavern:doorOpen': true
     }
@@ -42,8 +42,8 @@ for 'exits' must have direction
 
 eg puzzlebox
 {
-    'onpass': '>>openpuzzlebox',
-    'onfail': 'cannot open puzzlebox yet',
+    'onPass': '>>openpuzzlebox',
+    'onFail': 'cannot open puzzlebox yet',
     'req': {
         'puzzle:openedSectionOne': true,
         'puzzle:openedSectionTwo': false,
