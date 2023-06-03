@@ -1,7 +1,7 @@
 import { getItemByID, checkInRoomForID, getFromInventory } from "../../data";
-import { fireIfTrigger, checkStringForSignificantTerms } from "../parse-utils";
+import { checkInteraction, checkStringForSignificantTerms } from "../parse-utils";
 
-function checkEatableExists(term: ItemID): string | undefined {
+function checkEatableExists(term: ItemID): string | false {
   const existsInRoomIndex = checkInRoomForID(term);
 
   if (
@@ -10,17 +10,17 @@ function checkEatableExists(term: ItemID): string | undefined {
   ) {
     const Item: Item = getItemByID(term);
     return Item.interactions?.eat
-      ? fireIfTrigger(Item.interactions.eat)
+      ? checkInteraction(Item.interactions.eat)
       : "It's not eatable";
   }
 
   const invItem = getFromInventory(term);
   if (invItem && invItem?.interactions.eat)
     return invItem && invItem.interactions?.eat
-      ? fireIfTrigger(invItem.interactions.eat)
+      ? checkInteraction(invItem.interactions.eat)
       : "It's not eatable";
 
-  return undefined;
+  return false;
 }
 
 export default function checkEat(stringArray: Array<string>): string {

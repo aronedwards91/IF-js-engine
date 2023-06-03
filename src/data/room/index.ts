@@ -85,7 +85,7 @@ export function moveToRoom(roomID: RoomID): string | false {
     currentRoom = RoomsData[roomID];
     currentRoomID = roomID;
 
-    return currentRoom.description;
+    return currentRoom.description || `You go to the ${currentRoom.name}`;
   }
   return false;
 }

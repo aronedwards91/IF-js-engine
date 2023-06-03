@@ -1,16 +1,22 @@
 import { fireTrigger } from "../data/state";
+import { handleStateCheck } from "./interactions/state-check";
+import { handleStringCheck } from "./interactions/string-check";
 
-export function fireIfTrigger(response: string): string {
-  if (response.substring(0, 2) === ">>") {
-    return fireTrigger(response.substring(2));
+export function checkInteraction(interaction: Interaction): string {
+  if (typeof interaction === "string") {
+    const isSpecialString = handleStringCheck(interaction);
+
+    if(isSpecialString) return isSpecialString;
+    return interaction;
+  } else {
+    return handleStateCheck(interaction);
   }
-  return response;
 }
 
 export function checkStringForSignificantTerms(
   stringArray: Array<string>,
-  testFunction: (x: string) => string | undefined
-): string | undefined {
+  testFunction: (x: string) => string | false
+): string | false {
   // if (stringArray.length > 1) {
   const viewedObject: ItemID = stringArray.slice(1).join(" ");
   const checkA = testFunction(viewedObject);
@@ -41,5 +47,5 @@ export function checkStringForSignificantTerms(
     if (checkD) return checkD;
   }
   // }
-  return undefined;
+  return false;
 }

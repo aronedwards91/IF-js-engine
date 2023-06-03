@@ -1,7 +1,7 @@
 import { getItemByID, checkInRoomForID, checkInventory } from "../../data";
-import { fireIfTrigger, checkStringForSignificantTerms } from "../parse-utils";
+import { checkInteraction, checkStringForSignificantTerms } from "../parse-utils";
 
-function useCheck(term: ItemID): string | undefined {
+function useCheck(term: ItemID): string | false {
   const existsInRoomIndex = checkInRoomForID(term);
   const isItemInInventory = checkInventory(term);
 
@@ -13,11 +13,13 @@ function useCheck(term: ItemID): string | undefined {
     const Item: Item = getItemByID(term);
 
     if (Item.interactions?.use) {
-      return fireIfTrigger(Item.interactions.use);
+      return checkInteraction(Item.interactions.use);
     } else {
       return "There is no obvious way to use " + term;
     }
   }
+
+  return false
 }
 
 export default function useItem(stringArray: Array<string>): string {

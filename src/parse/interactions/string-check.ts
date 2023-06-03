@@ -1,5 +1,6 @@
 import { TriggerPrefix } from "../../enums";
-import { moveToRoom, getCurrentRoom } from "../../data";
+import { moveToRoom } from "../../data";
+import { fireTrigger } from "../../data/state";
 
 export function handleStringCheck(stringValue: string): string | false {
   const substringCheck =
@@ -9,9 +10,10 @@ export function handleStringCheck(stringValue: string): string | false {
     const stringContent = stringValue.substring(4);
 
     if (substringCheck === TriggerPrefix.MOVE_LOCATION) {
-        return moveToRoom(stringContent);
-    } else if (substringCheck === TriggerPrefix.FIRE_TRIGGER) {
-      // fireTrigger
+      return moveToRoom(stringContent);
+    }
+    if (substringCheck === TriggerPrefix.FIRE_TRIGGER) {
+      return fireTrigger(stringContent);
     }
     //  move description??
   }

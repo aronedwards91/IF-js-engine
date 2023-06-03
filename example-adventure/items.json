@@ -47,7 +47,7 @@
       "examine": "it's a plain green earthenware mug",
       "smell": "smells of old beer",
       "eat": "Really?, maybe don't?",
-      "take": ">>removeGreenMug"
+      "take": ">>T>removeGreenMug"
     }
   },
   "red mug": {
@@ -61,7 +61,7 @@
       "examine": "it's a plain red earthenware mug",
       "smell": "smells of old mead",
       "eat": "Really?, maybe don't?",
-      "take": ">>removeRedMug"
+      "take": ">>T>removeRedMug"
     }
   },
   "box": {
@@ -71,7 +71,7 @@
     "hasStatus": true,
     "interactions": {
       "take": "you don't need this",
-      "use": ">>boxTouch",
+      "use": ">>T>boxTouch",
       "examine": "It's a box, the number is [[ibox:val:val]]"
     }
   },
@@ -93,7 +93,7 @@
           "routside:ladderOnWall": true
         }
       },
-      "move": ">>moveLadder"
+      "move": ">>T>moveLadder"
     }
   }
 }

@@ -6,7 +6,7 @@ Internals for a basic interactive fiction engine
 
 ###### Trigger fire
 
-`>>triggername` fires trigger
+`>>T>triggername` fires trigger
 
 `>>m>outside` special trigger, fires move to 'outside'
 
@@ -42,7 +42,7 @@ for 'exits' must have direction
 
 eg puzzlebox
 {
-    'onPass': '>>openpuzzlebox',
+    'onPass': '>>T>openpuzzlebox',
     'onFail': 'cannot open puzzlebox yet',
     'req': {
         'puzzle:openedSectionOne': true,

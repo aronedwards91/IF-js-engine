@@ -5,9 +5,9 @@ import {
   checkRoomPlacedItems,
   removeItemFromRoom,
 } from "../../data";
-import { fireIfTrigger, checkStringForSignificantTerms } from "../parse-utils";
+import { checkInteraction, checkStringForSignificantTerms } from "../parse-utils";
 
-function takeIfExists(term: ItemID): string | undefined {
+function takeIfExists(term: ItemID): string | false {
   const existsInRoomIndex = checkRoomItemsList(term);
   const existsPlacedInRoomIndex = checkRoomPlacedItems(term);
   const index =
@@ -18,7 +18,7 @@ function takeIfExists(term: ItemID): string | undefined {
     let takeInteractionString: boolean | string = false;
 
     if (Item.interactions?.take) {
-      takeInteractionString = fireIfTrigger(Item.interactions.take);
+      takeInteractionString = checkInteraction(Item.interactions.take);
     }
     if (Item.isTakeable) {
       addToInventory(term);
@@ -28,6 +28,8 @@ function takeIfExists(term: ItemID): string | undefined {
       return takeInteractionString || `you can't carry the ${term}`;
     }
   }
+
+  return false
 }
 
 export default function takeItem(stringArray: Array<string>): string {

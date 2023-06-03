@@ -2,25 +2,30 @@ import { moveToRoom, getRoomExit } from "../../data";
 import { checkStringForSignificantTerms } from "../parse-utils";
 import { BuildDirectionTermHashMap } from "../interaction-phrases";
 import { handleStateCheck } from "./state-check";
+import { handleStringCheck } from "./string-check";
 
 const DirectionTermHashMap = BuildDirectionTermHashMap();
 
-export function moveIfDirectionKnown(term: string): string | undefined {
+export function moveIfDirectionKnown(term: string): string | false {
   const dirTerm = DirectionTermHashMap.get(term) || term;
   const roomExit = getRoomExit(dirTerm);
-  console.log(">>>>roomExit", roomExit);
 
-  if(typeof roomExit === 'string') {
-    // checkstring()
-    // if checkstring false
-    
-    const newRoomDescription = moveToRoom(roomExit);
-    if (newRoomDescription) return newRoomDescription;
-  } else if(roomExit) {
-     return handleStateCheck(roomExit);
+  if (typeof roomExit === "string") {
+    const isSpecialString = handleStringCheck(roomExit);
+
+    if (!isSpecialString) {
+      const newRoomDescription = moveToRoom(roomExit);
+      if (newRoomDescription) return newRoomDescription;
+
+      return false; // moveToRoom found no room
+    } else {
+      return isSpecialString;
+    }
+  } else if (roomExit) {
+    return handleStateCheck(roomExit);
   }
 
-  return undefined;
+  return false;
 }
 
 export function checkGo(stringArray: Array<string>): string {

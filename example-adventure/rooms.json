@@ -64,7 +64,7 @@
       "wall": "a sturdy tavern wall"
     },
     "interactions": {
-      "examine": ">>moonShow",
+      "examine": ">>T>moonShow",
       "listen": "You can hear crickets"
     }
   },

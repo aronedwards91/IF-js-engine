@@ -5,9 +5,12 @@ import {
   checkExaminableItems,
   getFromInventory,
 } from "../../data";
-import { fireIfTrigger, checkStringForSignificantTerms } from "../parse-utils";
+import {
+  checkInteraction,
+  checkStringForSignificantTerms,
+} from "../parse-utils";
 
-function checkExists(term: ItemID): string | undefined {
+function checkExists(term: ItemID): string | false {
   const existsInRoomIndex = checkInRoomForID(term);
 
   if (
@@ -16,17 +19,17 @@ function checkExists(term: ItemID): string | undefined {
   ) {
     const Item: Item = getItemByID(term);
 
-    return fireIfTrigger(Item.interactions?.examine || Item.description);
+    return checkInteraction(Item.interactions?.examine || Item.description);
   }
 
   const examinable = checkExaminableItems(term);
-  if (examinable) return fireIfTrigger(examinable);
+  if (examinable) return checkInteraction(examinable);
 
   const invItem = getFromInventory(term);
   if (invItem)
-    fireIfTrigger(invItem?.interactions.examine) || invItem.description;
+    checkInteraction(invItem?.interactions.examine) || invItem.description;
 
-  return undefined;
+  return false;
 }
 
 export default function checkExamine(stringArray: Array<string>): string {
