@@ -50,16 +50,17 @@ eg puzzlebox
     }
 }
 
+#### TODO
 
+combination interactions
+Test open/close door
+Help
 
 #### Problems
-- optional / status driven exits
 - containers
 - obvious required item in inventory; key->lock, 
 - 2 stage interaction; open box, examine
 - NPC
 - travel to specific room
 - always show description?
-- already taken item
-- trigger switch type
 - movement through specific exit fires trigger only first time
