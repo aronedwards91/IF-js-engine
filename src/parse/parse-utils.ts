@@ -73,7 +73,8 @@ export function checkStringForCustomInteractions(
 
 export function checkStringForSignificantTerms(
   stringArray: Array<string>,
-  testFunction: (x: string) => string | false
+  testFunction: (x: string) => string | false,
+  shouldCheckCustomInteractions = true,
 ): string | false {
   const targetedObject: ItemID = stringArray.slice(1).join(" ");
 
@@ -105,9 +106,11 @@ export function checkStringForSignificantTerms(
     if (checkD) return checkD;
   }
 
-  const hasCustomInteractions = checkStringForCustomInteractions(stringArray);
-
-  if(hasCustomInteractions) return hasCustomInteractions;
+  if(shouldCheckCustomInteractions) {
+    const hasCustomInteractions = checkStringForCustomInteractions(stringArray);
+  
+    if(hasCustomInteractions) return hasCustomInteractions;
+  }
 
   return false;
 }

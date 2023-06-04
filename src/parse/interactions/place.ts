@@ -30,7 +30,8 @@ export default function checkPlace(stringArray: Array<string>): string {
   if (stringArray.length > 1) {
     const testResult = checkStringForSignificantTerms(
       stringArray,
-      placeIfExists
+      placeIfExists,
+      false
     );
     if (testResult) return testResult;
 

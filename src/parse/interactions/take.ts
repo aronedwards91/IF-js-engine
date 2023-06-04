@@ -37,7 +37,8 @@ export default function takeItem(stringArray: Array<string>): string {
   if (stringArray.length > 1) {
     const testResult = checkStringForSignificantTerms(
       stringArray,
-      takeIfExists
+      takeIfExists,
+      false
     );
 
     if (testResult) return testResult;
