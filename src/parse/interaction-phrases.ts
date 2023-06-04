@@ -122,6 +122,7 @@ export const soloWord: Record<string, string[]> = {
     "lock",
     "secure",
   ],
+  [BaseInteractions.Help]: ["help", "advice", "assist", "support", "guide"],
   [BaseInteractions.Attack]: [
     "attack",
     "punch",

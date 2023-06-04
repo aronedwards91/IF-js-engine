@@ -65,12 +65,13 @@ declare global {
     name: string;
     description: ReturnString;
     author: string;
-    version: number;
-    category: ReturnString;
-    releaseDate: string;
-    icon: string;
+    version?: number;
+    category?: ReturnString;
+    releaseDate?: string;
+    icon?: string;
     introduction: ReturnString;
     initialRoomID: RoomID;
+    help?: string; // overrides help command
   }
 
   //  Data Arrays

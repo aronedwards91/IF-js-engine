@@ -93,6 +93,10 @@ describe("Test test utils part B:", function () {
 describe("Game Engine Test:", function () {
   this.beforeAll(reInitialise);
 
+  describe("can use help text", function () {
+    genTest("help", infoJSON.help);
+  });
+
   describe(BaseInteractions.Examine + " objects/rooms", function () {
     it("Listing generator correctly formats array", function () {
       const listString = IFEngine.testingTools.listArrayWithDeterminer([
@@ -282,7 +286,7 @@ describe("Test state check move", function () {
       roomsJSON["outside"].name
     );
   });
-  
+
   it("go up fails as no ladder", function () {
     assert.equal(
       IFEngine.fireInput("go up"),
@@ -301,4 +305,16 @@ describe("Test state check move", function () {
 
   genTest("move ladder", triggersJSON["moveLadder"].returnString);
   genTest("climb ladder", roomsJSON["roof"].description);
+});
+
+describe("Test help as custom interaction", function () {
+  this.beforeAll(reInitialise);
+
+  it("in tavern", function () {
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["tavern"].name
+    );
+  });
+  genTest("help teaspoon", itemsJSON["teaspoon"].interactions.help);
 });

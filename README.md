@@ -52,9 +52,10 @@ eg puzzlebox
 
 #### TODO
 
+Help
+
 combination interactions
 Test open/close door
-Help
 
 #### Problems
 - containers

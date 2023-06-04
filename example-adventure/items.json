@@ -35,7 +35,8 @@
       "use": "You have no way to use this teaspoon",
       "examine": "it's nice",
       "smell": "smells of tea",
-      "eat": "maybe don't!?"
+      "eat": "maybe don't!?",
+      "help": "The teaspoon is okay without your help"
     }
   },
   "green mug": {

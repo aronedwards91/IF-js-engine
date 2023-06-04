@@ -5,6 +5,7 @@ import checkExamine from "./interactions/examine";
 import takeItem from "./interactions/take";
 import placeItem from "./interactions/place";
 import useItem from "./interactions/use";
+import helpInteraction from "./interactions/help";
 import { moveIfDirectionKnown, checkGo } from "./interactions/go";
 import checkEat from "./interactions/eat";
 import { checkStringForCustomInteractions } from "./parse-utils";
@@ -20,8 +21,9 @@ function parseSection(input: string): string {
   const spaceSplit = removedVowels.split(Space);
 
   if (spaceSplit.length === 1) {
+    const singleTerm = removedVowels;
     // TODO switch for single terms
-    const singleTermDirCheck = moveIfDirectionKnown(spaceSplit[0]);
+    const singleTermDirCheck = moveIfDirectionKnown(singleTerm);
     if (singleTermDirCheck) return singleTermDirCheck;
   }
 
@@ -54,6 +56,10 @@ function parseSection(input: string): string {
 
     // case BaseInteractions.Close: // closable door
     // return checkClose(spaceSplit);
+
+    
+    case BaseInteractions.Help:
+      return helpInteraction(spaceSplit);
 
     // TODO combination interations
 

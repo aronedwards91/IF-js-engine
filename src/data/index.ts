@@ -4,7 +4,7 @@ import { setupRoomsData, getRoomsData } from "./room";
 import { setItemsList, getItemsData } from "./item";
 import { setupStateAndTriggers, getStateTriggerData } from "./state";
 
-let Info: GameInfo;
+let gameInfo: GameInfo;
 
 interface IntialiseGame {
   info: GameInfo;
@@ -21,21 +21,21 @@ export function intialiseGameData({
   triggersData,
   stateData,
 }: IntialiseGame) {
-  const Info = JSON.parse(JSON.stringify(info));
+  gameInfo = JSON.parse(JSON.stringify(info));
   const RoomsData = JSON.parse(JSON.stringify(roomsData));
   const ItemsData = JSON.parse(JSON.stringify(itemsData));
   const TriggersData = JSON.parse(JSON.stringify(triggersData));
   const StateData = JSON.parse(JSON.stringify(stateData));
 
   setItemsList(ItemsData);
-  setupRoomsData(RoomsData, Info);
+  setupRoomsData(RoomsData, gameInfo);
   setupStateAndTriggers(TriggersData, StateData);
   resetInventory();
 
   return {
-    startTitle: Info.name,
-    startString: startString(Info),
-    startIntro: Info.introduction,
+    startTitle: gameInfo.name,
+    startString: startString(gameInfo),
+    startIntro: gameInfo.introduction,
     // fireableInteractions
   };
 }
@@ -49,6 +49,9 @@ export function debugGameState() {
   };
 }
 
+export function getGameInfo(): GameInfo {
+  return gameInfo;
+}
 export * from "./item";
 export * from "./room";
 export * from "./inventory";
