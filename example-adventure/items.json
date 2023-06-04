@@ -55,8 +55,6 @@
     "name": "red mug",
     "description": "red mug",
     "isTakeable": true,
-    "hasStatus": false,
-    "onUse": "Theres nothing in the mug",
     "interactions": {
       "use": "Theres nothing in the mug",
       "examine": "it's a plain red earthenware mug",
@@ -65,11 +63,20 @@
       "take": ">>T>removeRedMug"
     }
   },
+  "cellar door": {
+    "name": "cellar door",
+    "description": "musty old cellar door",
+    "isTakeable": true,
+    "interactions": {
+      "use": ">>T>openCellarDoor",
+      "open": ">>T>openCellarDoor",
+      "close": ">>T>closeCellarDoor"
+    }
+  },
   "box": {
     "name": "box",
     "description": "small box with a number on it",
     "isTakeable": false,
-    "hasStatus": true,
     "interactions": {
       "take": "you don't need this",
       "use": ">>T>boxTouch",

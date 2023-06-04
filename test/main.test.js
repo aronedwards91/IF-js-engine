@@ -318,3 +318,22 @@ describe("Test help as custom interaction", function () {
   });
   genTest("help teaspoon", itemsJSON["teaspoon"].interactions.help);
 });
+
+describe("Test Open/Close Door", function () {
+  this.beforeAll(reInitialise);
+
+  it("in tavern can travel to cellar", function () {
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["tavern"].name
+    );
+  });
+  
+  genTest("go down", roomsJSON["tavern"].exits.down.onFail);
+  genTest("open cellar door", triggersJSON["openCellarDoor"].returnString);
+  genTest("go down", roomsJSON["cellar"].description);
+  genTest("close cellar door", triggersJSON["closeCellarDoor"].returnString);
+  genTest("go up", roomsJSON["cellar"].exits.up.onFail);
+  genTest("open cellar door", triggersJSON["openCellarDoor"].returnString);
+  genTest("go up", roomsJSON["tavern"].description);
+});

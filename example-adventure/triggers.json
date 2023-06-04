@@ -23,5 +23,15 @@
     "stateID": "routside:ladderOnWall",
     "newValue": true,
     "returnString": "you place the ladder against the wall"
+  },
+  "openCellarDoor": {
+    "stateID": "rtavern:cellarDoorOpen",
+    "newValue": true,
+    "returnString": "you open the cellar door"
+  },
+  "closeCellarDoor": {
+    "stateID": "rtavern:cellarDoorOpen",
+    "newValue": false,
+    "returnString": "you close the cellar door"
   }
 }

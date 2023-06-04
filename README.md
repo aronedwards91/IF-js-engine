@@ -52,10 +52,10 @@ eg puzzlebox
 
 #### TODO
 
-Help
-
 combination interactions
 Test open/close door
+
+?? trigger multistate edit
 
 #### Problems
 - containers

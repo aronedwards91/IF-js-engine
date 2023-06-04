@@ -5,21 +5,42 @@
     "exits": {
       "s": "outside",
       "up": "bedroom",
-      "outside": "outside"
+      "outside": "outside",
+      "down": {
+        "onPass": ">>M>cellar",
+        "onFail": "the cellar door is closed",
+        "req": {
+          "rtavern:cellarDoorOpen": true
+        }
+      }
     },
-    "img": "strings",
+    "img": "/url",
     "interactions": {
-      "examine": "It's an empty tavern, you can go outside via a door to your south, or up, there is a table [[rtavern:tableGreenMug||false==with a green mug]] [[rtavern:tableRedMug||false==and a red mug]]",
+      "examine": "It's an empty tavern, you can go outside via a door to your south, or up, there is a table",
       "smell": "The place smells dingy",
       "listen": "It's very quiet"
     },
-    "itemsList": ["table", "green mug", "red mug"],
+    "itemsList": ["table", "green mug", "red mug", "cellar door"],
     "placedItems": ["teafork", "teaspoon", "rag"],
     "examinable": {
       "stairs": "they lead up",
       "door": "leads outside",
       "floor": "it's wooden"
     }
+  },
+  "cellar": {
+    "name": "Cellar",
+    "description": "A dark empty cellar",
+    "exits": {
+      "up": {
+        "onPass": ">>M>tavern",
+        "onFail": "the cellar door is closed",
+        "req": {
+          "rtavern:cellarDoorOpen": true
+        }
+      }
+    },
+    "itemsList": ["cellar door"]
   },
   "bedroom": {
     "name": "Bedroom",

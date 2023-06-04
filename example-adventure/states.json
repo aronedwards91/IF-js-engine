@@ -4,10 +4,11 @@
   },
   "routside": {
     "moon": "false",
-    "ladderOnWall": false 
+    "ladderOnWall": false
   },
   "rtavern": {
     "tableGreenMug": "true",
-    "tableRedMug": true
+    "tableRedMug": true,
+    "cellarDoorOpen": false
   }
 }

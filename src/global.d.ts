@@ -42,7 +42,6 @@ declare global {
   interface Item {
     description: StateCheckDescription;
     isTakeable: boolean;
-    hasStatus: boolean;
     icon?: string;
     interactions: Record<InteractionVaried, Interaction>;
     // alt names?
