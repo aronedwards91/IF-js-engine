@@ -8,6 +8,7 @@ import {
 import { checkInteraction, checkStringForSignificantTerms } from "../parse-utils";
 
 function takeIfExists(term: ItemID): string | false {
+  // TODO replace with checkInRoomForID
   const existsInRoomIndex = checkRoomItemsList(term);
   const existsPlacedInRoomIndex = checkRoomPlacedItems(term);
   const index =

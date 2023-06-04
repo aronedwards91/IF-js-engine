@@ -57,8 +57,8 @@ export function checkInRoomForID(
   itemID: ItemID,
   roomID = currentRoomID
 ): number | false {
-  const itemsList = RoomsData[roomID]?.itemsList.indexOf(itemID);
-  const placedItems = RoomsData[roomID]?.placedItems.indexOf(itemID);
+  const itemsList = RoomsData[roomID]?.itemsList?.indexOf(itemID);
+  const placedItems = RoomsData[roomID]?.placedItems?.indexOf(itemID);
 
   return itemsList >= 0 ? itemsList : placedItems;
 }

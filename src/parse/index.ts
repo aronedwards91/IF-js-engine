@@ -7,6 +7,7 @@ import placeItem from "./interactions/place";
 import useItem from "./interactions/use";
 import { moveIfDirectionKnown, checkGo } from "./interactions/go";
 import checkEat from "./interactions/eat";
+import { checkStringForCustomInteractions } from "./parse-utils";
 
 const Space = " ";
 const TermHashMap = BuildTermHashMap();
@@ -19,6 +20,7 @@ function parseSection(input: string): string {
   const spaceSplit = removedVowels.split(Space);
 
   if (spaceSplit.length === 1) {
+    // TODO switch for single terms
     const singleTermDirCheck = moveIfDirectionKnown(spaceSplit[0]);
     if (singleTermDirCheck) return singleTermDirCheck;
   }
@@ -48,13 +50,20 @@ function parseSection(input: string): string {
       return checkEat(spaceSplit);
 
     // case BaseInteractions.Open: // closable door - generic??
-      // return checkOpen(spaceSplit);
+    // return checkOpen(spaceSplit);
 
     // case BaseInteractions.Close: // closable door
-      // return checkClose(spaceSplit);
+    // return checkClose(spaceSplit);
+
+    // TODO combination interations
 
     default:
       // generic test
+      const hasCustomInteractions =
+        checkStringForCustomInteractions(spaceSplit);
+
+      if (hasCustomInteractions) return hasCustomInteractions;
+
       return "Command not understood";
   }
 }

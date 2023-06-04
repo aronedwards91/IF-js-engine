@@ -8,7 +8,7 @@ Internals for a basic interactive fiction engine
 
 `>>T>triggername` fires trigger
 
-`>>m>outside` special trigger, fires move to 'outside'
+`>>M>outside` special trigger, fires move to 'outside'
 
 ###### Interaction
 

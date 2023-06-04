@@ -27,7 +27,7 @@ function checkExists(term: ItemID): string | false {
 
   const invItem = getFromInventory(term);
   if (invItem)
-    checkInteraction(invItem?.interactions.examine) || invItem.description;
+    return checkInteraction(invItem.interactions.examine) || invItem.description;
 
   return false;
 }
