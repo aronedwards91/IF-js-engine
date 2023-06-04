@@ -21,7 +21,6 @@ function getFromInventory(itemName: ItemID): Item | false {
   return Inventory.indexOf(itemName) >= 0 && getItemByID(itemName);
 }
 
-// TODO capitalize
 function listInventory(): string {
   return listArrayWithDeterminer(Inventory) || "nothing in inventory";
 }

@@ -43,7 +43,6 @@ function genTestTitle(input, output) {
 }
 function genTest(input, expect) {
   it(genTestTitle(input, expect), function () {
-    // TODO compare parsed text
     assert.equal(IFEngine.fireInput(input), FormatOut(expect));
   });
 }
@@ -104,7 +103,6 @@ describe("Game Engine Test:", function () {
     });
 
     const lookTest = function (input) {
-      // TODO compare parsed text
       assert.equal(
         IFEngine.fireInput(input),
         FormatOut(
@@ -191,7 +189,6 @@ describe(`Test inventory system`, function () {
   this.beforeAll(reInitialise);
 
   it(genTestTitle("items", "teaspoon and a red mug"), function () {
-    // TODO compare parsed text
     IFEngine.fireInput("take teaspoon");
     IFEngine.fireInput("take red mug");
     assert.equal(
@@ -242,6 +239,9 @@ describe("Test movement", function () {
   genTest("n", roomsJSON.tavern.description);
 
   // TODO test all directions
+  // TODO E , east
+  // TODO W, west
+  // TODO S, south
 
   describe("Go works with alternate terms", () => {
     genTest("move upstairs", roomsJSON.bedroom.description);

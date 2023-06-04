@@ -1,20 +1,15 @@
 import {
   getItemByID,
   addToInventory,
-  checkRoomItemsList,
-  checkRoomPlacedItems,
+  checkInRoomForID,
   removeItemFromRoom,
 } from "../../data";
 import { checkInteraction, checkStringForSignificantTerms } from "../parse-utils";
 
 function takeIfExists(term: ItemID): string | false {
-  // TODO replace with checkInRoomForID
-  const existsInRoomIndex = checkRoomItemsList(term);
-  const existsPlacedInRoomIndex = checkRoomPlacedItems(term);
-  const index =
-    existsInRoomIndex >= 0 ? existsInRoomIndex : existsPlacedInRoomIndex;
+  const inRoomIndex = checkInRoomForID(term);
 
-  if (typeof index !== 'boolean' && index >= 0) {
+  if (typeof inRoomIndex !== 'boolean' && inRoomIndex >= 0) {
     const Item: Item = getItemByID(term);
     let takeInteractionString: boolean | string = false;
 

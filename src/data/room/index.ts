@@ -37,22 +37,6 @@ export function removeItemFromRoom(itemID: ItemID, roomID = currentRoomID) {
   );
 }
 
-// TODO remove?
-export function checkRoomItemsList(
-  itemID: ItemID,
-  roomID = currentRoomID
-): number {
-  return RoomsData[roomID].itemsList.indexOf(itemID);
-}
-
-// TODO remove?
-export function checkRoomPlacedItems(
-  itemID: ItemID,
-  roomID = currentRoomID
-): number | false {
-  return RoomsData[roomID]?.placedItems.indexOf(itemID);
-}
-
 export function checkInRoomForID(
   itemID: ItemID,
   roomID = currentRoomID
@@ -96,7 +80,7 @@ export function getRoomShortDescription(roomID = currentRoomID): string {
 
 export function getRoomFullDescription(roomID = currentRoomID): string {
   const Room = RoomsData[roomID];
-  // TODO text wrong owner?
+
   const placedItems =
     Room.placedItems &&
     " , there is also " + listArrayWithDeterminer(Room.placedItems);
