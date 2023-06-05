@@ -328,7 +328,7 @@ describe("Test Open/Close Door", function () {
       roomsJSON["tavern"].name
     );
   });
-  
+
   genTest("go down", roomsJSON["tavern"].exits.down.onFail);
   genTest("open cellar door", triggersJSON["openCellarDoor"].returnString);
   genTest("go down", roomsJSON["cellar"].description);
@@ -347,7 +347,7 @@ describe("Test Open/Close Door, alternative text test", function () {
       roomsJSON["tavern"].name
     );
   });
-  
+
   genTest("go downward", roomsJSON["tavern"].exits.down.onFail);
   genTest("unlock door", triggersJSON["openCellarDoor"].returnString);
   genTest("go downstairs", roomsJSON["cellar"].description);
@@ -355,4 +355,11 @@ describe("Test Open/Close Door, alternative text test", function () {
   genTest("go upward", roomsJSON["cellar"].exits.up.onFail);
   genTest("unbolt door", triggersJSON["openCellarDoor"].returnString);
   genTest("go upstairs", roomsJSON["tavern"].description);
+});
+
+describe("Test passing custom interaction that matches a non primary Base interaction", function () {
+  this.beforeAll(reInitialise);
+  genTest("go up", roomsJSON.bedroom.description);
+
+  genTest("unlock box", itemsJSON["box"].interactions.unlock);
 });

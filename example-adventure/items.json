@@ -80,7 +80,8 @@
     "interactions": {
       "take": "you don't need this",
       "use": ">>T>boxTouch",
-      "examine": "It's a box, the number is [[ibox:val:val]]"
+      "examine": "It's a box, the number is [[ibox:val:val]]",
+      "unlock": "The box is not locked"
     }
   },
   "ladder": {

@@ -51,13 +51,6 @@ function parseSection(input: string): string {
     case BaseInteractions.Eat:
       return checkEat(spaceSplit);
 
-    // case BaseInteractions.Open: // closable door - generic??
-    // return checkOpen(spaceSplit);
-
-    // case BaseInteractions.Close: // closable door
-    // return checkClose(spaceSplit);
-
-    
     case BaseInteractions.Help:
       return helpInteraction(spaceSplit);
 
@@ -65,11 +58,18 @@ function parseSection(input: string): string {
 
     default:
       // generic test
-      spaceSplit[0] = firstTerm || spaceSplit[0];
       const hasCustomInteractions =
         checkStringForCustomInteractions(spaceSplit);
 
       if (hasCustomInteractions) return hasCustomInteractions;
+
+      spaceSplit[0] = firstTerm || spaceSplit[0];
+
+      const hasCustomInteractionsMappedFirstTerm =
+        checkStringForCustomInteractions(spaceSplit);
+
+      if (hasCustomInteractionsMappedFirstTerm)
+        return hasCustomInteractionsMappedFirstTerm;
 
       return "Command not understood";
   }
