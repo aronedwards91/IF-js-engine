@@ -1,27 +1,27 @@
 import {
   getItemByID,
   addToInventory,
-  checkInRoomForID,
+  checkInRoomForItemID,
   removeItemFromRoom,
 } from "../../data";
 import { checkInteraction, checkStringForSignificantTerms } from "../parse-utils";
 
 function takeIfExists(term: ItemID): string | false {
-  const inRoomIndex = checkInRoomForID(term);
+  const existsInRoomAs = checkInRoomForItemID(term);
 
-  if (typeof inRoomIndex !== 'boolean' && inRoomIndex >= 0) {
-    const Item: Item = getItemByID(term);
+  if (existsInRoomAs) {
+    const Item: Item = getItemByID(existsInRoomAs);
     let takeInteractionString: boolean | string = false;
 
     if (Item.interactions?.take) {
       takeInteractionString = checkInteraction(Item.interactions.take);
     }
     if (Item.isTakeable) {
-      addToInventory(term);
-      removeItemFromRoom(term);
-      return takeInteractionString || `you add the ${term} to your inventory`;
+      addToInventory(existsInRoomAs);
+      removeItemFromRoom(existsInRoomAs);
+      return takeInteractionString || `you add the ${existsInRoomAs} to your inventory`;
     } else {
-      return takeInteractionString || `you can't carry the ${term}`;
+      return takeInteractionString || `you can't carry the ${existsInRoomAs}`;
     }
   }
 

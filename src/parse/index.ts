@@ -65,6 +65,7 @@ function parseSection(input: string): string {
 
     default:
       // generic test
+      spaceSplit[0] = firstTerm || spaceSplit[0];
       const hasCustomInteractions =
         checkStringForCustomInteractions(spaceSplit);
 

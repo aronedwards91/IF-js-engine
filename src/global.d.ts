@@ -32,10 +32,11 @@ declare global {
     name: string;
     description: StateCheckDescription;
     exits: DirectionsOptions;
-    img: string;
+    img?: string;
     interactions: Record<InteractionVaried, Interaction>;
-    itemsList: Array<ItemID>;
-    placedItems: Array<ItemID>;
+    itemsList?: Array<ItemID>;
+    placedItems?: Array<ItemID>;
+    altNames?: Record<string, ItemID>; // non-takeable items only
     examinable?: Record<string, ReturnString>;
   }
 
@@ -44,7 +45,6 @@ declare global {
     isTakeable: boolean;
     icon?: string;
     interactions: Record<InteractionVaried, Interaction>;
-    // alt names?
   }
 
   interface PlayerStatus {

@@ -37,14 +37,28 @@ export function removeItemFromRoom(itemID: ItemID, roomID = currentRoomID) {
   );
 }
 
-export function checkInRoomForID(
+export function checkInRoomForItemID(
   itemID: ItemID,
   roomID = currentRoomID
-): number | false {
-  const itemsList = RoomsData[roomID]?.itemsList?.indexOf(itemID);
-  const placedItems = RoomsData[roomID]?.placedItems?.indexOf(itemID);
+): ItemID | false {
+  const itemsListIndex = RoomsData[roomID]?.itemsList?.indexOf(itemID);
+  if (itemsListIndex !== undefined && itemsListIndex >= 0)
+    return RoomsData[roomID].itemsList[itemsListIndex];
 
-  return itemsList >= 0 ? itemsList : placedItems;
+  const placedItemsIndex = RoomsData[roomID]?.placedItems?.indexOf(itemID);
+  if (placedItemsIndex !== undefined && placedItemsIndex >= 0)
+    return RoomsData[roomID].placedItems[placedItemsIndex];
+
+  if (RoomsData[roomID]?.altNames) {
+    const altNamesKeyArr = Object.keys(RoomsData[roomID].altNames as Object);
+    const checkAltNamesIndex = altNamesKeyArr.indexOf(itemID);
+    if (checkAltNamesIndex !== undefined && checkAltNamesIndex >= 0) {
+      const altKey = altNamesKeyArr[checkAltNamesIndex];
+      return RoomsData[roomID].altNames[altKey];
+    }
+  }
+
+  return false;
 }
 
 export function checkExaminableItems(

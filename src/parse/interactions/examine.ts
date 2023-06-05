@@ -1,7 +1,7 @@
 import {
   getItemByID,
   getRoomFullDescription,
-  checkInRoomForID,
+  checkInRoomForItemID,
   checkExaminableItems,
   getFromInventory,
 } from "../../data";
@@ -11,13 +11,10 @@ import {
 } from "../parse-utils";
 
 function checkExists(term: ItemID): string | false {
-  const existsInRoomIndex = checkInRoomForID(term);
+  const existsInRoomAs = checkInRoomForItemID(term);
 
-  if (
-    existsInRoomIndex === 0 ||
-    (typeof existsInRoomIndex !== "boolean" && existsInRoomIndex >= 0)
-  ) {
-    const Item: Item = getItemByID(term);
+  if (existsInRoomAs) {
+    const Item: Item = getItemByID(existsInRoomAs);
 
     return checkInteraction(Item.interactions?.examine || Item.description);
   }
@@ -27,7 +24,9 @@ function checkExists(term: ItemID): string | false {
 
   const invItem = getFromInventory(term);
   if (invItem)
-    return checkInteraction(invItem.interactions.examine) || invItem.description;
+    return (
+      checkInteraction(invItem.interactions.examine) || invItem.description
+    );
 
   return false;
 }

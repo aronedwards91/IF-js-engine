@@ -337,3 +337,22 @@ describe("Test Open/Close Door", function () {
   genTest("open cellar door", triggersJSON["openCellarDoor"].returnString);
   genTest("go up", roomsJSON["tavern"].description);
 });
+
+describe("Test Open/Close Door, alternative text test", function () {
+  this.beforeAll(reInitialise);
+
+  it("in tavern can travel to cellar", function () {
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["tavern"].name
+    );
+  });
+  
+  genTest("go downward", roomsJSON["tavern"].exits.down.onFail);
+  genTest("unlock door", triggersJSON["openCellarDoor"].returnString);
+  genTest("go downstairs", roomsJSON["cellar"].description);
+  genTest("shut door", triggersJSON["closeCellarDoor"].returnString);
+  genTest("go upward", roomsJSON["cellar"].exits.up.onFail);
+  genTest("unbolt door", triggersJSON["openCellarDoor"].returnString);
+  genTest("go upstairs", roomsJSON["tavern"].description);
+});

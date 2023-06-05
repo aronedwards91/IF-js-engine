@@ -2,7 +2,7 @@ import { handleStateCheck } from "./interactions/state-check";
 import { handleStringCheck } from "./interactions/string-check";
 import {
   getItemByID,
-  checkInRoomForID,
+  checkInRoomForItemID,
   getCurrentRoom,
   getFromInventory,
 } from "../data";
@@ -22,13 +22,9 @@ function checkCustomInteractions(
   interactionCommand: InteractionVaried,
   term: ItemID
 ): string | false {
-  const existsInRoomIndex = checkInRoomForID(term);
-
-  if (
-    existsInRoomIndex === 0 ||
-    (typeof existsInRoomIndex !== "boolean" && existsInRoomIndex >= 0)
-  ) {
-    const Item: Item = getItemByID(term);
+  const existsInRoomAs = checkInRoomForItemID(term);
+  if (existsInRoomAs) {
+    const Item: Item = getItemByID(existsInRoomAs);
 
     if (Item && Item.interactions?.[interactionCommand])
       return checkInteraction(Item.interactions[interactionCommand]);
@@ -74,7 +70,7 @@ export function checkStringForCustomInteractions(
 export function checkStringForSignificantTerms(
   stringArray: Array<string>,
   testFunction: (x: string) => string | false,
-  shouldCheckCustomInteractions = true,
+  shouldCheckCustomInteractions = true
 ): string | false {
   const targetedObject: ItemID = stringArray.slice(1).join(" ");
 
@@ -106,10 +102,10 @@ export function checkStringForSignificantTerms(
     if (checkD) return checkD;
   }
 
-  if(shouldCheckCustomInteractions) {
+  if (shouldCheckCustomInteractions) {
     const hasCustomInteractions = checkStringForCustomInteractions(stringArray);
-  
-    if(hasCustomInteractions) return hasCustomInteractions;
+
+    if (hasCustomInteractions) return hasCustomInteractions;
   }
 
   return false;

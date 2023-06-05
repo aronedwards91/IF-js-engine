@@ -22,6 +22,9 @@
     },
     "itemsList": ["table", "green mug", "red mug", "cellar door"],
     "placedItems": ["teafork", "teaspoon", "rag"],
+    "altNames": {
+      "door": "cellar door"
+    },
     "examinable": {
       "stairs": "they lead up",
       "door": "leads outside",
@@ -40,7 +43,10 @@
         }
       }
     },
-    "itemsList": ["cellar door"]
+    "itemsList": ["cellar door"],
+    "altNames": {
+      "door": "cellar door"
+    }
   },
   "bedroom": {
     "name": "Bedroom",

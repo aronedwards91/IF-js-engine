@@ -52,8 +52,10 @@ eg puzzlebox
 
 #### TODO
 
+Alt names for takeable items
 combination interactions
 Test open/close door
+helpful default guide
 
 ?? trigger multistate edit
 

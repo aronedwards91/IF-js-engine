@@ -1,14 +1,18 @@
-import { getItemByID, checkInRoomForID, getFromInventory } from "../../data";
-import { checkInteraction, checkStringForSignificantTerms } from "../parse-utils";
+import {
+  getItemByID,
+  checkInRoomForItemID,
+  getFromInventory,
+} from "../../data";
+import {
+  checkInteraction,
+  checkStringForSignificantTerms,
+} from "../parse-utils";
 
 function checkEatableExists(term: ItemID): string | false {
-  const existsInRoomIndex = checkInRoomForID(term);
+  const existsInRoomAs = checkInRoomForItemID(term);
 
-  if (
-    existsInRoomIndex === 0 ||
-    (typeof existsInRoomIndex !== "boolean" && existsInRoomIndex >= 0)
-  ) {
-    const Item: Item = getItemByID(term);
+  if (existsInRoomAs) {
+    const Item: Item = getItemByID(existsInRoomAs);
     return Item.interactions?.eat
       ? checkInteraction(Item.interactions.eat)
       : "It's not eatable";
