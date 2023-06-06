@@ -53,12 +53,11 @@ declare global {
     inventory: Array<ItemID>;
   }
 
-  // TODO - map?
   interface Combination {
-    id1: ItemID;
-    id2: ItemID;
-    effects: Array<TriggerID>;
+    with: ItemID;
+    effect: Interaction;
   }
+  type Combo = Record<ItemID, Interaction>;
 
   interface GameInfo {
     name: string;
@@ -78,4 +77,5 @@ declare global {
   type States = Record<StateID, StateGroup>;
   type Rooms = Record<RoomID, Room>;
   type Items = Record<ItemID, Item>;
+  type Combinations = Record<ItemID, Combination>;
 }

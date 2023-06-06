@@ -1,12 +1,21 @@
 var assert = require("assert");
 
-global.window = {};
-require("../example-adventure/index");
-const infoJSON = require("../example-adventure/info.json");
-const itemsJSON = require("../example-adventure/items.json");
-const roomsJSON = require("../example-adventure/rooms.json");
-const statesJSON = require("../example-adventure/states.json");
-const triggersJSON = require("../example-adventure/triggers.json");
+interface IFEngine {
+  fireInput: (a: any) => string;
+  intialiseGameData: (a: any) => {};
+  debugGameState: any;
+  testingTools: any;
+}
+interface Win {
+  IFictionEngine: IFEngine;
+}
+global.window = {} as any;
+require("../../example-adventure/index.js");
+const infoJSON = require("../../example-adventure/info.json");
+const itemsJSON = require("../../example-adventure/items.json");
+const roomsJSON = require("../../example-adventure/rooms.json");
+const statesJSON = require("../../example-adventure/states.json");
+const triggersJSON = require("../../example-adventure/triggers.json");
 
 const Directions = Object.freeze({
   UP: "up",
@@ -33,21 +42,26 @@ const BaseInteractions = Object.freeze({
   Equip: "equip",
   Smell: "smell",
 });
-const FormatOut = (str) => `${str.charAt(0).toUpperCase()}${str.slice(1)}.`;
-const FS = "."; // fullstop on end
 
-function genTestTitle(input, output) {
+const FormatOut = (str: string) => `${str.charAt(0).toUpperCase()}${str.slice(1)}.`;
+
+const DefaultResponses = {
+  unknown: FormatOut("Command not understood"),
+};
+
+function genTestTitle(input: string, output: string) {
   const OutputText =
     output.length > 30 ? output.substring(0, 28) + "..." : output;
   return `> should return '${OutputText}' when type '${input}'`;
 }
-function genTest(input, expect) {
+
+function genTest(input: string, expect: string) {
   it(genTestTitle(input, expect), function () {
     assert.equal(IFEngine.fireInput(input), FormatOut(expect));
   });
 }
 
-const IFEngine = global.window.IFictionEngine;
+const IFEngine = (global.window as unknown as Win).IFictionEngine;
 const GameEngine = IFEngine.intialiseGameData({
   info: infoJSON,
   roomsData: roomsJSON,
@@ -67,6 +81,7 @@ function reInitialise() {
 }
 
 describe("Test test utils part A:", function () {
+  this.beforeAll(reInitialise);
   it("teaspoon visible in room", function () {
     assert.ok(IFEngine.fireInput("examine").includes("teaspoon"));
   });
@@ -106,7 +121,7 @@ describe("Game Engine Test:", function () {
       assert.equal(listString, "a potatoe, and a smurf");
     });
 
-    const lookTest = function (input) {
+    const lookTest = function (input: string) {
       assert.equal(
         IFEngine.fireInput(input),
         FormatOut(
@@ -362,4 +377,36 @@ describe("Test passing custom interaction that matches a non primary Base intera
   genTest("go up", roomsJSON.bedroom.description);
 
   genTest("unlock box", itemsJSON["box"].interactions.unlock);
+});
+
+describe("Test combination interactions", function () {
+  this.beforeAll(reInitialise);
+
+  IFEngine.fireInput("go outside");
+  genTest("ladder wall", DefaultResponses.unknown);
+  genTest("move ladder onto wall", triggersJSON["moveLadder"].returnString);
+});
+
+describe("Test combination interactions 2", function () {
+  this.beforeAll(reInitialise);
+
+  IFEngine.fireInput("go outside");
+  genTest("use ladder on wall", triggersJSON["moveLadder"].returnString);
+});
+
+describe("Test combination interactions 3", function () {
+  this.beforeAll(reInitialise);
+
+  IFEngine.fireInput("go outside");
+  genTest("ladder on wall", triggersJSON["moveLadder"].returnString);
+});
+
+describe("Test combination interactions 4", function () {
+  this.beforeAll(reInitialise);
+
+  IFEngine.fireInput("go outside");
+  genTest(
+    "combine ladder ignoreThis wall",
+    triggersJSON["moveLadder"].returnString
+  );
 });

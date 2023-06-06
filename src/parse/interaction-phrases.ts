@@ -148,6 +148,16 @@ export const DoubleTerm: Record<string, string[]> = {
   [BaseInteractions.Place]: ["put down", "lay down"],
 };
 
+export const CombinationInteractions = [
+  "with",
+  "on",
+  "to",
+  "onto",
+  "in",
+  "into",
+  "and",
+];
+
 export const BuildDirectionTermHashMap = (): Map<string, string> => {
   const HashMap = new Map();
 

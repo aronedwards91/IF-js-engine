@@ -6,9 +6,10 @@
   "scripts": {
     "build-test": "esbuild src/window.ts --bundle --outfile=example-adventure/index.js",
     "test-instance": "npm run build-test && serve example-adventure/",
-    "test": "npm run build-test && mocha",
-    "test-watch": "npm run build-test && mocha --watch",
-    "test-rerun": "mocha"
+    "mocha-all": "mocha \"src/**/*.test.ts\"",
+    "test": "npm run build-test && npm run mocha-all",
+    "test-watch": "npm run build-test && npm run mocha-all --watch",
+    "test-rerun": "npm run mocha-all"
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,11 @@
   },
   "homepage": "https://github.com/aronedwards91/IF-js-engine#readme",
   "devDependencies": {
+    "@types/mocha": "^10.0.1",
     "esbuild": "^0.17.18",
     "mocha": "^10.2.0",
     "serve": "^14.2.0",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   }
 }
