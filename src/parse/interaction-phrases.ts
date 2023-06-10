@@ -140,6 +140,7 @@ export const soloWord: Record<string, string[]> = {
   ],
   [BaseInteractions.Equip]: ["equip", "wear", "don"],
   [BaseInteractions.Smell]: ["smell", "sniff", "whiff", "huff"],
+  [BaseInteractions.Combine]: ["combine", "connect", "merge", "join", "attach"],
   ...soloWordDirection,
 };
 

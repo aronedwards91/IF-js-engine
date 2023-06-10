@@ -1,16 +1,20 @@
 import { CombinationInteractions } from "./interaction-phrases";
 
-export function isCombinationCall(strArray: Array<string>): boolean {
+type StringIndex = number;
+
+// used by test
+export function isCombinationCall(
+  strArray: Array<string>
+): StringIndex | boolean {
   if (strArray.length > 2) {
-    let stringContainsSplitter = false;
     const checkedArray = strArray.splice(1, strArray.length - 1);
 
-    checkedArray.forEach((stringSection) => {
-      if (CombinationInteractions.includes(stringSection))
-        stringContainsSplitter = true;
+    let splitterIndex = -1; // TODO
+    checkedArray.forEach((stringSection, i) => {
+      if (CombinationInteractions.includes(stringSection)) splitterIndex = i;
     });
 
-    return stringContainsSplitter;
+    return splitterIndex + 1;
   }
   return false;
 }

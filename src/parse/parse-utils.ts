@@ -24,7 +24,7 @@ function checkCustomInteractions(
 ): string | false {
   const existsInRoomAs = checkInRoomForItemID(term);
   if (existsInRoomAs) {
-    const Item: Item = getItemByID(existsInRoomAs);
+    const Item: Item | false = getItemByID(existsInRoomAs);
 
     if (Item && Item.interactions?.[interactionCommand])
       return checkInteraction(Item.interactions[interactionCommand]);

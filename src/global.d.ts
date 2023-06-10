@@ -45,6 +45,7 @@ declare global {
     isTakeable: boolean;
     icon?: string;
     interactions: Record<InteractionVaried, Interaction>;
+    itemID?: ItemID;
   }
 
   interface PlayerStatus {
@@ -53,11 +54,7 @@ declare global {
     inventory: Array<ItemID>;
   }
 
-  interface Combination {
-    with: ItemID;
-    effect: Interaction;
-  }
-  type Combo = Record<ItemID, Interaction>;
+  type Combination = Record<ItemID, Interaction>;
 
   interface GameInfo {
     name: string;

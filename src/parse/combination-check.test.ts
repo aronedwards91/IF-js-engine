@@ -14,23 +14,23 @@ function comboChecker(input: string) {
   return CombinationCall.isCombinationCall(spaceSplit);
 }
 
-function genComboTest(input: string, checkBool: boolean) {
+function genComboTest(input: string, checkBool: number | false) {
   it(`>>"${input}"`, function () {
+    const indexTrue = comboChecker(input) !== -1
     assert.equal(comboChecker(input), checkBool);
   });
 }
 
 describe("test comboChecker logic", function () {
-  genComboTest("use wrench with screw", true);
-  genComboTest("use wrench and screw", true);
-  genComboTest("apply wrench to screw", true);
-  genComboTest("combine wrench and screw", true);
-  genComboTest("open door with key", true);
-  genComboTest("place key in lock", true);
-  genComboTest("wrench and screw", true);
-  genComboTest("use wrench and screw", true);
-  genComboTest("use wrench on the screw", true);
-  genComboTest("use wrench on the screw", true);
+  genComboTest("use wrench with screw", 2);
+  genComboTest("use wrench and screw", 2);
+  genComboTest("apply wrench to screw", 2);
+  genComboTest("combine wrench and screw", 2);
+  genComboTest("open door with key", 2);
+  genComboTest("place key in lock", 2);
+  genComboTest("wrench and screw", 1);
+  genComboTest("use wrench and screw", 2);
+  genComboTest("use blue wrench on the screw", 3);
 
   genComboTest("wrench screw", false);
   genComboTest("wrench + screw", false);

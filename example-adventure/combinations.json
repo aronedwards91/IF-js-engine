@@ -1,0 +1,5 @@
+{
+  "ladder": {
+    "wall": ">>T>moveLadder"
+  }
+}

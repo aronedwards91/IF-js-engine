@@ -1,6 +1,7 @@
 import { BuildTermHashMap } from "./interaction-phrases";
 import { BaseInteractions } from "../enums";
 import { listInventory } from "../data";
+import { ifCombinationThenAttempt } from "./interactions/combine";
 import checkExamine from "./interactions/examine";
 import takeItem from "./interactions/take";
 import placeItem from "./interactions/place";
@@ -28,6 +29,12 @@ function parseSection(input: string): string {
   }
 
   const firstTerm = TermHashMap.get(spaceSplit[0]);
+
+  const firstTermCombine = firstTerm === BaseInteractions.Combine;
+  const isCombination = ifCombinationThenAttempt(
+    firstTermCombine ? spaceSplit.slice(1, spaceSplit.length) : spaceSplit
+  );
+  if (isCombination) return isCombination;
 
   switch (firstTerm) {
     case BaseInteractions.Examine:

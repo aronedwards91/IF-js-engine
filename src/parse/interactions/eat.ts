@@ -12,8 +12,8 @@ function checkEatableExists(term: ItemID): string | false {
   const existsInRoomAs = checkInRoomForItemID(term);
 
   if (existsInRoomAs) {
-    const Item: Item = getItemByID(existsInRoomAs);
-    return Item.interactions?.eat
+    const Item: Item | false = getItemByID(existsInRoomAs);
+    if(Item) return Item.interactions?.eat
       ? checkInteraction(Item.interactions.eat)
       : "It's not eatable";
   }

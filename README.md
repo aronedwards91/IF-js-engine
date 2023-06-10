@@ -65,3 +65,6 @@ helpful default guide
 - travel to specific room
 - always show description?
 - movement through specific exit fires trigger only first time
+
+#### Limitations
+ - Item max three word description?

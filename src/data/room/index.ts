@@ -26,13 +26,13 @@ export function getCurrentRoom(): Room {
 
 export function addItemToRoom(itemID: ItemID, roomID = currentRoomID) {
   if (!RoomsData[roomID].placedItems) RoomsData[roomID].placedItems = [];
-  RoomsData[roomID].placedItems.push(itemID);
+  (RoomsData[roomID].placedItems as string[]).push(itemID);
 }
 
 export function removeItemFromRoom(itemID: ItemID, roomID = currentRoomID) {
   if (!RoomsData[roomID].placedItems) RoomsData[roomID].placedItems = [];
 
-  RoomsData[roomID].placedItems = RoomsData[roomID].placedItems.filter(
+  RoomsData[roomID].placedItems = (RoomsData[roomID].placedItems as string[]).filter(
     (val) => val !== itemID
   );
 }
@@ -43,19 +43,34 @@ export function checkInRoomForItemID(
 ): ItemID | false {
   const itemsListIndex = RoomsData[roomID]?.itemsList?.indexOf(itemID);
   if (itemsListIndex !== undefined && itemsListIndex >= 0)
-    return RoomsData[roomID].itemsList[itemsListIndex];
+    return RoomsData[roomID].itemsList?.[itemsListIndex] || false;
 
   const placedItemsIndex = RoomsData[roomID]?.placedItems?.indexOf(itemID);
   if (placedItemsIndex !== undefined && placedItemsIndex >= 0)
-    return RoomsData[roomID].placedItems[placedItemsIndex];
+    return RoomsData[roomID].placedItems?.[placedItemsIndex] || false;
 
   if (RoomsData[roomID]?.altNames) {
     const altNamesKeyArr = Object.keys(RoomsData[roomID].altNames as Object);
     const checkAltNamesIndex = altNamesKeyArr.indexOf(itemID);
     if (checkAltNamesIndex !== undefined && checkAltNamesIndex >= 0) {
       const altKey = altNamesKeyArr[checkAltNamesIndex];
-      return RoomsData[roomID].altNames[altKey];
+      return RoomsData[roomID].altNames?.[altKey] || false;
     }
+  }
+
+  return false;
+}
+
+export function recursiveRoomItemIDCheck(strArray: Array<string>): ItemID | false {
+  const freshStrArray = [...strArray];
+
+  while (freshStrArray.length > 0) {
+    const itemID = freshStrArray.join(" ");
+    const isItem = checkInRoomForItemID(itemID);
+
+    if (isItem) return isItem;
+
+    freshStrArray.splice(0, 1);
   }
 
   return false;

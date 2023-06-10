@@ -16,6 +16,7 @@ const itemsJSON = require("../../example-adventure/items.json");
 const roomsJSON = require("../../example-adventure/rooms.json");
 const statesJSON = require("../../example-adventure/states.json");
 const triggersJSON = require("../../example-adventure/triggers.json");
+const combinationsJSON = require("../../example-adventure/combinations.json");
 
 const Directions = Object.freeze({
   UP: "up",
@@ -43,10 +44,11 @@ const BaseInteractions = Object.freeze({
   Smell: "smell",
 });
 
-const FormatOut = (str: string) => `${str.charAt(0).toUpperCase()}${str.slice(1)}.`;
+const FormatOut = (str: string) =>
+  `${str.charAt(0).toUpperCase()}${str.slice(1)}.`;
 
 const DefaultResponses = {
-  unknown: FormatOut("Command not understood"),
+  unknown: "Command not understood",
 };
 
 function genTestTitle(input: string, output: string) {
@@ -68,6 +70,7 @@ const GameEngine = IFEngine.intialiseGameData({
   itemsData: itemsJSON,
   triggersData: triggersJSON,
   stateData: statesJSON,
+  combinationsData: combinationsJSON,
 });
 
 function reInitialise() {
@@ -77,6 +80,7 @@ function reInitialise() {
     itemsData: itemsJSON,
     triggersData: triggersJSON,
     stateData: statesJSON,
+    combinationsData: combinationsJSON,
   });
 }
 

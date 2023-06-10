@@ -13,7 +13,7 @@ export enum Directions {
 
 export enum TriggerPrefix {
   FIRE_TRIGGER = ">>T>",
-  MOVE_LOCATION = ">>M>"
+  MOVE_LOCATION = ">>M>",
 }
 
 export enum BaseInteractions {
@@ -30,4 +30,5 @@ export enum BaseInteractions {
   Attack = "attack",
   Equip = "equip",
   Smell = "smell",
+  Combine = "combine",
 }
