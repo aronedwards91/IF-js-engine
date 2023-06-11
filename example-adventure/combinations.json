@@ -1,5 +1,8 @@
 {
   "ladder": {
     "wall": ">>T>moveLadder"
+  },
+  "teaspoon": {
+    "box": "you hit the box with the teaspoon"
   }
 }

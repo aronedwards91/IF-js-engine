@@ -52,19 +52,16 @@ eg puzzlebox
 
 #### TODO
 
-check combo with inventory item
 Alt names for takeable items
 helpful default guide
+numerical adjuster & logic
 
-?? trigger multistate edit
-
-#### Problems
+#### Future Problems
 - containers
+- trigger multistate edit
 - obvious required item in inventory; key->lock, 
-- 2 stage interaction; open box, examine
 - NPC
-- travel to specific room
-- always show description?
+- travel to specific room (across rooms?)
 - movement through specific exit fires trigger only first time
 
 #### Limitations

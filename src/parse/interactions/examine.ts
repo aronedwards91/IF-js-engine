@@ -14,9 +14,9 @@ function checkExists(term: ItemID): string | false {
   const existsInRoomAs = checkInRoomForItemID(term);
 
   if (existsInRoomAs) {
-    const Item: Item = getItemByID(existsInRoomAs);
+    const Item = getItemByID(existsInRoomAs);
 
-    return checkInteraction(Item.interactions?.examine || Item.description);
+    return Item && checkInteraction(Item.interactions?.examine || Item.description);
   }
 
   const examinable = checkExaminableItems(term);

@@ -450,4 +450,30 @@ describe("Test combination interactions 6", function () {
   genTest("ladder on wall", DefaultResponses.combine);
 });
 
-// check combo with inventory item
+describe("Test combination interactions via inventory", function () {
+  this.beforeAll(reInitialise);
+
+  genTest("take teaspoon", itemsJSON["teaspoon"].interactions.take);
+  genTest("use teaspoon on box", "Cannot find box");
+  it("goes up", () => {
+    IFEngine.fireInput("go up");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["bedroom"].name
+    );
+  });
+  genTest("use teaspoon on box", combinationsJSON["teaspoon"]["box"]);
+});
+
+describe("Test combination interactions - missing inventory", function () {
+  this.beforeAll(reInitialise);
+
+  it("goes up", () => {
+    IFEngine.fireInput("go up");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["bedroom"].name
+    );
+  });
+  genTest("teaspoon on box", "cannot find teaspoon");
+});
