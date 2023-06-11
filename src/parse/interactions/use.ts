@@ -1,17 +1,17 @@
-import { getItemByID, checkInRoomForItemID, checkInventory } from "../../data";
+import { getItemByID, checkInRoomForItemID, checkInInventoryID } from "../../data";
 import { checkInteraction, checkStringForSignificantTerms } from "../parse-utils";
 
 function useCheck(term: ItemID): string | false {
   const existsInRoomAs = checkInRoomForItemID(term);
-  const isItemInInventory = checkInventory(term);
+  const isInInventoryID = checkInInventoryID(term);
 
   if (
     existsInRoomAs ||
-    isItemInInventory
+    isInInventoryID
   ) {
-    const Item: Item = getItemByID(existsInRoomAs || term);
+    const Item = getItemByID(existsInRoomAs || isInInventoryID || term);
 
-    if (Item.interactions?.use) {
+    if (Item && Item.interactions?.use) {
       return checkInteraction(Item.interactions.use);
     } else {
       return "There is no obvious way to use " + term;

@@ -51,6 +51,7 @@ const DefaultResponses = {
   unknown: "Command not understood",
   combine: "These items cannot be found",
   cantCombine: "Items cannot be combined",
+  examineFail: "can't see such an item",
 };
 
 function genTestTitle(input: string, output: string) {
@@ -161,6 +162,7 @@ describe("Game Engine Test:", function () {
       genTest("look at teaspoon", itemsJSON["teaspoon"].interactions.examine);
       genTest("look at teafork", itemsJSON["teafork"].description);
       genTest("look at notanitem", "can't see such an item");
+      genTest("examine notanitem", "can't see such an item");
     });
 
     describe("Examine overdescribed objects", () => {
@@ -477,3 +479,55 @@ describe("Test combination interactions - missing inventory", function () {
   });
   genTest("teaspoon on box", "cannot find teaspoon");
 });
+
+describe("Test alternative name for item", function() {
+  this.beforeAll(reInitialise);
+
+  it("goes up", () => {
+    IFEngine.fireInput("go up");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["bedroom"].name
+    );
+  });
+  genTest("look at stirrer", DefaultResponses.examineFail);
+  it("goes down", () => {
+    IFEngine.fireInput("go down");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["tavern"].name
+    );
+  });
+  genTest("take stirrer", itemsJSON["teaspoon"].interactions.take);
+  genTest("take stirrer", "item not found");
+  genTest("take teaspoon", "item not found");
+
+  it("goes up", () => {
+    IFEngine.fireInput("go up");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["bedroom"].name
+    );
+  });
+  genTest("look at stirrer", itemsJSON["teaspoon"].interactions.examine);
+  genTest("look at teaspoon", itemsJSON["teaspoon"].interactions.examine);
+
+  it("goes down", () => {
+    IFEngine.fireInput("go down");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["tavern"].name
+    );
+  });
+  genTest("place stirrer", `you place the stirrer in the room`);
+  
+  it("goes up", () => {
+    IFEngine.fireInput("go up");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["bedroom"].name
+    );
+  });
+  genTest("look at stirrer", DefaultResponses.examineFail);
+  genTest("look at teaspoon", DefaultResponses.examineFail);
+})

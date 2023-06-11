@@ -1,5 +1,5 @@
 import { listArrayWithDeterminer } from "../../utils/lister";
-import { getItemByID } from "../item";
+import { getItemByID, getRecordAltNames } from "../item";
 
 const Inventory: Array<ItemID> = [];
 // const altName
@@ -13,12 +13,17 @@ function getInventoryItems(): Array<ItemID> {
   return Inventory;
 }
 
-function checkInventory(itemName: ItemID): boolean {
-  return Inventory.indexOf(itemName) >= 0;
+function checkInInventoryID(itemName: ItemID): ItemID | false {
+  const itemsAllIDs: Record<string, string> = getRecordAltNames(Inventory);
+
+  return itemsAllIDs[itemName] || false;
 }
 
+// TODO getItemData not in scope
 function getFromInventory(itemName: ItemID): Item | false {
-  return Inventory.indexOf(itemName) >= 0 && getItemByID(itemName);
+  const itemTrueName = checkInInventoryID(itemName);
+
+  return Inventory.indexOf(itemTrueName as ItemID) >= 0 && getItemByID(itemTrueName as ItemID);
 }
 
 function listInventory(): string {
@@ -28,8 +33,6 @@ function listInventory(): string {
 function addToInventory(itemName: ItemID) {
   Inventory.push(itemName);
 }
-
-// function addMultinameToInventory
 
 function removeFromInventory(itemId: ItemID) {
   const indexOfInventoryItem = Inventory.indexOf(itemId);
@@ -41,7 +44,7 @@ function removeFromInventory(itemId: ItemID) {
 export {
   getInventoryItems,
   getFromInventory,
-  checkInventory,
+  checkInInventoryID,
   listInventory,
   addToInventory,
   removeFromInventory,

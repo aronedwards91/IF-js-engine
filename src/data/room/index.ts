@@ -1,4 +1,5 @@
 import { listArrayWithDeterminer } from "../../utils/lister";
+import { getRecordAltNames } from "../item";
 
 let RoomsData: Rooms;
 let currentRoom: Room;
@@ -41,22 +42,18 @@ export function checkInRoomForItemID(
   itemID: ItemID,
   roomID = currentRoomID
 ): ItemID | false {
-  const itemsListIndex = RoomsData[roomID]?.itemsList?.indexOf(itemID);
+  const Room = RoomsData[roomID];
+  if (Room) {
+    const itemsAllIDs = Object.assign(
+      {},
+      Room.itemsList && getRecordAltNames(Room.itemsList),
+      Room.placedItems && getRecordAltNames(Room.placedItems),
+      Room.altNames
+    );
 
-  if (itemsListIndex !== undefined && itemsListIndex >= 0)
-    return RoomsData[roomID].itemsList?.[itemsListIndex] || false;
+    const itemIDFromAllNames = itemsAllIDs[itemID];
 
-  const placedItemsIndex = RoomsData[roomID]?.placedItems?.indexOf(itemID);
-  if (placedItemsIndex !== undefined && placedItemsIndex >= 0)
-    return RoomsData[roomID].placedItems?.[placedItemsIndex] || false;
-
-  if (RoomsData[roomID]?.altNames) {
-    const altNamesKeyArr = Object.keys(RoomsData[roomID].altNames as Object);
-    const checkAltNamesIndex = altNamesKeyArr.indexOf(itemID);
-    if (checkAltNamesIndex !== undefined && checkAltNamesIndex >= 0) {
-      const altKey = altNamesKeyArr[checkAltNamesIndex];
-      return RoomsData[roomID].altNames?.[altKey] || false;
-    }
+    if(itemIDFromAllNames) return itemIDFromAllNames;
   }
 
   return false;

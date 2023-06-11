@@ -1,8 +1,8 @@
 import {
   removeFromInventory,
   addItemToRoom,
-  checkInventory,
   getItemByID,
+  checkInInventoryID
 } from "../../data";
 import { checkInteraction, checkStringForSignificantTerms } from "../parse-utils";
 
@@ -11,15 +11,16 @@ export function genPlaceString(term: ItemID): string {
 }
 
 function placeIfExists(term: ItemID): string | false {
-  if (checkInventory(term)) {
+  const itemInventoryTrueID = checkInInventoryID(term);
+  if (itemInventoryTrueID) {
     let placeInteractionString: boolean | string = false;
 
-    const Item = getItemByID(term);
-    if (Item.interactions?.place) {
+    const Item = getItemByID(itemInventoryTrueID || term);
+    if (Item && Item.interactions?.place) {
       placeInteractionString = checkInteraction(Item.interactions.place);
     }
-    addItemToRoom(term);
-    removeFromInventory(term);
+    addItemToRoom(itemInventoryTrueID || term);
+    removeFromInventory(itemInventoryTrueID || term);
     return placeInteractionString || genPlaceString(term);
   }
 

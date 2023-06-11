@@ -3,10 +3,14 @@ var assert = require("assert");
 var InvData = require("./index.ts");
 
 interface Item {
+  altNames: Array<string>;
   description: string;
   isTakeable: boolean;
-  itemID: string;
+  icon?: string;
+  interactions: Record<string, string>;
+  itemID?: ItemID;
 }
+
 type ItemID = string;
 type Items = Record<ItemID, Item>;
 

@@ -36,7 +36,7 @@ declare global {
     interactions: Record<InteractionVaried, Interaction>;
     itemsList?: Array<ItemID>;
     placedItems?: Array<ItemID>;
-    altNames?: Record<string, ItemID>; // non-takeable items only
+    altNames?: Record<string, ItemID>;
     examinable?: Record<string, ReturnString>;
   }
 
@@ -46,6 +46,7 @@ declare global {
     icon?: string;
     interactions: Record<InteractionVaried, Interaction>;
     itemID?: ItemID;
+    altNames?: Array<string>;
   }
 
   interface PlayerStatus {

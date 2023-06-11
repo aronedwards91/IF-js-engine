@@ -30,6 +30,7 @@
   "teaspoon": {
     "description": "a nice teaspoon",
     "isTakeable": true,
+    "altNames": ["stirrer"],
     "interactions": {
       "take": "You decide to hold onto the teaspoon",
       "use": "You have no way to use this teaspoon",

@@ -52,7 +52,6 @@ eg puzzlebox
 
 #### TODO
 
-Alt names for takeable items
 helpful default guide
 numerical adjuster & logic
 
