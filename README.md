@@ -52,6 +52,7 @@ eg puzzlebox
 
 #### TODO
 
+check combo with inventory item
 Alt names for takeable items
 helpful default guide
 

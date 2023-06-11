@@ -32,9 +32,9 @@ export function addItemToRoom(itemID: ItemID, roomID = currentRoomID) {
 export function removeItemFromRoom(itemID: ItemID, roomID = currentRoomID) {
   if (!RoomsData[roomID].placedItems) RoomsData[roomID].placedItems = [];
 
-  RoomsData[roomID].placedItems = (RoomsData[roomID].placedItems as string[]).filter(
-    (val) => val !== itemID
-  );
+  RoomsData[roomID].placedItems = (
+    RoomsData[roomID].placedItems as string[]
+  ).filter((val) => val !== itemID);
 }
 
 export function checkInRoomForItemID(
@@ -42,6 +42,7 @@ export function checkInRoomForItemID(
   roomID = currentRoomID
 ): ItemID | false {
   const itemsListIndex = RoomsData[roomID]?.itemsList?.indexOf(itemID);
+
   if (itemsListIndex !== undefined && itemsListIndex >= 0)
     return RoomsData[roomID].itemsList?.[itemsListIndex] || false;
 
@@ -61,7 +62,9 @@ export function checkInRoomForItemID(
   return false;
 }
 
-export function recursiveRoomItemIDCheck(strArray: Array<string>): ItemID | false {
+export function recursiveRoomItemIDCheck(
+  strArray: Array<string>
+): ItemID | false {
   const freshStrArray = [...strArray];
 
   while (freshStrArray.length > 0) {

@@ -1,7 +1,10 @@
 import { BuildTermHashMap } from "./interaction-phrases";
 import { BaseInteractions } from "../enums";
 import { listInventory } from "../data";
-import { ifCombinationThenAttempt } from "./interactions/combine";
+import {
+  ifCombinationThenAttempt,
+  COMBINE_STRINGS,
+} from "./interactions/combine";
 import checkExamine from "./interactions/examine";
 import takeItem from "./interactions/take";
 import placeItem from "./interactions/place";
@@ -31,9 +34,7 @@ function parseSection(input: string): string {
   const firstTerm = TermHashMap.get(spaceSplit[0]);
 
   const firstTermCombine = firstTerm === BaseInteractions.Combine;
-  const isCombination = ifCombinationThenAttempt(
-    firstTermCombine ? spaceSplit.slice(1, spaceSplit.length) : spaceSplit
-  );
+  const isCombination = ifCombinationThenAttempt(spaceSplit);
   if (isCombination) return isCombination;
 
   switch (firstTerm) {
@@ -61,7 +62,10 @@ function parseSection(input: string): string {
     case BaseInteractions.Help:
       return helpInteraction(spaceSplit);
 
-    // TODO combination interations
+    case BaseInteractions.Combine: {
+      const isCombination = ifCombinationThenAttempt(spaceSplit);
+      return isCombination || COMBINE_STRINGS.cantCombine;
+    }
 
     default:
       // generic test

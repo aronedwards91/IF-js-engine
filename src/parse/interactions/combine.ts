@@ -1,11 +1,15 @@
 import {
   recursiveInventoryIDCheck,
   recursiveRoomItemIDCheck,
-  recursiveCombinationItemIDCheck,
 } from "../../data";
 import { checkForCombination } from "../../data";
 import { CombinationInteractions } from "../interaction-phrases";
 import { checkInteraction } from "../parse-utils";
+
+export const COMBINE_STRINGS = {
+  cantCombine: "Items cannot be combined",
+  itemsNotFound: "These items cannot be found",
+};
 
 export function ifCombinationThenAttempt(
   strArrayOriginal: Array<string>
@@ -25,8 +29,7 @@ export function ifCombinationThenAttempt(
       const firstItemArr = strArrayOriginal.slice(0, splitterIndex + 1);
       const firstItemID =
         recursiveInventoryIDCheck(firstItemArr) ||
-        recursiveRoomItemIDCheck(firstItemArr) ||
-        recursiveCombinationItemIDCheck(firstItemArr);
+        recursiveRoomItemIDCheck(firstItemArr);
 
       const secondItemArr = strArrayOriginal.slice(
         splitterIndex + 2,
@@ -34,8 +37,7 @@ export function ifCombinationThenAttempt(
       );
       const secondItemID =
         recursiveInventoryIDCheck(secondItemArr) ||
-        recursiveRoomItemIDCheck(secondItemArr) ||
-        recursiveCombinationItemIDCheck(secondItemArr);
+        recursiveRoomItemIDCheck(secondItemArr);
 
       if (firstItemID && secondItemID) {
         // check combine
@@ -45,14 +47,14 @@ export function ifCombinationThenAttempt(
         );
         if (isCombination) return checkInteraction(isCombination);
 
-        return "Items cannot be combined";
+        return COMBINE_STRINGS.cantCombine;
       } else {
         if (secondItemID && !firstItemID) {
           return `cannot find ${firstItemArr.join(" ")}`;
         } else if (firstItemID && !secondItemID) {
           return `cannot find ${secondItemArr.join(" ")}`;
         }
-        return "These items cannot be found";
+        return COMBINE_STRINGS.itemsNotFound;
       }
     }
   }

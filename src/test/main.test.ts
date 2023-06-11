@@ -49,6 +49,8 @@ const FormatOut = (str: string) =>
 
 const DefaultResponses = {
   unknown: "Command not understood",
+  combine: "These items cannot be found",
+  cantCombine: "Items cannot be combined",
 };
 
 function genTestTitle(input: string, output: string) {
@@ -386,7 +388,13 @@ describe("Test passing custom interaction that matches a non primary Base intera
 describe("Test combination interactions", function () {
   this.beforeAll(reInitialise);
 
-  IFEngine.fireInput("go outside");
+  it("move outside", () => {
+    IFEngine.fireInput("go outside");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["outside"].name
+    );
+  });
   genTest("ladder wall", DefaultResponses.unknown);
   genTest("move ladder onto wall", triggersJSON["moveLadder"].returnString);
 });
@@ -394,23 +402,52 @@ describe("Test combination interactions", function () {
 describe("Test combination interactions 2", function () {
   this.beforeAll(reInitialise);
 
-  IFEngine.fireInput("go outside");
+  it("move outside", () => {
+    IFEngine.fireInput("go outside");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["outside"].name
+    );
+  });
   genTest("use ladder on wall", triggersJSON["moveLadder"].returnString);
 });
 
 describe("Test combination interactions 3", function () {
   this.beforeAll(reInitialise);
 
-  IFEngine.fireInput("go outside");
+  it("move outside", () => {
+    IFEngine.fireInput("go outside");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["outside"].name
+    );
+  });
   genTest("ladder on wall", triggersJSON["moveLadder"].returnString);
 });
 
 describe("Test combination interactions 4", function () {
   this.beforeAll(reInitialise);
 
-  IFEngine.fireInput("go outside");
-  genTest(
-    "combine ladder ignoreThis wall",
-    triggersJSON["moveLadder"].returnString
-  );
+  it("move outside", () => {
+    IFEngine.fireInput("go outside");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["outside"].name
+    );
+  });
+  genTest("combine ladder ignoreThis red wall", DefaultResponses.cantCombine);
 });
+
+describe("Test combination interactions 5", function () {
+  this.beforeAll(reInitialise);
+
+  genTest("use ladder on wall", DefaultResponses.combine);
+});
+
+describe("Test combination interactions 6", function () {
+  this.beforeAll(reInitialise);
+
+  genTest("ladder on wall", DefaultResponses.combine);
+});
+
+// check combo with inventory item

@@ -105,5 +105,9 @@
       "move": ">>T>moveLadder",
       "place": ">>T>moveLadder"
     }
+  },
+  "wall": {
+    "description": "It's a wall",
+    "isTakeable": false
   }
 }

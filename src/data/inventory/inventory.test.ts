@@ -1,6 +1,6 @@
 var assert = require("assert");
 
-var ItemData = require("./index.ts");
+var InvData = require("./index.ts");
 
 interface Item {
   description: string;
@@ -10,26 +10,18 @@ interface Item {
 type ItemID = string;
 type Items = Record<ItemID, Item>;
 
-const Box = {
-  description: "a box",
-  isTakeable: false,
-  itemID: "box",
-};
-
-ItemData.setItemsList({
-  box: Box,
-});
+InvData.addToInventory("box");
 
 function genItemTest(inputString: Array<string>, checkItem: Object | boolean) {
   it(`>>"${inputString.join(" ")}"`, function () {
-    assert.deepEqual(ItemData.recursiveInventoryCheck(inputString), checkItem);
+    assert.deepEqual(InvData.recursiveInventoryIDCheck(inputString), checkItem);
   });
 }
 
 describe("check recursive ItemID selection works", () => {
-  genItemTest(["big", "red", "box"], Box);
-  genItemTest(["red", "box"], Box);
-  genItemTest(["box"], Box);
+  genItemTest(["big", "red", "box"], "box");
+  genItemTest(["red", "box"], "box");
+  genItemTest(["box"], "box");
 
   genItemTest(["a", "box", "thats", "wooden"], false);
 });

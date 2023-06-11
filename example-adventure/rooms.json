@@ -68,7 +68,7 @@
   "outside": {
     "name": "Outside",
     "description": "It is dark, there is a tavern to your north[[routside:moon:true==, the moon is out]]",
-    "itemsList": ["ladder"],
+    "itemsList": ["ladder", "wall"],
     "exits": {
       "n": "tavern",
       "inside": "tavern",

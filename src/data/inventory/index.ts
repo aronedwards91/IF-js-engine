@@ -46,3 +46,18 @@ export {
   addToInventory,
   removeFromInventory,
 };
+
+export function recursiveInventoryIDCheck(strArray: Array<string>): ItemID | false {
+  const freshStrArray = [...strArray];
+
+  while (freshStrArray.length > 0) {
+    const itemID = freshStrArray.join(" ");
+    const isItem =Inventory.includes(itemID);
+
+    if (isItem) return itemID;
+
+    freshStrArray.splice(0, 1);
+  }
+
+  return false;
+}
