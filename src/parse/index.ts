@@ -68,6 +68,7 @@ function parseSection(input: string): string {
     }
 
     default:
+      console.log(">>>DF-spaceSplit", spaceSplit);
       // generic test
       const hasCustomInteractions =
         checkStringForCustomInteractions(spaceSplit);

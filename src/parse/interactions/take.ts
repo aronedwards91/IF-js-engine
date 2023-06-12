@@ -10,13 +10,13 @@ function takeIfExists(term: ItemID): string | false {
   const existsInRoomAs = checkInRoomForItemID(term);
 
   if (existsInRoomAs) {
-    const Item: Item = getItemByID(existsInRoomAs);
+    const Item = getItemByID(existsInRoomAs);
     let takeInteractionString: boolean | string = false;
 
-    if (Item.interactions?.take) {
+    if (Item && Item.interactions?.take) {
       takeInteractionString = checkInteraction(Item.interactions.take);
     }
-    if (Item.isTakeable) {
+    if (Item && Item.isTakeable) {
       addToInventory(existsInRoomAs);
       removeItemFromRoom(existsInRoomAs);
       return takeInteractionString || `you add the ${existsInRoomAs} to your inventory`;

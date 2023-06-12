@@ -74,6 +74,7 @@ export function checkStringForSignificantTerms(
 ): string | false {
   const targetedObject: ItemID = stringArray.slice(1).join(" ");
 
+  console.log("targetedObject", targetedObject);
   const checkA = testFunction(targetedObject);
   if (checkA) return checkA;
 
