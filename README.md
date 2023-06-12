@@ -52,8 +52,8 @@ eg puzzlebox
 
 #### TODO
 
-helpful default guide
 numerical adjuster & logic
+state management
 
 #### Future Problems
 - containers
