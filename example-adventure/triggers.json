@@ -1,7 +1,7 @@
 {
   "boxTouch": {
     "stateID": "ibox:val",
-    "newValue": "*++",
+    "newValue": ">+>1",
     "returnString": "The value on the box increases"
   },
   "moonShow": {

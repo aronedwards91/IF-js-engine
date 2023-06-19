@@ -481,7 +481,7 @@ describe("Test combination interactions - missing inventory", function () {
   genTest("teaspoon on box", "cannot find teaspoon");
 });
 
-describe("Test alternative name for item", function() {
+describe("Test alternative name for item", function () {
   this.beforeAll(reInitialise);
 
   it("goes up", () => {
@@ -521,7 +521,7 @@ describe("Test alternative name for item", function() {
     );
   });
   genTest("place stirrer", `you place the stirrer in the room`);
-  
+
   it("goes up", () => {
     IFEngine.fireInput("go up");
     assert.equal(
@@ -531,4 +531,17 @@ describe("Test alternative name for item", function() {
   });
   genTest("look at stirrer", DefaultResponses.examineFail);
   genTest("look at teaspoon", DefaultResponses.examineFail);
-})
+});
+
+describe("Test numerical iterator", function () {
+  this.beforeAll(reInitialise);
+
+  it("goes up", () => {
+    IFEngine.fireInput("go up");
+    assert.equal(
+      IFEngine.testingTools.getCurrentRoom().name,
+      roomsJSON["bedroom"].name
+    );
+  });
+  genTest("use box", DefaultResponses.examineFail);
+});
