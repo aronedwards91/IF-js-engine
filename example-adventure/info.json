@@ -5,7 +5,7 @@
   "author": "A.Person",
   "version": 0.2,
   "category": "test",
-  "releaseDate": "22/-4/2023",
+  "releaseDate": "22/04/2023",
   "initialRoomID": "tavern",
   "help": "overrides default help text"
 }

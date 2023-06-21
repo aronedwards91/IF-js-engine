@@ -4,6 +4,11 @@
     "newValue": ">+>1",
     "returnString": "The value on the box increases"
   },
+  "boxOpen": {
+    "stateID": "ibox:open",
+    "newValue": true,
+    "returnString": "You open the box, sadly it's empty"
+  },
   "moonShow": {
     "stateID": "routside:moon",
     "newValue": true,
