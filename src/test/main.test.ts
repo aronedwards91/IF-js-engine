@@ -543,5 +543,28 @@ describe("Test numerical iterator", function () {
       roomsJSON["bedroom"].name
     );
   });
-  genTest("use box", DefaultResponses.examineFail);
+
+  genTest("open box", itemsJSON.box.interactions.open.onFail);
+  it("box number starts at zero", () => {
+    assert.equal(IFEngine.testingTools.getStateByID("ibox:val"), 0);
+  });
+  genTest("use box", triggersJSON.boxTouch.returnString);
+  genTest("use box", triggersJSON.boxTouch.returnString);
+  genTest("use box", triggersJSON.boxTouch.returnString);
+  it("box number increased to 3", () => {
+    assert.equal(parseInt(IFEngine.testingTools.getStateByID("ibox:val")), 3);
+  });
+  genTest("subtract box", triggersJSON.boxSubtract.returnString);
+  it("box number decreased to 2", () => {
+    assert.equal(parseInt(IFEngine.testingTools.getStateByID("ibox:val")), 2);
+  });
+  genTest("double box", triggersJSON.boxDouble.returnString);
+  it("box number doubled to 4", () => {
+    assert.equal(parseInt(IFEngine.testingTools.getStateByID("ibox:val")), 4);
+  });
+  genTest("use box", triggersJSON.boxTouch.returnString);
+  it("box number increased to 5", () => {
+    assert.equal(parseInt(IFEngine.testingTools.getStateByID("ibox:val")), 5);
+  });
+  genTest("open box", triggersJSON.boxOpen.returnString);
 });

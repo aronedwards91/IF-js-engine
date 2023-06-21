@@ -33,9 +33,7 @@ function checkExists(term: ItemID): string | false {
 
 export default function checkExamine(stringArray: Array<string>): string {
   if (stringArray.length > 1) {
-    console.log("stringArray", stringArray);
     const testResult = checkStringForSignificantTerms(stringArray, checkExists, false);
-    console.log("testResult", testResult);
 
     if (testResult) return testResult;
     return "can't see such an item";

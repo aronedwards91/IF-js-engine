@@ -52,7 +52,7 @@ eg puzzlebox
 
 #### TODO
 
->numerical adjuster & logic
+>numerical adjuster & logic/state check
 parseable text
 search TODO's
 
