@@ -50,9 +50,23 @@ eg puzzlebox
     }
 }
 
+#### Numerical
+
+{
+    'onPass': 'outside',
+    'onFail': 'Door is closed',
+    'req': {
+        'ibox:val:>=': 5
+    }
+}
+
+  smaller "<",
+  bigger ">",
+  smallerOrEq "<=",
+  biggerOrEq ">=",
+
 #### TODO
 
->numerical adjuster & logic/state check
 parseable text
 search TODO's
 

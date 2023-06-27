@@ -82,6 +82,8 @@
       "take": "you don't need this",
       "use": ">>T>boxTouch",
       "press": ">>T>boxTouch",
+      "subtract": ">>T>boxSubtract",
+      "double": ">>T>boxDouble",
       "examine": "It's a box, the number is [[ibox:val:val]]",
       "unlock": "The box is not locked",
       "open": {
