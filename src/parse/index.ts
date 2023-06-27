@@ -26,7 +26,6 @@ function parseSection(input: string): string {
 
   if (spaceSplit.length === 1) {
     const singleTerm = removedVowels;
-    // TODO switch for single terms
     const singleTermDirCheck = moveIfDirectionKnown(singleTerm);
     if (singleTermDirCheck) return singleTermDirCheck;
   }

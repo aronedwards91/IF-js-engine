@@ -251,8 +251,6 @@ describe("Test state management", function () {
       IFEngine.testingTools.getStateByID("rtavern:tableGreenMug") === false
     );
   });
-
-  // TODO test numerical state
 });
 
 describe("Test movement", function () {
@@ -265,11 +263,6 @@ describe("Test movement", function () {
   genTest("down", roomsJSON.tavern.description);
   genTest("outside", roomsJSON.outside.description);
   genTest("n", roomsJSON.tavern.description);
-
-  // TODO test all directions
-  // TODO E , east
-  // TODO W, west
-  // TODO S, south
 
   describe("Go works with alternate terms", () => {
     genTest("move upstairs", roomsJSON.bedroom.description);

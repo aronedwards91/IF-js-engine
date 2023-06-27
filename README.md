@@ -67,7 +67,7 @@ eg puzzlebox
 
 #### TODO
 
-parseable text
+description parseable text
 search TODO's
 
 #### Future Problems
