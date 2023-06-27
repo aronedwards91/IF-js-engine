@@ -4,6 +4,21 @@
     "newValue": ">+>1",
     "returnString": "The value on the box increases"
   },
+  "boxSubtract": {
+    "stateID": "ibox:val",
+    "newValue": ">->1",
+    "returnString": "The value on the box decreases"
+  },
+  "boxDouble": {
+    "stateID": "ibox:val",
+    "newValue": ">*>2",
+    "returnString": "The value on the box doubles"
+  },
+  "boxOpen": {
+    "stateID": "ibox:open",
+    "newValue": true,
+    "returnString": "You open the box, sadly it's empty"
+  },
   "moonShow": {
     "stateID": "routside:moon",
     "newValue": true,

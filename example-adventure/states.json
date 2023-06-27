@@ -1,6 +1,7 @@
 {
   "ibox": {
-    "val": 1
+    "val": 0,
+    "open": false
   },
   "routside": {
     "moon": "false",

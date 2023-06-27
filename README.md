@@ -14,16 +14,16 @@ Internals for a basic interactive fiction engine
 
 either a string returned to the reader, or trigger (starts with *)
 
-###### Parsable Description
+###### Parsable Description TODO
 
 [[imug01:taken:false==and a mug]]
 
 ###### Number States
 
-*++ : increases by 1
-*+2 : increase by 2
-*-2 : decrease by 2
-*-- : decrease by 1
+`>+>1` : increases by 1
+`>+>2` : increase by 2
+`>->2` : decrease by 2
+`>*>2` : double
 
 ###### State Check
 
@@ -50,10 +50,25 @@ eg puzzlebox
     }
 }
 
+#### Numerical
+
+{
+    'onPass': 'outside',
+    'onFail': 'Door is closed',
+    'req': {
+        'ibox:val:>=': 5
+    }
+}
+
+  smaller "<",
+  bigger ">",
+  smallerOrEq "<=",
+  biggerOrEq ">=",
+
 #### TODO
 
-numerical adjuster & logic
-state management
+description parseable text
+search TODO's
 
 #### Future Problems
 - containers

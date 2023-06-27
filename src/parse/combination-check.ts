@@ -9,7 +9,7 @@ export function isCombinationCall(
   if (strArray.length > 2) {
     const checkedArray = strArray.splice(1, strArray.length - 1);
 
-    let splitterIndex = -1; // TODO
+    let splitterIndex = -1;
     checkedArray.forEach((stringSection, i) => {
       if (CombinationInteractions.includes(stringSection)) splitterIndex = i;
     });

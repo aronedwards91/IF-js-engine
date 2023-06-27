@@ -76,13 +76,23 @@
   },
   "box": {
     "name": "box",
-    "description": "small box with a number on it",
+    "description": "small box with a number on it [[ibox:open?||, it's open inside it's empty||, its closed",
     "isTakeable": false,
     "interactions": {
       "take": "you don't need this",
       "use": ">>T>boxTouch",
+      "press": ">>T>boxTouch",
+      "subtract": ">>T>boxSubtract",
+      "double": ">>T>boxDouble",
       "examine": "It's a box, the number is [[ibox:val:val]]",
-      "unlock": "The box is not locked"
+      "unlock": "The box is not locked",
+      "open": {
+        "onPass": ">>T>boxOpen",
+        "onFail": "you can't open the box, you see a red 5 begin to glow",
+        "req": {
+          "ibox:val:>=": 5
+        }
+      }
     }
   },
   "ladder": {
